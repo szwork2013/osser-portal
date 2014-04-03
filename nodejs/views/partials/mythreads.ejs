@@ -1,0 +1,38 @@
+<!-- mypageに表示用 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5>
+            <strong>発表した投稿</strong>
+            <span class="pull-right">
+                <% if (form.isself) { %>
+                    <a href="<%= gconfig.site.nodejs.route.threadmylist %>">More</a>
+                <% } else { %>
+                    <a href="<%= gconfig.site.nodejs.route.search %>/?uid=<%= form.uid %>">More</a>
+                <% } %>
+            </span>
+        </h5>
+    </div>
+
+    <% if (form.mythreads !== undefined && form.mythreads.length > 0) { %>
+    <!-- List group -->
+        <ul class="list-group">
+            <% _.each(form.mythreads, function (result) { %>
+            <li class="list-group-item" style="height:40px;">
+                <div class="pull-left" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:85%">
+                    <% if (form.isself) { %>
+                        <a href="<%= gconfig.site.nodejs.route.threadedit %>/<%= gfunc.getContentNodeUrl(result.thread.nid) %>"><%= result.thread.title %></a>
+                    <% } else { %>
+                        <a href="<%= gconfig.site.nodejs.route.thread %>/<%= gfunc.getContentNodeUrl(result.thread.nid) %>"><%= result.thread.title %></a>
+                    <% } %>
+                    
+                </div>
+                <span class="pull-right"><%= gfunc.format_datestring(result.thread.upddate, true) %></span>
+            </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <div class="panel-body">
+            文章なし
+        </div>
+    <% } %>
+</div>

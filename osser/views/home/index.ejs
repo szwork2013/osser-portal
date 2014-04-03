@@ -1,0 +1,125 @@
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<%=gconfig.url.osser%>"><%= gconfig.name %></a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                    <a href="#">ポータル</a>
+                </li>
+                <li>
+                    <a href="<%=gconfig.url.account%><%=gconfig.site.account.route.signup%>"><span class="glyphicon glyphicon-user"></span>会員登録</a>
+                </li>
+                <li>
+                    <a href="<%=gconfig.url.account%>"><span class="glyphicon glyphicon-lock"></span>ログイン</a>
+                </li>
+            </ul>
+        </div>
+        <!--/.navbar-collapse -->
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <p>
+            <img src="/images/osser.png" class="img-responsive img-rounded center-block" style="width: 100px;" alt="<%= gconfig.name %>">
+        </p>
+        
+        <h2><%= gconfig.name %></h2>
+        <p class="lead">オープンソースソフトウェアの話題を中心にするコミュニティサイトです。</p>
+        <p>
+            <a class="btn btn-lg btn-info" href="<%=gconfig.url.account%>" role="button">アカウント一つで全て</a>
+            <a class="btn btn-lg btn-warning" href="<%=gconfig.url.nodejs%>" role="button">Node.jsコミュニティ</a>
+        </p>
+        <div class="row" style="padding-top:20px;">
+            <div class="col-md-2 col-md-offset-3"><div class="tweet"></div></div>
+            <div class="col-md-2"><div class="google_plusone"></div></div>
+            <div class="col-md-2"><div class="facebook_like"></div></div>
+<!--
+            <div class="col-xs-1"><div class="facebook_share"></div></div>
+            <div class="col-xs-1"><div class="hatena"></div></div>
+            <div class="col-xs-1"><div class="gree_sf"></div></div>
+-->
+        </div>
+        
+        
+    </div>
+</div>
+
+<div class="container">
+    <div class="row center-block" style="width:90%;">
+        <div class="col-sm-4">
+            <h3>統合アカウント</h3>
+            <p style="font-size:18px;color:gray;">1 つの osser アカウントですべての <%=gconfig.name%> (http://*.osser.jp) サービスにアクセスできます。</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>Node.jsコミュニティ</h3>
+            <p style="font-size:16px;color:gray;">Node.js中心の技術討論、情報交換のコミュニティサイトです。登録は無料で、発言も自由です。<br/>本サイトでは、Node.js、MongoDB、Sails.jsを使って、クラウド環境で動かすことをしています。</p>
+        </div>
+
+        <div class="col-sm-4">
+            <h3>ソフトウェア</h3>
+            <p style="font-size:16px;color:gray;">オープンソースソフトウェア関与する人達という意味です、当サイトは基本は９９％オープンソースソフトウェア情報と更新情報を収集共有します、且つ、IT技術者コミュニケーションの専門サイトという目的です。</p>
+        </div>
+    </div>    
+</div>
+<div class="container">
+    <div class="row center-block" style="width:90%;">
+        <div class="col-sm-4">
+            <p class="text-right">
+                <a class="btn btn-info" href="<%=gconfig.url.account%>" role="button">統合アカウント</a>
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <p class="text-right">
+                <a class="btn btn-warning" href="<%=gconfig.url.nodejs%>" role="button">Node.jsコミュニティ</a>
+            </p>
+            
+        </div>
+
+        <div class="col-sm-4">
+            <p class="text-right">
+                <a class="btn btn-success" href="<%=gconfig.url.oldosser%>" role="button" target="_blank">旧サイト(更新停止)</a>
+            </p>
+        </div>
+    </div>    
+</div>
+
+<!-- /container -->
+<div style="margin-top: 30px; margin-bottom: 0px;" class="navbar navbar-default navbar-static-bottom">
+    <div class="container">
+        <p style="margin:20px;color:gray;line-height:30px;" class="text-center bottom-navbar-text">
+            <%- gconfig.name %> &copy; 2013-<%= new Date().getFullYear() %>
+            <br/>
+            バージョン：<%- gconfig.version %>
+            <br/>
+            本サイトはオープンソースシステムで、ソースコードを<a href="<%=gconfig.url.others.github_osser%>" target="_blank">GitHub</a>に公開しています。
+            <br/>
+
+        </p>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function() {
+        $('.tweet').socialbutton('twitter',{
+            button: 'horizontal',
+            text: '<%=gconfig.name%>'
+        });
+        $('.google_plusone').socialbutton('google_plusone');
+        $('.facebook_like').socialbutton('facebook_like', {button:'button_count'});
+//        $('.facebook_share').socialbutton('facebook_share').width(110);
+//        $('.hatena').socialbutton('hatena').width(110);
+//        $('.gree_sf').socialbutton('gree_sf').width(110);
+    });
+</script>

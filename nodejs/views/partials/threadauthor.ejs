@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5>
+            <strong>投稿作者</strong>
+        </h5>
+    </div>
+    <div class="panel-body">
+        <img src="<%= form.author.mylogo %>" style="float:left;" class="img-thumbnail myportrait" />
+        <div style="float:left;padding-left:1px;">
+            <div style="padding-top:5px;">
+                <p>
+                    <a href="/user/<%- form.author.myurl %>">
+                        <strong>
+                            <%= form.author.username %>
+                        </strong>
+                    </a>
+                </p>
+                <p>
+                    経験値： <%= form.author.experience %>
+                </p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="clearfix">
+            <div><%= form.author.threadcount %> 投稿</div>
+            <div><%= form.author.commentcount %> コメント</div>
+            <div>0 フォロー</div>
+            <div>0 フォロワー</div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,9 @@
+{
+    "name": "redirect",
+    "script": "app.js",
+    "port": 8084,
+    "env": {
+        "NODE_ENV": "production"
+    },
+    "options": [""]
+}

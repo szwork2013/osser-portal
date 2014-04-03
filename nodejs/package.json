@@ -1,0 +1,30 @@
+{
+  "name": "nodejs",
+  "private": true,
+  "version": "0.0.0",
+  "description": "a Sails application",
+  "dependencies": {
+    "sails": "0.9.13",
+    "grunt": "0.4.1",
+    "sails-disk": "~0.9.0",
+    "ejs": "0.8.4",
+    "optimist": "0.3.4",
+    "gravatar": "~1.0.6",
+    "validator": "~3.1.0",
+    "marked": "~0.3.0",
+    "connect-flash": "~0.1.1",
+    "sitemap": "~0.7.2",
+    "rss": "~0.3.2"
+  },
+  "scripts": {
+    "start": "nodemon app.js",
+    "debug": "node debug app.js"
+  },
+  "main": "app.js",
+  "repository": "",
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "nodemon": "~1.0.9"
+  }
+}

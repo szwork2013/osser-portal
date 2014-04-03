@@ -1,0 +1,235 @@
+body {
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    /*font-family: "メイリオ";*/
+    margin-bottom: 0px;
+    background-color: #f9f9f9;
+}
+.btn,
+.form-control {
+    /*border-radius: 0px;*/
+}
+.form-control {
+    padding: 5px;
+}
+.navbar-inverse {
+    background-color: #46483e;
+    border-color: #46483e;
+}
+.navbar-inverse .navbar-brand {
+    color: white;
+    vertical-align: bottom;
+}
+.navbar-brand {
+    float: left;
+    padding: 10px 5px;
+    font-size: 18px;
+    line-height: 20px;
+}
+.panel {
+    margin-bottom: 10px;
+    border-radius: 0px;
+}
+.panel-myprofile {
+    border: 0px solid white;
+    background-color: #666666;
+    color: white;
+    margin-bottom: 2px;
+}
+.panel-heading {
+    padding: 1px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.panel-default>.panel-heading {
+    color: #666666;
+    background-color: #f4f4f4;
+    border-color: #EAEAEA;
+}
+.panel-default>.panel-heading-highlight {
+    background-color: gray;
+    color: white;
+    background-image: -webkit-linear-gradient(top,gray 0,gray 100%);
+    background-image: linear-gradient(to bottom,gray 0,gray 100%);
+}
+.panel-default>.panel-heading-highlight-profile {
+    background-color: #46483e;
+    color: white;
+}
+.panel-default .panel-heading-appeal {
+    border: 0px solid white;
+    color: white;
+    margin-bottom: 2px;
+    background: #334455 url('/images/appeal.png') no-repeat left bottom;
+    padding: 10px 10px 10px 20px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+.panel-default .panel-heading-setup,
+.panel-default .panel-heading-message {
+    margin-bottom: 2px;    
+}
+.panel-footer {
+    padding: 1px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #dddddd;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 10px;
+    margin-bottom: -1px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+}
+.myportrait {
+    margin: 0 8px 10px 0;
+}
+.myportrail_comment {
+    width: 40px;
+}
+.media,
+.media .media {
+    margin-top: 5px;
+}
+.btn-message-profile:hover,
+.btn-message-profile:focus,
+.btn-message-profile:active,
+.btn-message-profile.active {
+    /*
+    color: #ffffff;
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+    */
+}
+.btn-message-profile {
+    /*
+    color: #ffffff;
+    background-color: ##E47911;
+    border-color: #666666;
+    border-radius: 0px;
+    */
+    width: 100%;
+    padding: 20px;
+}
+/*
+.btn-success-profile:hover,
+.btn-success-profile:focus,
+.btn-success-profile:active,
+.btn-success-profile.active {
+    color: #ffffff;
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+}
+*/
+.btn-success-profile {
+    /*
+    border-radius: 0px;
+    */
+    width: 100%;
+    padding: 20px;
+}
+/*
+.btn-success-profile-newthread:hover,
+.btn-success-profile-newthread:focus,
+.btn-success-profile-newthread:active,
+.btn-success-profile-newthread.active {
+    color: #ffffff;
+    background-color: #398439;
+    border-color: #398439;
+}
+*/
+.btn-success-profile-newthread {
+    /*
+    border-radius: 0px;
+    */
+    width: 100%;
+    padding: 20px;
+}
+.panel-myprofile-link {
+    color: white;
+}
+.panel-myprofile-link:hover,
+.panel-myprofile-link:focus,
+.panel-myprofile-link:active,
+.panel-myprofile-link.active {
+    color: black;
+    background-color: white;
+    text-decoration: none;
+}
+.nodejs-comment {
+    padding: 10px;
+    font-size: 12px;
+}
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+}
+/* 会員基本情報編集タブ Start */
+
+.nav-tabs>li>a {
+    margin-right: 2px;
+    line-height: 1.428571429;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    font-size: 18px;
+}
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+    color: white;
+    background-color: #334455;
+    border: 1px solid #dddddd;
+    border-bottom-color: transparent;
+    cursor: default;
+}
+.nav>li>a:hover,
+.nav>li>a:focus {
+    text-decoration: none;
+    background-color: #eeeeee;
+}
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+.md-editor>textarea {
+    background: white;
+}
+/* 会員基本情報編集タブ End */
+
+@media (max-width: 768px) {
+    .hidden-xs {
+        display: none;
+    }
+    .navbar-brand {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+    .hidden-sm {
+        display: none;
+    }
+    .amazon-text {
+        font-size: 16px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+    .hidden-md {
+        display: none;
+    }
+}
+@media (min-width: 1200px) {
+    .hidden-lg {
+        display: none;
+    }
+    .amazon-text {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,83 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div>
+        <%- partial('../partials/mypagebreadcrumb') %>
+        <div>
+            <%- partial('../widget/personalsetup', {active:'usereditjob'}) %>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="padding-top:20px;">
+                <% if (msg){ %>
+                    <div class="alert alert-success">
+                        <%= msg %>
+                    </div>
+                <% }%>
+                <form role="form" method="post" action="/user/editjob" class="form-horizontal">
+                    <div class="form-group <%= form.prefecturemsg ? 'has-error':'' %>">
+                        <label for="inputPrefecture" class="col-md-3 control-label">職種</label>
+                        <div class="col-md-4">
+                            <select id="inputJobtype" name="jobtype" class="form-control">
+                                <option value="">選択してください</option>
+                                <% _.each(gdata.jobtypes, function(jobtype) { %>
+                                <option value="<%=jobtype%>" <%- form.jobtype==jobtype ? 'selected':'' %>><%=jobtype%></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <span class="help-block"><%=form.jobtypemsg%></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputJobstatus" class="col-md-3 control-label">就職状態</label>
+                        <div class="col-md-9">
+                            <% _.each(gdata.jobstatuses, function(jobstatus) {%>
+                                <div class="radio-inline">
+                                    <label>
+                                        <input name="jobstatus" id="inputJobstatus" value="<%=jobstatus%>" type="radio" <%- form.jobstatus==jobstatus ? 'checked':'' %>><%=jobstatus%>
+                                    </label>
+                                </div>
+                            <% })%>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputJobyears" class="col-md-3 control-label">経験年数</label>
+                        <div class="col-md-4">
+                            <select id="inputJobyears" name="jobyears" class="form-control">
+                                <option value="">選択してください</option>
+                                <% _.each(gdata.jobyears, function(jobyear) { %>
+                                <option value="<%=jobyear%>" <%- form.jobyears==jobyear ? 'selected':'' %>><%=jobyear%></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <% var pIndex = 0; %>
+                    <div class="form-group">
+                        <label for="inputDevplatform" class="col-md-3 control-label">開発言語</label>
+                        <div class="col-md-8">
+                            <%- partial('../widget/checkboxes', {chkboxes_id:'devplatform',chkboxes_items:gdata.devplatforms,chkboxes_rowitemcount:4,chkboxes_values:form.devplatform})%>
+                        </div>
+                    </div>
+                    
+                    <% pIndex = 0; %>
+                    <div class="form-group">
+                        <label for="inputSpecializedarea" class="col-md-3 control-label">専門領域</label>
+                        <div class="col-md-8">
+                            <%- partial('../widget/checkboxes', {chkboxes_id:'specializedarea',chkboxes_items:gdata.specializedareas,chkboxes_rowitemcount:3,chkboxes_values:form.specializedarea})%>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                    <input id="inputSpecailInput" name="specailInput" type="text" style="display:none" placeholder="例：田中太郎">
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-success btn-lg">職歴更新</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+{
+    "name": "nodejs",
+    "script": "app.js",
+    "port": 8083,
+    "env": {
+        "NODE_ENV": "production"
+    },
+    "options": [""]
+}

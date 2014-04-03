@@ -1,0 +1,28 @@
+<!-- mypageに表示用 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5>
+            <strong>下書き</strong>
+            <span class="pull-right"><a href="<%= gconfig.site.nodejs.route.threadmydraft %>">More</a></span>
+        </h5>
+    </div>
+
+    <% if (form.mydrafts !== undefined && form.mydrafts.length > 0) { %>
+    <!-- List group -->
+        <ul class="list-group">
+            <% _.each(form.mydrafts, function (result) { %>
+            <li class="list-group-item" style="height:40px;">
+                <div class="pull-left" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:80%">
+                    <a href="<%= gconfig.site.nodejs.route.threadedit %>/<%= gfunc.getContentNodeUrl(result.thread.nid) %>"><%= result.thread.title %></a>
+                </div>
+                <span class="pull-right"><%= gfunc.format_datestring(result.thread.upddate, true) %></span>
+            </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <div class="panel-body">
+            文章なし
+        </div>
+    <% } %>
+
+</div>

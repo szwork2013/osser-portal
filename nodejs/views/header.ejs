@@ -1,0 +1,45 @@
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button data-toggle="collapse" data-target=".navHeaderCollapse" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+                <img src="/images/nodejs-logo.png" style="height:30px;" />
+                <%- gconfig.site.nodejs.name %>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">ホーム</a>
+                </li>
+                <li>
+                    <a href="<%- gconfig.site.nodejs.route.nodejs %>">Node.jsとは</a>
+                </li>
+                <% if (session.osser) {%>
+                <li>
+                    <a href="/user/<%- session.osser.myurl %>">マイページ</a>
+                </li>
+                <% } %>
+                <li>
+                    <% if (session.osser) {%>
+                        <a href="<%- gconfig.url.account %><%- gconfig.site.account.route.logout %>">ログアウト</a>
+                    <% }else{ %>
+                        <a href="<%- gconfig.url.account %>">ログイン/登録</a>
+                    <% } %>
+                </li>
+            </ul>
+            <!--
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group" style="text-align:right;">
+                    <input type="text" class="form-control" placeholder="キーワード" style="width:80%">
+                </div>
+                <button type="submit" class="btn btn-success">検索</button>
+            </form>
+            -->
+        </div>
+    </div>
+</nav>

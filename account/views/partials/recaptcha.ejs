@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    var RecaptchaOptions = {
+        theme : 'custom',
+        custom_theme_widget: 'recaptcha_widget_div',
+        lang  : 'ja'
+    };
+</script>
+
+<div id="recaptcha_widget_div" style="display:none">
+
+    <div id="recaptcha_image" style="padding-bottom:10px;"></div>
+    <strong>
+        <div class="recaptcha_only_if_incorrect_sol" style="color:red">もう一度入力してください</div>
+        <div class="recaptcha_only_if_image">２つの単語を入力してください</div>
+    </strong>
+    <div>
+        <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+    </div>
+    <div>
+        <a href="javascript:Recaptcha.reload()">新しい認証を取得</a>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=<%- gconfig.recaptcha.PUBLIC_KEY%>">
+</script>
+<noscript>
+    <iframe src="//www.google.com/recaptcha/api/noscript?k=<%- gconfig.recaptcha.PUBLIC_KEY%>" height="300" width="500" frameborder="0"></iframe>
+    <br>
+    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+    </textarea>
+    <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+</noscript>

@@ -1,0 +1,66 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <%- partial('../partials/mypagebreadcrumb') %>
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a style="background-color:#5cb85c;font-size:14px;">コミュニティ投稿</a>
+                </li>
+            </ul>
+        </div>
+        <div style="padding:20px 10px 20px 10px;">
+            <% if (msg){ %>
+                <% if (alert !== undefined) { %>
+                    <div class="alert <%=alert%>">
+                        <%= msg %>
+                    </div>
+                <% } else { %>
+                    <div class="alert alert-success">
+                        <%= msg %>
+                    </div>
+                <% } %>
+            <% }%>
+            <form role="form" method="post" action="<%= gconfig.site.nodejs.route.threadnew %>" class="form-horizontal">
+                <div class="form-group <%= form.titlemsg ? 'has-error': ''%>">
+                    <label for="inputTitle" class="control-label">タイトル</label>
+                    <input type="text" class="form-control" id="inputTitle" name="title" placeholder="投稿タイトル" value="<%- form.title %>">
+                </div>
+                <div class="form-group" style="margin-bottom:5px;">
+                    <button id="btnSetSummary" type="button" style="padding:1px;font-size:8px;" class="btn btn-info btn-sm" title="投稿内容の概要があれば、皆さんはわかりやすくなりますので、お薦めします。">+/-</button>
+                    <label for="inputSummary"><span id="lblSummary" style="display:none;">サマリー(概要)</span></label>
+                    <textarea id="inputSummary" name="summary" class="form-control" style="display:none;" rows=4 placeholder="投稿内容の概要があれば、皆さんはわかりやすくなりますので、お薦めします。"><%- form.summary %></textarea>
+                </div>
+                <div class="form-group <%= form.contentmsg ? 'has-error': ''%>">
+                    <label for="content" class="control-label">正文(<a href="<%- gconfig.url.redirect%>/?s=Bgjlfl8pptX0lg" target="_blank">Markdown文法</a>)</label>
+                    <%- partial('../widget/mdtext', {mdtext_id:'content', mdtext_rows: 20, mdtext_content:form.content}) %>
+                </div>
+
+                <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                <input id="inputSpecailInput" name="specailInput" type="text" style="display:none" placeholder="例：田中太郎">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button class="btn btn-success btn-lg" name="btnAction" value="create">コミュニティ投稿</button>
+                        <button class="btn btn-success btn-lg" name="btnAction" value="preview">プレビュー</button>
+                        <button class="btn btn-primary btn-lg" name="btnAction" value="draft">下書き</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#btnSetSummary").click(function(e){
+            if ($('#inputSummary').css('display') == 'block') {
+                // 表示されている場合の処理
+                $("#inputSummary").hide();
+                $("#lblSummary").hide();
+            } else {
+                // 非表示の場合の処理
+                $("#inputSummary").show();
+                $("#lblSummary").show();
+            }
+        });
+    });
+</script>

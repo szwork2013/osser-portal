@@ -1,0 +1,20 @@
+<div style="margin-top: 30px; margin-bottom: 0px;" class="navbar navbar-default navbar-static-bottom">
+    <div class="container">
+        <p style="margin:20px;color:gray;line-height:30px;" class="text-center bottom-navbar-text">
+            <%- gconfig.name %> &copy; 2013-<%= new Date().getFullYear() %>
+            <br/>
+            バージョン：<%- gconfig.version %>
+            <br/>
+            本サイトはオープンソースシステムで、ソースコードを<a href="<%=gconfig.url.others.github_osser%>" target="_blank">GitHub</a>に公開しています。
+            <br/>
+        </p>
+    </div>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36130359-3', 'osser.jp');
+  ga('send', 'pageview');
+</script>

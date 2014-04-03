@@ -1,0 +1,14 @@
+<% if (typeof mdtext_id !== 'undefined' && typeof mdtext_rows !== 'undefined') { %>
+
+<textarea id="<%= mdtext_id %>" name="<%= mdtext_id %>" class="form-control" rows=<%= mdtext_rows %>><%- mdtext_content %></textarea>
+
+<script type="text/javascript">
+    $('#<%= mdtext_id %>').markdown({
+        autofocus:false,
+        savable:false,
+        iconlibrary:'fa'
+    });
+</script>
+<% } else { %>
+<h1>mdtext id is nothing.</h1>
+<% } %>

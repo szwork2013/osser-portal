@@ -1,0 +1,2 @@
+# resource
+### a Sails application

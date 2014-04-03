@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <%- partial('../partials/mypagebreadcrumb') %>
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a style="background-color:#f0ad4e;font-size:14px;"><em>コミュニティ投稿プレビュー</em></a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h1><%= form.showtitle %></h1>
+            <!--
+            <div>
+                <%= form.showsummary %>
+            </div>
+            -->
+            <div>
+                <%- form.showcontent %>
+            </div>
+            
+            <form role="form" method="post" action="<%= gconfig.site.nodejs.route.threadpreview %>" class="form-horizontal">
+
+                <input type="hidden" name="goback" value="<%= form.goback %>">
+                <input type="hidden" name="title" value="<%= form.title %>">
+                <input type="hidden" name="summary" value="<%= form.summary %>">
+                <input type="hidden" name="content" value="<%= form.content %>">
+                
+                <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                <input id="inputSpecailInput" name="specailInput" type="text" style="display:none" placeholder="例：田中太郎">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button class="btn btn-success" name="btnAction" value="prev">戻る</button>
+                    </div>
+                </div>                
+            </form>
+        </div>
+    </div>
+</div>

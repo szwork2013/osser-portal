@@ -1,0 +1,105 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <%- partial('../partials/mypagebreadcrumb') %>
+        <div>
+            <%- partial('../widget/personalsetup', {active:'useredit'}) %>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="padding-top:20px;">
+                <% if (msg){ %>
+                    <div class="alert alert-success">
+                        <%= msg %>
+                    </div>
+                <% }%>
+                <form role="form" method="post" action="/user/edit" class="form-horizontal">
+                    <div class="form-group <%= form.usernamemsg ? 'has-error':'' %>">
+                        <label for="inputUsername" class="col-md-3 control-label">ユーザ名</label>
+                        <div class="col-md-4">
+                            <input id="inputUsername" name="username" type="text" placeholder="例：田中太郎" class="form-control" value="<%-form.username%>">
+                        </div>
+                        <div class="col-md-5">
+                            <span class="help-block"><%-form.usernamemsg%></span>
+                        </div>
+                    </div>
+                    <div class="form-group <%= form.emailmsg ? 'has-error':'' %>">
+                        <label for="inputEmail" class="col-md-3 control-label">メールアドレス</label>
+                        <div class="col-md-4">
+                            <input id="inputEmail" name="email" type="email" class="form-control" value="<%-form.email%>" disabled>
+                        </div>
+                        <div class="col-md-5">
+                            <span class="help-block"><%-form.emailmsg%></span>
+                        </div>
+                    </div>
+                    <div class="form-group <%= form.password1msg ? 'has-error':'' %>">
+                        <label for="inputPassword1" class="col-md-3 control-label">パスワード</label>
+                        <div class="col-md-4">
+                            <input id="inputPassword1" name="password1" type="password" placeholder="********" class="form-control">
+                        </div>
+                        <div class="col-md-5">
+                            <span class="help-block"><%-form.password1msg%></span>
+                        </div>
+                    </div>
+                    <div class="form-group <%= form.password2msg ? 'has-error':'' %>">
+                        <label for="inputPassword2" class="col-md-3 control-label">パスワードの確認</label>
+                        <div class="col-md-4">
+                            <input id="inputPassword2" name="password2" type="password" placeholder="********" class="form-control">
+                        </div>
+                        <div class="col-md-5">
+                            <span class="help-block"><%-form.password2msg%></span>
+                        </div>
+                    </div>
+                    <div class="form-group <%= form.sexmsg ? 'has-error':'' %>">
+                        <label for="inputSex" class="col-md-3 control-label">性別</label>
+                        <div class="col-md-4">
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="sex" id="inputSex" value="男" <%= form.sex=='男' ? 'checked':'' %>>男</label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="sex" id="inputSex" value="女" <%= form.sex=='女' ? 'checked':'' %>>女</label>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <span class="help-block"><%-form.sexmsg%></span>
+                        </div>
+                    </div>
+                    <div class="form-group <%= form.prefecturemsg ? 'has-error':'' %>">
+                        <label for="inputPrefecture" class="col-md-3 control-label">都道府県</label>
+                        <div class="col-md-4">
+                            <select id="inputPrefecture" name="prefecture" class="form-control">
+                                <option value="">選択してください</option>
+                                <% _.each(gdata.prefectures, function(prefecture) { %>
+                                <option value="<%-prefecture%>" <%- form.prefecture==prefecture ? 'selected':'' %>><%-prefecture%></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <span class="help-block"><%-form.prefecturemsg%></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputMyAppeal" class="col-md-3 control-label">自分のアピール</label>
+                        <div class="col-md-6">
+                            <textarea id="inputMyAppeal" name="appeal" class="form-control" rows=4><%= form.appeal %></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputHomepage" class="col-md-3 control-label">ホームページ</label>
+                        <div class="col-md-6">
+                            <input id="inputHomepage" name="homepage" type="text" placeholder="例：http://osser.jp" class="form-control" value="<%-form.homepage%>">
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                    <input id="inputSpecailInput" name="specailInput" type="text" style="display:none" placeholder="例：田中太郎">
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-success btn-lg">情報更新</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

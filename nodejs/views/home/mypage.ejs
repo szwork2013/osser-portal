@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <%- partial('../partials/mypageleftbar') %>
+        </div>
+        <div class="col-md-9">
+            <%- partial('../partials/personalinfo') %>
+            <% if (form.isself) { %>
+            <%- partial('../partials/mydrafts') %>
+            <% } %>
+            <%- partial('../partials/mythreads') %>
+            <%- partial('../partials/myanswers') %>
+        </div>
+    </div>
+</div>

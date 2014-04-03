@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <form role="form" method="post" action="/security/recovery" class="form-horizontal form-recovery">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;パスワード再発行</div>
+                <div class="panel-body">
+                    <div class="form-group <%= form.emailmsg ? 'has-error':'' %>">
+                        <label for="inputEmail" class="col-md-4 control-label">メールアドレス</label>
+                        <div class="col-md-7">
+                            <input id="inputEmail" name="email" type="email" placeholder="例：tanakatairo@osser.jp" value="<%- form.email %>" class="form-control">
+                            <% if (form.emailmsg) { %>
+                                <span class="help-block"><%- form.emailmsg %></span>
+                            <% } %>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group <%= form.prefecturemsg ? 'has-error':'' %>">
+                        <label for="inputPrefecture" class="col-md-4 control-label">都道府県</label>
+                        <div class="col-md-7">
+                            <select id="inputPrefecture" name="prefecture" class="form-control">
+                                <option value="">選択してください</option>
+                                <% _.each(gdata.prefectures, function(prefecture) { %>
+                                <option value="<%-prefecture%>" <%- form.prefecture==prefecture ? 'selected':'' %>><%-prefecture%></option>
+                                <% }) %>
+                            </select>
+                            
+                            <% if(form.prefecturemsg) { %>
+                            <span class="help-block"><%-form.prefecturemsg%></span>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <% if (form.recaptcha) { %>
+                    <div class="form-group <%= form.recaptchamsg ? 'has-error': ''%>">
+                        <label for="inputRecaptcha" class="col-md-4 control-label">認証コード</label>
+                        <div class="col-md-7">
+                            <%- partial('../partials/recaptcha') %>
+                        </div>
+                    </div>
+                    <% } %>
+                    
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                    <input id="inputSpecailInput" name="specailInput" type="text" style="display:none" placeholder="例：田中太郎">
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <button class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;メール認証</button>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            <div class="pull-right">
+                <a href="/security/login"><span class="glyphicon glyphicon-lock"></span>&nbsp;会員ログイン</a>
+            </div>
+        </form>
+    </div>
+</div>

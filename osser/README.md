@@ -1,0 +1,2 @@
+# osser
+### a Sails application

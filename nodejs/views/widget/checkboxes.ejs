@@ -1,0 +1,19 @@
+<% var pIndex = 0; %>
+<table>
+<% _.each(chkboxes_items, function(chkboxes_item) { %>
+<% if (pIndex % chkboxes_rowitemcount == 0) { %>
+    <tr class="">
+<% } %>
+    <td>
+    <label class="checkbox-inline">
+      <input type="checkbox" id="<%=chkboxes_id%>" name="<%=chkboxes_id%>" value="<%=chkboxes_item%>" <%= _.contains(chkboxes_values, chkboxes_item) ? 'checked' : '' %>><%=chkboxes_item%>
+    </label>
+    </td>
+<% if (pIndex % chkboxes_rowitemcount == chkboxes_rowitemcount - 1) { %>
+    </tr>
+<% } %>
+<% pIndex++;}) %>
+<% if (pIndex % chkboxes_rowitemcount != chkboxes_rowitemcount - 1) { %>
+    </tr>
+<% } %>
+</table>

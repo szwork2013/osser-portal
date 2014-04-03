@@ -1,0 +1,38 @@
+<%
+    var active_useredit = "";
+    var active_usereditlogo = "";
+    var active_userediturl = "";
+    var active_usereditjob = "";
+    var active_item = active;
+    switch(active_item){
+        case 'useredit':
+            active_useredit='active';
+            break;
+        case 'usereditlogo':
+            active_usereditlogo='active';
+            break;
+        case 'userediturl':
+            active_userediturl='active';
+            break;
+        case 'usereditjob':
+            active_usereditjob='active';
+            break;
+        default:
+            active_useredit = "active"
+            break;
+    }
+%>
+<ul class="nav nav-tabs">
+    <li class="<%=active_useredit%>">
+        <a href="<%= gconfig.site.nodejs.route.useredit %>">会員基本情報</a>
+    </li>
+    <li class="<%=active_usereditlogo%>">
+        <a href="<%= gconfig.site.nodejs.route.usereditlogo %>">ロゴ変更</a>
+    </li>
+    <li class="<%=active_usereditjob%>">
+        <a href="<%= gconfig.site.nodejs.route.usereditjob %>">経験職種</a>
+    </li>
+    <li class="<%=active_userediturl%>">
+        <a href="<%= gconfig.site.nodejs.route.userediturl %>">url変更</a>
+    </li>
+</ul>

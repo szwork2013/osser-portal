@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <!-- TOPページスレッド一覧 -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>
+                        <strong>Node.js</strong> 投稿一覧
+                    </h4>
+                </div>
+
+                <%- partial('../widget/threadlist') %>
+            
+                <div class="panel-footer">
+                    <div class="text-center">
+                        <%- partial('../widget/pager') %>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="col-md-3">
+            <%- partial('../widget/homerightbar') %>
+        </div>
+    </div>
+</div>

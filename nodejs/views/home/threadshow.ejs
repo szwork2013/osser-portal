@@ -1,0 +1,158 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <!-- TOPページスレッド一覧 -->
+            <div class="panel panel-default">
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/">ホーム</a>
+                    </li>
+                    <li class="active">
+                        話題詳細
+                    </li>
+                </ol>
+                <div style="padding:0px 10px 0px 10px;">
+                    <h3><%= form.thread.title %></h3>
+                    <hr>
+                    <p><%- form.showcontent %></p>
+                    <hr>
+                    <p class="text-right">
+                        <% if (form.thread.uid) { %>
+                        <strong><%= form.thread.uid.username %></strong> さんは <strong><%= gfunc.format_datestring(form.thread.uid.regdate, true) %></strong> に投稿しました。
+                        <% } %>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- コメント -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5><%= form.commentcount %> コメント</h5>
+                </div>
+                <div class="panel-body">
+                    <% if (form.comments.length > 0) { %>
+                        <% _.each(form.comments, function (rec) { %>
+                            <div class="media" style="border-bottom:1px solid whitesmoke;padding: 10px 0px;">
+                                <a class="pull-left" href="/user/<%= gfunc.getmyurl(rec.comment.uid) %>"><img src="<%= gfunc.getautomylogo(rec.comment.uid) %>" class="img-rounded myportrail_comment" /></a>
+                                <div class="media-body">
+                                    <div><a href="/user/<%= gfunc.getmyurl(rec.comment.uid)%>"><%= rec.comment.uid.username %></a><span style="color:gray;font-size:12px;">さんは<%= gfunc.format_datestring(rec.comment.upddate, true) %> に投稿しました</span>
+                                        <% if (req.session.osser) { %>
+                                            <% if (req.session.osser.uid == rec.comment.uid._id) { %>
+                                            <a class="pull-right" href="<%= gconfig.site.nodejs.route.threadremovecomment %>/<%= rec.comment._id %>,<%= form.nid %>"><span class="glyphicon glyphicon-remove"></span><span style="font-size:12px;">削除</span></a>
+                                            <% } else { %>
+                                            <a id="lnkReComment" class="pull-right" href="" data-toggle="modal" onclick="javascript:settmppid('<%= rec.comment._id %>');"><span class="glyphicon glyphicon-share-alt"></span><span style="font-size:12px;">返信</span></a>
+                                            <% } %>
+                                        <% } %>                                        
+                                    </div>
+                                    <div style="padding: 5px 0px;">
+                                        <%- gmd.tohtml(rec.comment.content) %>
+                                    </div>
+                                    
+                                    <% _.each(rec.subcomments, function(comment) { %>
+                                    <div class="media" style="border-top:1px solid whitesmoke;padding: 5px 0px;">
+                                        <a class="pull-left" href="/user/<%= gfunc.getmyurl(comment.uid) %>"><img src="<%= gfunc.getautomylogo(comment.uid) %>" class="img-rounded myportrail_comment" ></a>
+                                        <div class="media-body">
+                                            <div><a href="/user/<%= gfunc.getmyurl(comment.uid) %>"><%= comment.uid.username %></a><span style="color:gray;font-size:12px;">さんは<%= gfunc.format_datestring(comment.upddate, true) %> に投稿しました</span>
+                                                <% if (req.session.osser) { %>
+                                                    <% if (req.session.osser.uid == comment.uid._id) { %>
+                                                    <a class="pull-right" href="<%= gconfig.site.nodejs.route.threadremovecomment %>/<%= comment._id %>,<%= form.nid %>"><span class="glyphicon glyphicon-remove"></span><span style="font-size:12px;">削除</span></a>
+                                                    <% } else { %>
+                                                    <a id="lnkReComment" class="pull-right" data-toggle="modal" href="" onclick="javascript:settmppid('<%= comment._id %>');"><span class="glyphicon glyphicon-share-alt"></span><span style="font-size:12px;">返信</span></a>
+                                                    <% } %>
+                                                <% } %>                                                
+                                            <div style="padding: 3px 0px;">
+                                                <%- gmd.tohtml(comment.content) %></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                    コメントをお願いします。
+                    <% } %>
+                </div>
+            </div>
+            
+            <!-- あなたのコメント -->
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form role="form" method="post" action="<%= gconfig.site.nodejs.route.threadcreatecomment %>" class="form-horizontal">
+                        <div class="form-group <%= form.commentmsg ? 'has-error': ''%>">
+                            <label for="comment" class="control-label">あなたのコメント(<a href="<%- gconfig.url.redirect%>/?s=Bgjlfl8pptX0lg" target="_blank">Markdown文法</a>)</label>
+                            <%- partial('../widget/mdtext', {mdtext_id:'comment', mdtext_rows: 10, mdtext_content:''}) %>
+                            <button id="btnComment" class="btn btn-success">コメント投稿</button>
+                        </div>
+
+                        <input type="hidden" id="tmppid" name="tmppid" value="" />
+                        <input type="hidden" id="pid" name="pid" value="" />
+                        <input type="hidden" name="nid" value="<%=form.nid%>" />
+                        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                        <input id="inputSpecailInput" name="specailInput" type="text" style="display:none" placeholder="例：田中太郎">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="col-md-3">
+            <%- partial('../partials/threadauthor') %>
+            <%- partial('../widget/homerightbar') %>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#m_btnclose1").click(function(){
+            $("#tmppid").val('');            
+        });
+        $("#m_btnclose").click(function(){
+            $("#tmppid").val('');
+        });
+        $("#m_btnrecomment").click(function(){
+            var inputedcontent = jQuery.trim($("#inputReComment").val());
+            if (inputedcontent.length > 0) {
+                $("#pid").val($("#tmppid").val());
+                $("#comment").val($("#inputReComment").val());
+                $("#btnComment").click();                
+            }
+        });
+    });
+    function settmppid(pid){
+        $("#tmppid").val(pid);
+        $('#myReCommentModal')
+        .on('show.bs.modal', function (e) {
+        })
+        .on('shown.bs.modal', function (e) {
+        })
+        .on('hide.bs.modal', function (e) {
+        })
+        .on('hidden.bs.modal', function (e) {
+        })
+        .modal({
+            keyboard: false,
+            show: true
+        });
+        $("#inputReComment").focus();
+    }
+</script>
+
+<div class="modal bs-modal-sm" id="myReCommentModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="m_btnclose1">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">コメント返信</h4>
+      </div>
+      <div class="modal-body">
+        <textarea id="inputReComment" name="recomment" class="form-control" rows=4></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" id="m_btnrecomment" name="m_btnrecomment">コメント返信</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal" id="m_btnclose" name="m_btnclose">閉じる</button>
+      </div>        
+    </div>
+  </div>
+</div>

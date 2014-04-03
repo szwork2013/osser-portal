@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <%- partial('../partials/mypageleftbar') %>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <%- partial('../partials/mypagebreadcrumb') %>
+
+                    <div class="">
+                        <div class="panel-heading" style="border-bottom:1px solid #666;padding:10px 20px;">
+                            <font style="color:#666;font-size:22px;"><span style="color:royalblue;" class="glyphicon glyphicon-comment"></span>&nbsp;メッセージ一覧</font>
+                        </div>
+                        
+                        <div class="panel-body">
+                            <% if (form.messages && form.messages.length > 0) { %>
+                                <% _.each(form.messages, function (result) { %>
+                                    <div class="media" style="border-bottom:1px dashed gray;padding: 10px 0px;">
+                                      <a class="pull-left" href="#">
+                                        <img src="<%=gfunc.getautomylogo(result.fid)%>" class="myportrail_comment img-rounded" />
+                                      </a>
+                                      <div class="media-body">
+                                          <div>
+                                            <span><a href="/user/<%= gfunc.getmyurl(result.tid) %>">@<%= result.tid.username%></a></span>
+                                            :
+                                            <span style="color:#333;"><%= result.content %></span>
+                                          </div>
+                                          <div>
+                                            
+                                          </div>
+                                          <div style="padding-top:10px;">
+                                            <span style="color:#666"><small><%= gfunc.format_datestring(result.upddate, true) %></small></span>
+                                            <a href="#" class="pull-right"><span style="padding-left:10px;"><span class="glyphicon glyphicon-trash"></span>削除</span></a>
+                                            <a href="#" class="pull-right"><span style="padding-left:10px;"><span class="glyphicon glyphicon-share-alt"></span>返信</span></a>
+                                            <a href="#" class="pull-right"><span style="padding-left:10px;"><span class="glyphicon glyphicon-comment"></span>詳細(5)</span></a>
+                                          </div>
+                                      </div>
+                                    </div>
+                                <% }) %>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <%- partial('../widget/pager') %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

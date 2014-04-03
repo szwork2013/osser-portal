@@ -1,0 +1,17 @@
+{
+  "name": "osser-utility",
+  "version": "0.0.1",
+  "description": "osser utility program",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "koma",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^0.2.10",
+    "mocha": "^1.18.2",
+    "request": "^2.34.0",
+    "should": "^3.2.0-beta1"
+  }
+}

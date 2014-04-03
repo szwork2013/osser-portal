@@ -1,0 +1,19 @@
+<ul class="pagination">
+<% var pager_separator = '/' %>
+<% if (form.pager_separator !== undefined) pager_separator = form.pager_separator; %>
+<% if (form.pager) { %>
+    <% if (form.pager.first) { %>
+        <li><a href="<%- form.pager.actionurl %><%=pager_separator%><%= form.pager.first%>">&laquo;</a></li>
+    <% } %>
+    <% _.each(form.pager.pages, function (page) { %>
+        <% if (page == form.pager.activeindex) { %>
+            <li class="active"><a href="#"><%= page %></a></li>
+        <% } else { %>
+            <li><a href="<%- form.pager.actionurl %><%=pager_separator%><%= page %>"><%= page %></a></li>
+        <% } %>
+    <% }) %>
+    <% if (form.pager.last) { %>
+        <li><a href="<%- form.pager.actionurl %><%=pager_separator%><%= form.pager.last%>">&raquo;</a></li>
+    <% } %>
+<% } %>
+</ul>

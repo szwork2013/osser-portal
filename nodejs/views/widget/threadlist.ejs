@@ -1,0 +1,21 @@
+<!-- formからスレッドを表示する -->
+<ul class="list-group">
+    <% if (form.threadlist.threads && form.threadlist.threads.length > 0) { %>
+        <% _.each(form.threadlist.threads, function (result) { %>
+        <li class="list-group-item" style="height:60px;">
+            <div class="pull-left">
+                <a class="" href="/user/<%= gfunc.getmyurl(result.thread.uid) %>"><img src="<%= gfunc.getautomylogo(result.thread.uid) %>" class="img-rounded" style="width:40px;" ></a>
+            </div>
+            <div class="pull-left text-center" style="padding:11px 5px 0px 8px;color:gray;font-size:12px;width:60px;">
+                <%= result.commentcount %>/<%= result.thread.visitedcount %>
+            </div>
+            <div class="pull-left" style="padding:10px 5px 0px 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;width:75%">
+                <a href="<%= form.threadlist.actionurl %>/<%= gfunc.getContentNodeUrl(result.thread.nid) %>"><%= result.thread.title %></a>
+            </div>
+            <span class="pull-right" style="padding-top:10px;"><%= gfunc.format_datestring(result.thread.upddate, true) %></span>
+        </li>
+        <% }) %>
+    <% } else { %>
+        <li class="list-group-item">文章なし</li>
+    <% } %>
+</ul>

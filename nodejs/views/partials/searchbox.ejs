@@ -1,0 +1,15 @@
+<div style="margin-bottom:10px;">
+    <form role="form" method="post" action="<%= gconfig.site.nodejs.route.search %>" class="form-horizontal">
+        <div class="input-group">
+            <input name="sbox_keyword" type="text" class="form-control" placeholder="キーワード" value="<%= req.session.sbox_keyword === undefined ? '' : req.session.sbox_keyword %>">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                    検索
+                </button>
+            </span>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+        <input id="inputSpecailInput" name="specailInput" type="text" style="display:none" placeholder="例：田中太郎">
+    </form>
+</div>

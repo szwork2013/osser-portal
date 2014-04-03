@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <dl class="dl-horizontal" style="margin-bottom:0px;">
+            <dt>登録日付：</dt>
+            <dd><%- gfunc.format_datestring(form.regdate) %></dd>
+            <dt>都道府県：</dt>
+            <dd><%- form.prefecture %></dd>
+            <dt>性別：</dt>
+            <dd><%- form.sex %></dd>
+            <% if (form.jobtype) { %>
+            <dt>職種：</dt>
+            <dd><%= form.jobtype %></dd>
+            <% } %>
+            <% if (form.jobstatus) { %>
+            <dt>就職状態：</dt>
+            <dd><%= form.jobstatus %></dd>
+            <% } %>
+            <% if (form.jobyears) { %>
+            <dt>経験年数：</dt>
+            <dd><%= form.jobyears %></dd>
+            <% } %>
+            <% if (form.devplatform && form.devplatform.length > 0) { %>
+            <dt>開発言語：</dt>
+            <dd><%= form.devplatform %></dd>
+            <% } %>
+            <% if (form.specializedarea && form.specializedarea.length > 0) { %>
+            <dt>専門領域：</dt>
+            <dd><%= form.specializedarea %></dd>
+            <% } %>
+            <% if (form.homepage) { %>
+            <dt>ホームページ：</dt>
+            <dd><a href="<%= form.homepage %>" target="_blank"><%= form.homepage %></a></dd>
+            <% } %>
+        </dl>
+        
+    </div>
+</div>
