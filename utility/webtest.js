@@ -2,7 +2,9 @@ var should = require('should');
 var request = require('request');
 var async = require('async');
 var common = require('../common');
-//console.log(common.gconfig);
+var local = require('../common/local').config;
+
+console.log(local.amazon);
 
 var urlist_200 = [
     common.gconfig.url.nodejs,
@@ -70,7 +72,11 @@ var urlist_200 = [
     common.gconfig.url.api + '/searchresult/search',
     
     common.gconfig.url.osser,
-    common.gconfig.url.oldosser
+    common.gconfig.url.oldosser,
+    
+    local.amazon.nodejs,
+    local.amazon.mongodb,
+    local.amazon.git
 ];
 
 /**
@@ -90,7 +96,8 @@ async.eachSeries(urlist_200, function (item, callback) {
 function web_access_test(url, statusCode, cb) {
     request(url, function (error, response, body) {
         response.statusCode.should.equal(statusCode);
-        console.log(url + ' ' + response.headers['content-length'] + ' ' + statusCode + ' ok');
+        //console.log(url + ' ' + response.headers['content-length'] + ' ' + statusCode + ' ok');
+        console.log(url + ' ' + statusCode + ' ok');
         cb();
     })
 }

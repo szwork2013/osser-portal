@@ -38,10 +38,11 @@ module.exports = {
         var nid = req.param('id');
 
         if (nid) {
-            form_data.nid = nid;
+            form_data.nid = nid; // nid or url
             common.gapi.get(common.gconfig.site.api.thread.findBynid + '/' + form_data.nid, function (err, response, body) {
                 if (err) next(err);
                 if (body.result === 'ok') {
+                    form_data.nid = body.thread.nid;
                     form_data.author = common.gfunc.setSSOLoginResult(common.gfunc.setLoginResult(body.thread.uid));
                     form_data.thread = body.thread;
                     form_data.showcontent = common.gmd.tohtml(body.thread.content);
@@ -60,6 +61,7 @@ module.exports = {
                             form_data.comments = body.comments;
                             form_data.commentcount = body.count;
                             form_data.hotthreads = req.flash('hotthreads');
+                            //console.log(form_data);
                             return res.view('home/threadshow', {
                                 title: form_data.thread.title,
                                 gconfig: common.gconfig,
@@ -101,6 +103,7 @@ module.exports = {
                     req.session.osser.experience += 1;
                     return res.redirect(goback);
                 } else {
+                    console.error(body);
                     if (body.errors !== undefined) {
                         if (body.errors.content !== undefined)
                             req.flash('commentmsg', body.errors.content.msg);
