@@ -1,0 +1,6 @@
+{
+    "name": "nodejs-dev",
+    "script": "app.js",
+    "port": 8083,
+    "options": [""]
+}

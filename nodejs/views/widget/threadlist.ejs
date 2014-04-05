@@ -12,7 +12,7 @@
             <div class="pull-left" style="padding:10px 5px 0px 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;width:75%">
                 <a href="<%= form.threadlist.actionurl %>/<%= gfunc.getContentNodeUrl(result.thread.nid) %>"><%= result.thread.title %></a>
             </div>
-            <span class="pull-right" style="padding-top:10px;"><%= gfunc.format_datestring(result.thread.upddate, true) %></span>
+            <span class="pull-right hidden-xs" style="padding-top:10px;"><%= gfunc.format_datestring(result.thread.upddate, true) %></span>
         </li>
         <% }) %>
     <% } else { %>

@@ -1,0 +1,6 @@
+{
+    "name": "redirect-dev",
+    "script": "app.js",
+    "port": 8084,
+    "options": [""]
+}

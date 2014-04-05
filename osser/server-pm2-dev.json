@@ -1,0 +1,6 @@
+{
+    "name": "osser-dev",
+    "script": "app.js",
+    "port": 8085,
+    "options": [""]
+}

@@ -1,0 +1,6 @@
+{
+    "name": "jsonapi-dev",
+    "script": "app.js",
+    "port": 8080,
+    "options": [""]
+}
