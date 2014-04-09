@@ -1,17 +1,14 @@
-cd ../common
-./runserver.sh
-
 cd ../account
-./runserver.sh
+./runserver.sh prod
 
 cd ../jsonapi
-./runserver.sh
+./runserver.sh prod
 
 cd ../nodejs
-./runserver.sh
+./runserver.sh prod
 
 cd ../osser
-./runserver.sh
+./runserver.sh prod
 
 cd ../redirect
-./runserver.sh
+./runserver.sh prod
