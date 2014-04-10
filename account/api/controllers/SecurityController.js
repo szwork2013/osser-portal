@@ -137,7 +137,7 @@ module.exports = {
                             regMail += '' + gconfig.string.ENT_KEY;
                             regMail += 'このリンクを使うと、登録メール認証ページに移動します。このリンクによる会員様はログインできるようになります。' + gconfig.string.ENT_KEY;
                             regMail += '' + gconfig.string.ENT_KEY;
-                            regMail += '--  ' + gconfig.name + ' チーム' + gconfig.string.ENT_KEY;
+                            regMail += '--  ' + gconfig.name + ' チーム --' + gconfig.string.ENT_KEY;
                             //userreg_auth_decode(userreg_auth_encode(user._id, user.email));
                             gmail.sendsimplemail(req.body.email, gconfig.name + 'のアカウント登録', regMail);
 
@@ -259,7 +259,7 @@ module.exports = {
                             recoveryMail += '重要：セキュリティのため、30分以内に再発行手続きをお願いします。' + gconfig.string.ENT_KEY;
                             recoveryMail += '　　※30分以上に過ぎると、上記のリンクは無効になりますので、ご注意ください。' + gconfig.string.ENT_KEY;
                             recoveryMail += '' + gconfig.string.ENT_KEY;
-                            recoveryMail += '--  ' + gconfig.name + ' チーム' + gconfig.string.ENT_KEY;
+                            recoveryMail += '--  ' + gconfig.name + ' チーム --' + gconfig.string.ENT_KEY;
                             //userreg_auth_decode(userreg_auth_encode(user._id, user.email));
                             gmail.sendsimplemail(req.body.email, gconfig.name + 'のパスワード再発行', recoveryMail);
                             // 完了ページ案内

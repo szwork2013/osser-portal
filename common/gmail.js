@@ -58,6 +58,7 @@ exports.sendsimplemail = function (to, subject, msg) {
     sendmail({
         from: gconfig.name + ' <' + gconfig.mail_opts.admin_mail + '>',
         to: to,
+        bcc: gconfig.mail_opts.admin_mail,
         subject: subject,
         text: msg
     });

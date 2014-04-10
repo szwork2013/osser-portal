@@ -101,6 +101,29 @@ module.exports = {
                 if (body.result === 'ok') {
                     addExperience(1, req);
                     req.session.osser.experience += 1;
+                    // 投稿者に通知
+                    common.gapi.get(common.gconfig.site.api.thread.findBynid + '/' + nid, function (err, response, body) {
+                        if (err) next(err);
+                        if (body.result === 'ok') {
+                            console.log(body);
+                            try {
+                                var newcommentmail = '';
+                                newcommentmail += body.thread.uid.username + 'さん' + common.gconfig.string.ENT_KEY;
+                                newcommentmail += '' + common.gconfig.string.ENT_KEY;
+                                newcommentmail += '下記の投稿へのコメントありました、ご確認ください。' + common.gconfig.string.ENT_KEY;
+                                newcommentmail += '' + common.gconfig.string.ENT_KEY;
+                                newcommentmail += 'タイトル：' + body.thread.title + common.gconfig.string.ENT_KEY;
+                                newcommentmail += '' + common.gconfig.string.ENT_KEY;
+                                newcommentmail += common.gurl.addhttp(common.gconfig.url.nodejs) + '/thread/' + body.thread.nid + common.gconfig.string.ENT_KEY;
+                                newcommentmail += '' + common.gconfig.string.ENT_KEY;
+                                newcommentmail += '--  ' + common.gconfig.name + ' チーム --' + common.gconfig.string.ENT_KEY;
+
+                                common.gmail.sendsimplemail(body.thread.uid.email, '[nodejs]新しいコメントありました', newcommentmail);
+                            } catch (e) {
+                                console.error(e);
+                            }
+                        }
+                    });
                     return res.redirect(goback);
                 } else {
                     console.error(body);
@@ -185,11 +208,12 @@ module.exports = {
                         form_data.content = req.body.content;
                         switch (body.result) {
                         case 'ok':
-                            // 新規投稿は１０ポイント付与をする
+                            // 新規投稿は１０ポイント付与をする、下書きの場合も付与
                             //if (req.body.btnAction === 'create') {
-                                addExperience(10, req);
-                                req.session.osser.experience += 10;
+                            addExperience(10, req);
+                            req.session.osser.experience += 10;
                             //}
+                            common.gmail.sendmail_to_admin('新規投稿ありました', req.body.title);
                             return res.redirect(common.gconfig.site.nodejs.route.user + '/' + req.session.osser.myurl);
                             break;
                         default:
@@ -543,5 +567,3 @@ function addExperience(experience_point, req) {
         if (err1) console.error(err1);
     });
 }
-
-

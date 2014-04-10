@@ -125,7 +125,7 @@ module.exports = {
                         title: result.thread.title,
                         description: result.thread.summary ? result.thread.summary : common.gmd.tohtml(result.thread.content),
                         author: result.thread.uid.username,
-                        url: common.gurl.addhttp(common.gconfig.url.nodejs) + '/' + common.gfunc.getContentNodeUrl(result.thread.nid),
+                        url: common.gurl.addhttp(common.gconfig.url.nodejs) + '/thread/' + common.gfunc.getContentNodeUrl(result.thread.nid),
                         date: result.thread.upddate
                     });
                 });
