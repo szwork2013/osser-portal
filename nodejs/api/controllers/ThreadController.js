@@ -105,7 +105,7 @@ module.exports = {
                     common.gapi.get(common.gconfig.site.api.thread.findBynid + '/' + nid, function (err, response, body) {
                         if (err) next(err);
                         if (body.result === 'ok') {
-                            console.log(body);
+                            //console.log(body);
                             try {
                                 var newcommentmail = '';
                                 newcommentmail += body.thread.uid.username + 'さん' + common.gconfig.string.ENT_KEY;
