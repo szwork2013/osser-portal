@@ -27,10 +27,11 @@ module.exports = {
     index: function (req, res) {
         var nid = req.param('id');
         // Send a JSON response
-        return res.json({
-            hello: '/thead/index',
-            nid: nid
-        });
+        //        return res.json({
+        //            hello: '/thead/index',
+        //            nid: nid
+        //        });
+        return res.redirect('/');
     },
 
     find: function (req, res) {
@@ -107,18 +108,23 @@ module.exports = {
                         if (body.result === 'ok') {
                             //console.log(body);
                             try {
-                                var newcommentmail = '';
-                                newcommentmail += body.thread.uid.username + 'さん' + common.gconfig.string.ENT_KEY;
-                                newcommentmail += '' + common.gconfig.string.ENT_KEY;
-                                newcommentmail += '下記の投稿へのコメントありました、ご確認ください。' + common.gconfig.string.ENT_KEY;
-                                newcommentmail += '' + common.gconfig.string.ENT_KEY;
-                                newcommentmail += 'タイトル：' + body.thread.title + common.gconfig.string.ENT_KEY;
-                                newcommentmail += '' + common.gconfig.string.ENT_KEY;
-                                newcommentmail += common.gurl.addhttp(common.gconfig.url.nodejs) + '/thread/' + body.thread.nid + common.gconfig.string.ENT_KEY;
-                                newcommentmail += '' + common.gconfig.string.ENT_KEY;
-                                newcommentmail += '--  ' + common.gconfig.name + ' チーム --' + common.gconfig.string.ENT_KEY;
-
-                                common.gmail.sendsimplemail(body.thread.uid.email, '[nodejs]新しいコメントありました', newcommentmail);
+                                // 自分の投稿へのコメントはメール送信しない
+                                //console.log(req.session.osser.uid, body.thread.uid._id);
+                                if (req.session.osser.uid === body.thread.uid._id) {
+                                    // 本人の投稿
+                                } else {
+                                    var newcommentmail = '';
+                                    newcommentmail += body.thread.uid.username + 'さん' + common.gconfig.string.ENT_KEY;
+                                    newcommentmail += '' + common.gconfig.string.ENT_KEY;
+                                    newcommentmail += '下記の投稿へのコメントありました、ご確認ください。' + common.gconfig.string.ENT_KEY;
+                                    newcommentmail += '' + common.gconfig.string.ENT_KEY;
+                                    newcommentmail += 'タイトル：' + body.thread.title + common.gconfig.string.ENT_KEY;
+                                    newcommentmail += '' + common.gconfig.string.ENT_KEY;
+                                    newcommentmail += common.gurl.addhttp(common.gconfig.url.nodejs) + '/thread/' + body.thread.nid + common.gconfig.string.ENT_KEY;
+                                    newcommentmail += '' + common.gconfig.string.ENT_KEY;
+                                    newcommentmail += '--  ' + common.gconfig.name + ' チーム --' + common.gconfig.string.ENT_KEY;
+                                    common.gmail.sendsimplemail(body.thread.uid.email, '[nodejs]新しいコメントありました', newcommentmail);
+                                }
                             } catch (e) {
                                 console.error(e);
                             }

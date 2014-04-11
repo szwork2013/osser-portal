@@ -11,14 +11,14 @@
                         話題詳細
                     </li>
                 </ol>
-                <div style="padding:0px 10px 0px 10px;">
-                    <h3><%= form.thread.title %></h3>
+                <div itemscope itemtype="http://schema.org/Article" style="padding:0px 10px 0px 10px;">
+                    <h3><span itemprop="name"><%= form.thread.title %></span></h3>
                     <hr>
-                    <p><%- form.showcontent %></p>
+                    <p><span itemprop="articleBody"><%- form.showcontent %></span></p>
                     <hr>
                     <p class="text-right">
                         <% if (form.thread.uid) { %>
-                        <strong><%= form.thread.uid.username %></strong> さんは <strong><%= gfunc.format_datestring(form.thread.regdate, true) %></strong> に投稿しました。
+                        <strong><span itemprop="author"><%= form.thread.uid.username %></span></strong> さんは <strong><span itemprop="datePublished"><%= gfunc.format_datestring(form.thread.regdate, true) %></span></strong> に投稿しました。
                         <% } %>
                     </p>
                     <p class="text-right">
@@ -37,6 +37,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h5><%= form.commentcount %> コメント</h5>
+                    <meta itemprop="interactionCount" content="UserComments:<%= form.commentcount %>"/>
                 </div>
                 <div class="panel-body">
                     <% if (form.comments.length > 0) { %>
@@ -44,7 +45,7 @@
                             <div class="media" style="border-bottom:1px solid whitesmoke;padding: 10px 0px;">
                                 <a class="pull-left" href="/user/<%= gfunc.getmyurl(rec.comment.uid) %>"><img src="<%= gfunc.getautomylogo(rec.comment.uid) %>" class="img-rounded myportrail_comment" /></a>
                                 <div class="media-body">
-                                    <div><a href="/user/<%= gfunc.getmyurl(rec.comment.uid)%>"><%= rec.comment.uid.username %></a><span style="color:gray;font-size:12px;">さんは<%= gfunc.format_datestring(rec.comment.upddate, true) %> に投稿しました</span>
+                                    <div itemscope itemtype="http://schema.org/UserComments"><a href="/user/<%= gfunc.getmyurl(rec.comment.uid)%>"><span itemprop="creator"><%= rec.comment.uid.username %></span></a><span style="color:gray;font-size:12px;">さんは<span itemprop="commentTime"><%= gfunc.format_datestring(rec.comment.upddate, true) %></span> に投稿しました</span>
                                         <% if (req.session.osser) { %>
                                             <% if (req.session.osser.uid == rec.comment.uid._id) { %>
                                             <a class="pull-right" href="<%= gconfig.site.nodejs.route.threadremovecomment %>/<%= rec.comment._id %>,<%= form.nid %>"><span class="glyphicon glyphicon-remove"></span><span style="font-size:12px;">削除</span></a>
@@ -53,7 +54,7 @@
                                             <% } %>
                                         <% } %>                                        
                                     </div>
-                                    <div style="padding: 5px 0px;">
+                                    <div itemprop="commentText" style="padding: 5px 0px;">
                                         <%- gmd.tohtml(rec.comment.content) %>
                                     </div>
                                     
@@ -61,7 +62,7 @@
                                     <div class="media" style="border-top:1px solid whitesmoke;padding: 5px 0px;">
                                         <a class="pull-left" href="/user/<%= gfunc.getmyurl(comment.uid) %>"><img src="<%= gfunc.getautomylogo(comment.uid) %>" class="img-rounded myportrail_comment" ></a>
                                         <div class="media-body">
-                                            <div><a href="/user/<%= gfunc.getmyurl(comment.uid) %>"><%= comment.uid.username %></a><span style="color:gray;font-size:12px;">さんは<%= gfunc.format_datestring(comment.upddate, true) %> に投稿しました</span>
+                                            <div itemscope itemtype="http://schema.org/UserComments"><a href="/user/<%= gfunc.getmyurl(comment.uid) %>"><span itemprop="creator"><%= comment.uid.username %></span></a><span style="color:gray;font-size:12px;">さんは<span itemprop="commentTime"><%= gfunc.format_datestring(comment.upddate, true) %></span> に投稿しました</span>
                                                 <% if (req.session.osser) { %>
                                                     <% if (req.session.osser.uid == comment.uid._id) { %>
                                                     <a class="pull-right" href="<%= gconfig.site.nodejs.route.threadremovecomment %>/<%= comment._id %>,<%= form.nid %>"><span class="glyphicon glyphicon-remove"></span><span style="font-size:12px;">削除</span></a>
@@ -69,7 +70,7 @@
                                                     <a id="lnkReComment" class="pull-right" data-toggle="modal" href="" onclick="javascript:settmppid('<%= comment._id %>');"><span class="glyphicon glyphicon-share-alt"></span><span style="font-size:12px;">返信</span></a>
                                                     <% } %>
                                                 <% } %>                                                
-                                            <div style="padding: 3px 0px;">
+                                            <div itemprop="commentText" style="padding: 3px 0px;">
                                                 <%- gmd.tohtml(comment.content) %></div>
                                             </div>
                                         </div>

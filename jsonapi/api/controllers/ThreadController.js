@@ -35,9 +35,10 @@ module.exports = {
     index: function (req, res) {
 
         // Send a JSON response
-        return res.json({
-            hello: 'world'
-        });
+        //        return res.json({
+        //            hello: 'world'
+        //        });
+        return res.redirect('/');
     },
 
 
@@ -146,27 +147,34 @@ module.exports = {
                     err: err
                 });
             else {
-                //console.log(cnode);
-                cnid = cnode._id;
-                Thread.findOneAndUpdate({
-                    nid: cnid
-                }, {
-                    $inc: {
-                        "visitedcount": 1
-                    }
-                }).populate('uid').exec(function (err, doc) {
-                    if (err)
-                        return res.json({
-                            result: 'fail',
-                            err: err
-                        });
-                    else {
-                        return res.json({
-                            result: 'ok',
-                            thread: doc
-                        });
-                    }
-                });
+                if (cnode) {
+                    cnid = cnode._id;
+                    Thread.findOneAndUpdate({
+                        nid: cnid
+                    }, {
+                        $inc: {
+                            "visitedcount": 1
+                        }
+                    }).populate('uid').exec(function (err, doc) {
+                        if (err)
+                            return res.json({
+                                result: 'fail',
+                                err: err
+                            });
+                        else {
+                            return res.json({
+                                result: 'ok',
+                                thread: doc
+                            });
+                        }
+                    });
+                } else {
+                    console.error(searchConditions);
+                    return res.json({
+                        result: 'fail',
+                        err: 'data is null'
+                    });
+                }
             }
         });
     },
