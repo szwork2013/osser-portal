@@ -1,6 +1,6 @@
 {
   "name": "osser.jp",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "osser common library",
   "main": "index.js",
   "scripts": {

@@ -7,7 +7,7 @@
         <ul class="list-group">
             <% _.each(form.hotthreads, function (result) { %>
             <li class="list-group-item" style="height:40px;">
-                <div itemscope itemtype="http://schema.org/Article" class="pull-left" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:85%">
+                <div itemscope itemtype="http://schema.org/Article" class="pull-left" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:90%">
                     <a href="<%= gconfig.site.nodejs.route.thread %>/<%= gfunc.getContentNodeUrl(result.thread.nid) %>"><span itemprop="name"><%= result.thread.title %></span></a>
                 </div>
             </li>

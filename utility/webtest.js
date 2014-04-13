@@ -4,7 +4,7 @@ var async = require('async');
 var common = require('../common');
 var local = require('../common/local').config;
 
-console.log(local.amazon);
+//console.log(local.amazon);
 
 var urlist_200 = [
     common.gconfig.url.nodejs,
@@ -28,16 +28,16 @@ var urlist_200 = [
     common.gconfig.url.nodejs + '/thread/myanswer',
     common.gconfig.url.nodejs + '/thread/createcomment',
     common.gconfig.url.nodejs + '/thread/removecomment',
-    
+
     common.gconfig.url.account,
     common.gconfig.url.account + '/security/login',
     common.gconfig.url.account + '/security/logout',
     common.gconfig.url.account + '/security/signup',
-//    common.gconfig.url.account + '/security/emailauth',
+ //    common.gconfig.url.account + '/security/emailauth',
     common.gconfig.url.account + '/security/recovery',
     common.gconfig.url.account + '/security/password',
-//    common.gconfig.url.account + '/security/passwordauth',
-    
+ //    common.gconfig.url.account + '/security/passwordauth',
+
     common.gconfig.url.api,
     common.gconfig.url.api + '/user/create',
     common.gconfig.url.api + '/user/update',
@@ -70,13 +70,17 @@ var urlist_200 = [
     common.gconfig.url.api + '/tag/search',
     common.gconfig.url.api + '/searchresult/create',
     common.gconfig.url.api + '/searchresult/search',
-    
+
     common.gconfig.url.osser,
     common.gconfig.url.oldosser,
-    
+
     local.amazon.nodejs,
     local.amazon.mongodb,
-    local.amazon.git
+    local.amazon.git,
+
+    local.amazon.book.node_cookbook,
+    local.amazon.book.nodejs_in_action,
+    local.amazon.book.kaigan_javascript,
 ];
 
 /**
