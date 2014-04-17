@@ -68,3 +68,13 @@ var feednews = {
     },
 };
 exports.feednews = feednews;
+
+/**
+ * contentnode
+ */
+var contentnode = {
+    update: function (id, data, cb) {
+        post(config.site.api.contentnode.update + '/' + id, data, cb);
+    },
+};
+exports.contentnode = contentnode;

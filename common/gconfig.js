@@ -84,6 +84,9 @@ var config = {
                 searchFromComment: '/thread/searchFromComment',
                 count: '/thread/count'
             },
+            contentnode: {
+                update: '/contentnode/update'
+            },
             comment: {
                 create: '/comment/create',
                 find: '/comment/find',
