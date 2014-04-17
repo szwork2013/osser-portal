@@ -104,6 +104,15 @@ var config = {
                 destory: '/tag/destory',
                 search: '/tag/search'
             },
+            newsfeed: {
+                create: '/newsfeed/create',
+                destory: '/newsfeed/destory',
+                search: '/newsfeed/search',
+                update: '/newsfeed/update'
+            },
+            feednews: {
+                create: '/feednews/create'
+            },
             searchresult: {
                 create: '/searchresult/create',
                 search: '/searchresult/search'
@@ -164,7 +173,7 @@ var config = {
 //-------------------------------//
 // dev-evn-set start
 //-------------------------------//
-console.log('[gconfig] NODE_ENV=' + process.env.NODE_ENV);
+//console.log('[gconfig] NODE_ENV=' + process.env.NODE_ENV);
 if (process.env.NODE_ENV != 'production') {
     var mongodbip = '192.168.11.100';
     config.db.osser = 'mongodb://' + mongodbip + '/osser';

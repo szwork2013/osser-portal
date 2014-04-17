@@ -13,23 +13,58 @@ function makejson(methodname, data) {
     };
 }
 
-exports.get = function (methodname, cb) {
+exports.get = get;
+
+function get(methodname, cb) {
     request.get(makejson(methodname, {}), cb);
-};
+}
 
-exports.post = function (methodname, data, cb) {
+exports.post = post;
+
+function post(methodname, data, cb) {
     request.post(makejson(methodname, data), cb);
-};
+}
 
-exports.delete = function (methodname, data, cb) {
+exports.delete = deleteFunc;
+
+function deleteFunc(methodname, data, cb) {
     request.del(makejson(methodname, data), cb);
-};
+}
 
-exports.put = function (methodname, data, cb) {
+exports.put = put;
+
+function put(methodname, data, cb) {
     request.put(makejson(methodname, data), cb);
-};
+}
 
 /**
- * 各サービースを関数かにする予定です
+ * newsfeed
  */
-//exports.adduser = function (...){};
+var newsfeed = {
+    create: function (data, cb) {
+        post(config.site.api.newsfeed.create, data, cb);
+    },
+
+    destory: function (id, cb) {
+        get(config.site.api.newsfeed.destory + '/' + id, cb);
+    },
+
+    search: function (searchConditions, cb) {
+        post(config.site.api.newsfeed.search, searchConditions, cb);
+    },
+
+    update: function (id, data, cb) {
+        post(config.site.api.newsfeed.update + '/' + id, data, cb);
+    },
+};
+exports.newsfeed = newsfeed;
+
+/**
+ * feednews
+ */
+var feednews = {
+    create: function (data, cb) {
+        post(config.site.api.feednews.create, data, cb);
+    },
+};
+exports.feednews = feednews;

@@ -398,7 +398,7 @@ module.exports = {
      *    `/thread/search`
      */
     search: function (req, res) {
-        common.glog.info(sails, '/thread/search:' + JSON.stringify(req.body));
+        //common.glog.info(sails, '/thread/search:' + JSON.stringify(req.body));
         var searchConditions = {};
         if (req.body.content !== undefined)
             searchConditions.content = {

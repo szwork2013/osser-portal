@@ -73,10 +73,11 @@ module.exports = {
                             result: 'fail',
                             err: err
                         });
-                    return res.json({
-                        result: 'ok',
-                        tag: newtag
-                    });
+                    else
+                        return res.json({
+                            result: 'ok',
+                            tag: newtag
+                        });
                 });
             }
         });

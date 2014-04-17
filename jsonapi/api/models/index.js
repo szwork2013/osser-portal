@@ -15,8 +15,10 @@ mongoose.connect(gconfig.db.osser, function (err) {
 
 require('./CommentModel');
 require('./ContentNodeModel');
+require('./FeedNewsModel');
 require('./LoginHistoryModel');
 require('./MessageModel');
+require('./NewsFeedModel');
 require('./OssDocumentModel');
 require('./RecoveryPasswordModel');
 require('./SearchResultModel');
@@ -26,8 +28,10 @@ require('./UserModel');
 
 exports.Comment = mongoose.model('comment');
 exports.ContentNode = mongoose.model('contentnode');
+exports.FeedNews = mongoose.model('feednews');
 exports.LoginHistory = mongoose.model('loginhistory');
 exports.Message = mongoose.model('message');
+exports.NewsFeed = mongoose.model('newsfeed');
 exports.OssDocument = mongoose.model('ossdocument');
 exports.RecoveryPassword = mongoose.model('recoverypassword');
 exports.SearchResult = mongoose.model('searchresult');
