@@ -14,11 +14,6 @@ gapi.newsfeed.search({
     if (body.err) console.error(body.err);
     else {
         async.forEachSeries(body.docs, function (feeditem, done) {
-            //            setTimeout(function () {
-            //                console.log('=====================================================================');
-            //                console.log(feeditem._id, feeditem.title, feeditem.link);
-            //                done();
-            //            }, 5 * 1000);
             var FeedParser = require('feedparser');
             var request = require('request');
             var req = request(feeditem.link),
@@ -46,7 +41,10 @@ gapi.newsfeed.search({
                     item;
                 while (item = stream.read()) {
                     //console.log(feeditem._id, item.title);
+                    //console.log(feeditem.title);
+                    var title = item.title;
                     gapi.feednews.create({
+                        rsstitle: feeditem.title,
                         title: item.title,
                         summary: item.summary,
                         description: item.description,
@@ -65,7 +63,7 @@ gapi.newsfeed.search({
                     }, function (err, res, body) {
                         if (err) console.error(err);
                         if (body.result === 'fail') {
-                            console.log(body);
+                            console.log(body, title);
                         }
                     });
                 }

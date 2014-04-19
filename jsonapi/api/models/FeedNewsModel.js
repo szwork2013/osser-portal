@@ -6,6 +6,9 @@ var FeedNewsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'contentnode'
     },
+    rsstitle: {
+        type: String
+    },
     title: {
         type: String,
         require: true

@@ -63,6 +63,8 @@ module.exports = {
                         link: req.body.link,
                         guid: req.body.guid
                     });
+                    if (req.body.rsstitle !== undefined)
+                        news.rsstitle = req.body.rsstitle;
                     if (req.body.summary !== undefined)
                         news.summary = req.body.summary;
                     if (req.body.description !== undefined)
