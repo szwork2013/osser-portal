@@ -66,6 +66,9 @@ var feednews = {
     create: function (data, cb) {
         post(config.site.api.feednews.create, data, cb);
     },
+    search: function (searchParams, cb) {
+        post(config.site.api.feednews.search, searchParams, cb);
+    },
 };
 exports.feednews = feednews;
 

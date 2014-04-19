@@ -114,7 +114,8 @@ var config = {
                 update: '/newsfeed/update'
             },
             feednews: {
-                create: '/feednews/create'
+                create: '/feednews/create',
+                search: '/feednews/search'
             },
             searchresult: {
                 create: '/searchresult/create',

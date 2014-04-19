@@ -20,6 +20,7 @@ var common = require('../../../common');
 var models = require('../models');
 var FeedNews = models.FeedNews;
 var ContentNode = models.ContentNode;
+var Comment = models.Comment;
 
 module.exports = {
 
@@ -107,6 +108,68 @@ module.exports = {
                 });
             }
         });
+    },
+
+    search: function (req, res) {
+        var searchConditions = {};
+        if (req.body.rsstitle !== undefined) {
+            var rsstitlearray = req.body.rsstitle.split(',');
+            searchConditions.rsstitle = {
+                $in: rsstitlearray
+            };
+        }
+
+        var searchOptions = {};
+        if (req.body.limit !== undefined)
+            searchOptions.limit = req.body.limit;
+        if (req.body.skip !== undefined)
+            searchOptions.skip = req.body.skip;
+
+        var sortOptions = {
+            upddate: -1
+        };
+        if (req.body.sortOptions !== undefined)
+            sortOptions = req.body.sortOptions;
+
+        FeedNews.find(searchConditions, null, searchOptions).populate('nid').sort(sortOptions).exec(function (err, docs) {
+            if (err)
+                return res.json({
+                    result: 'fail',
+                    err: err
+                });
+            else {
+                FeedNews.count(searchConditions, function (err, count) {
+                    if (err)
+                        return res.json({
+                            result: 'fail',
+                            err: err
+                        });
+                    else {
+                        async.map(docs, function (news, cb) {
+                            Comment.count({
+                                nid: news.nid,
+                                status: '公開'
+                            }, function (err, count) {
+                                if (err) console.error(err);
+                                var result = {
+                                    news: news,
+                                    commentcount: count
+                                };
+                                cb(null, result);
+                            });
+                        }, function (err, results) {
+                            return res.json({
+                                result: 'ok',
+                                results: results,
+                                count: count
+                            });
+                        });
+                    }
+                });
+            }
+        });
+
+
     },
 
     /**

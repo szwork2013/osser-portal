@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5><strong>ITニュース</strong></h5>
+    </div>
+    <% if (form.news !== undefined && form.news.length > 0) { %>
+    <!-- List group -->
+        <ul class="list-group">
+            <% _.each(form.news, function (result) { %>
+            <li class="list-group-item" style="height:40px;">
+                <div itemscope itemtype="http://schema.org/Article" class="pull-left" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:90%">
+                    <a href="<%= result.news.link %>" target="_blank"><span itemprop="name"><%= result.news.title %></span></a>
+                </div>
+            </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <div class="panel-body">
+            ニュースなし
+        </div>
+    <% } %>
+</div>

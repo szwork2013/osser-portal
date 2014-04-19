@@ -71,4 +71,12 @@ describe('FeedNews', function () {
             done();
         });
     });
+
+    it('searchで検索しました', function (done) {
+        common.gapi.feednews.search({}, function (err, res, body) {
+            if (err) console.error(err);
+            console.log(body.results[0].news);
+            done();
+        });
+    });
 });
