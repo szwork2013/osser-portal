@@ -1,5 +1,5 @@
 /**
- * PortletController
+ * NewsController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -21,28 +21,43 @@ module.exports = {
 
     /**
      * Action blueprints:
-     *    `/portlet/index`
-     *    `/portlet`
+     *    `/news/index`
+     *    `/news`
      */
     index: function (req, res) {
 
         // Send a JSON response
         return res.json({
-            hello: 'world'
+            hello: 'index'
         });
     },
 
 
     /**
      * Action blueprints:
-     *    `/portlet/rssnews`
+     *    `/news/find`
      */
-    rssnews: function (req, res) {
+    find: function (req, res) {
+
+        // Send a JSON response
+        return res.json({
+            hello: 'find'
+        });
+    },
+
+
+    /**
+     * Action blueprints:
+     *    `/news/search`
+     */
+    search: function (req, res) {
+        var pageindex = +req.param('id');
+        if (_.isNaN(pageindex)) pageindex = 1;
 
         common.gapi.feednews.search({
             status: '1',
-            limit: 5,
-            skip: 0,
+            limit: common.gconfig.pagesize,
+            skip: (pageindex - 1) * common.gconfig.pagesize,
             sortOptions: {
                 date: -1
             }
@@ -69,7 +84,7 @@ module.exports = {
 
     /**
      * Overrides for the settings in `config/controllers.js`
-     * (specific to PortletController)
+     * (specific to NewsController)
      */
     _config: {}
 

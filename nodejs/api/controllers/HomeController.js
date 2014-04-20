@@ -123,11 +123,15 @@ module.exports = {
                     form_data.pager.actionurl = common.gconfig.site.nodejs.route.search;
                     form_data.pager.activeindex = pageindex;
                     form_data.hotthreads = req.flash('hotthreads');
-                    return res.view('home/search', {
-                        title: 'Node.js投稿検索',
-                        gconfig: common.gconfig,
-                        gfunc: common.gfunc,
-                        form: form_data
+
+                    common.gapi.portlet.rssnews(function (body) {
+                        form_data.rssnews = body;
+                        return res.view('home/search', {
+                            title: 'Node.js投稿検索',
+                            gconfig: common.gconfig,
+                            gfunc: common.gfunc,
+                            form: form_data
+                        });
                     });
                 } else {
                     return res.forbidden();
