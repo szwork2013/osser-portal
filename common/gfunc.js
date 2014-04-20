@@ -422,3 +422,4 @@ exports.getContentNodeUrl = function (cnode) {
 exports.getRandomPersonalLogo = function () {
     return gdata.personallogos[Math.floor(Math.random() * gdata.personallogos.length)];
 }
+

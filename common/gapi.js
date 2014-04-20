@@ -1,4 +1,5 @@
 var config = require('./gconfig').config;
+var gurl = require('./gurl');
 var request = require('request');
 
 function makejson(methodname, data) {
@@ -36,6 +37,33 @@ exports.put = put;
 function put(methodname, data, cb) {
     request.put(makejson(methodname, data), cb);
 }
+
+/**
+ * jsp:include
+ */
+exports.includeURL = includeURL;
+
+function includeURL(url, cb) {
+    request.get({
+        uri: url,
+        headers: {
+            'User-Agent': 'node-request'
+        }
+    }, cb);
+}
+
+/**
+ * portlet
+ */
+var portlet = {
+    rssnews: function (cb) {
+        includeURL(gurl.addhttp(config.url.nodejs + '/portlet/rssnews'), function (err, res, body) {
+            if (err) console.error(err);
+            cb(body);
+        });
+    },
+};
+exports.portlet = portlet;
 
 /**
  * newsfeed
