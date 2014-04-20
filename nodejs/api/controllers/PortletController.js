@@ -41,7 +41,7 @@ module.exports = {
 
         common.gapi.feednews.search({
             status: '1',
-            limit: 10,
+            limit: 5,
             skip: 0,
             sortOptions: {
                 date: -1
@@ -55,7 +55,7 @@ module.exports = {
                     news: body.results
                 };
                 console.log(form_data);
-                return res.view('partials/rssnews', {
+                return res.view('portlet/rssnews', {
                     gconfig: common.gconfig,
                     gfunc: common.gfunc,
                     form: form_data,

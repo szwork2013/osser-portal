@@ -39,10 +39,14 @@ module.exports = {
             form_data.markdownHelp = markdownHelp;
             form_data.meta_keywords = "markdown";
             form_data.meta_description = "Markdownの文法、記法説明トピックです。";
-            return res.view('home/markdown', {
-                title: 'Markdown文法説明',
-                gconfig: common.gconfig,
-                form: form_data
+
+            common.gapi.portlet.rssnews(function (body) {
+                form_data.rssnews = body;
+                return res.view('home/markdown', {
+                    title: 'Markdown文法説明',
+                    gconfig: common.gconfig,
+                    form: form_data
+                });
             });
         });
     },
