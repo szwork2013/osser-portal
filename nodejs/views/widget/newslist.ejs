@@ -1,0 +1,15 @@
+<!-- formからスレッドを表示する -->
+<ul class="list-group">
+    <% if (form.news && form.news.length > 0) { %>
+        <% _.each(form.news, function (result) { %>
+        <li class="list-group-item" style="height:60px;">
+            <div itemscope itemtype="http://schema.org/Article" class="pull-left" style="padding:10px 5px 0px 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;width:75%">
+                <a href="<%= gconfig.site.nodejs.route.news %>/<%= gfunc.getContentNodeUrl(result.news.nid) %>"><span itemprop="name"><%= result.news.title %></span></a>
+            </div>
+            <span class="pull-right hidden-xs" style="padding-top:10px;font-size:12px;"><%= gfunc.format_datestring(result.news.date, true) %></span>
+        </li>
+        <% }) %>
+    <% } else { %>
+        <li class="list-group-item">文章なし</li>
+    <% } %>
+</ul>

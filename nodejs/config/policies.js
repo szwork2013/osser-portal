@@ -40,7 +40,13 @@ module.exports.policies = {
         myanswer: 'isAuthenticated',
         createcomment: 'isAuthenticated',
         removecomment: 'isAuthenticated'
-    }
+    },
+
+    NewsController: {
+        index: 'hotthreads',
+        find: 'hotthreads',
+        search: 'hotthreads'
+    },
 
     /*
 	// Here's an example of adding some policies to a controller

@@ -110,6 +110,39 @@ module.exports = {
         });
     },
 
+
+    find: function (req, res) {
+        var nid = req.param('id');
+        if (nid) {
+            FeedNews.findOne({
+                nid: nid
+            }).exec(function (err, news) {
+                if (err) return res.json({
+                    result: 'fail',
+                    err: err
+                });
+                else {
+                    if (news) {
+                        return res.json({
+                            result: 'ok',
+                            news: news
+                        });
+                    } else {
+                        return res.json({
+                            result: 'fail',
+                            err: 'data is null.'
+                        });
+                    }
+                }
+            });
+        } else {
+            return res.json({
+                result: 'fail',
+                err: 'nid is null.'
+            });
+        }
+    },
+
     search: function (req, res) {
         var searchConditions = {};
         if (req.body.rsstitle !== undefined) {

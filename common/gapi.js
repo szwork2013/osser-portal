@@ -94,6 +94,9 @@ var feednews = {
     create: function (data, cb) {
         post(config.site.api.feednews.create, data, cb);
     },
+    find: function (nid, cb) {
+        get(config.site.api.feednews.find + '/' + nid, cb);
+    },
     search: function (searchParams, cb) {
         post(config.site.api.feednews.search, searchParams, cb);
     },

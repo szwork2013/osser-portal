@@ -14,7 +14,7 @@ var config = {
     secret_key: local.secret_key,
 
     // 一ページに表示するデータ行数（スレッド、投稿など）
-    pagesize: 20,
+    pagesize: 25,
     // ページャ表示サイズ（例：7→<<1234567>>）
     pagersize: 7,
 
@@ -115,6 +115,7 @@ var config = {
             },
             feednews: {
                 create: '/feednews/create',
+                find: '/feednews/find',
                 search: '/feednews/search'
             },
             searchresult: {
@@ -140,6 +141,8 @@ var config = {
                 nodejs: '/nodejs',
                 helpmarkdown: '/help/markdown',
                 search: '/search',
+                news: '/news',
+                newssearch: '/news/search',
                 user: '/user',
                 useredit: '/user/edit',
                 usereditlogo: '/user/editlogo',

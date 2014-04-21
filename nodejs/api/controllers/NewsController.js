@@ -25,11 +25,7 @@ module.exports = {
      *    `/news`
      */
     index: function (req, res) {
-
-        // Send a JSON response
-        return res.json({
-            hello: 'index'
-        });
+        return makenewspaging(req, res, 1);
     },
 
 
@@ -38,11 +34,34 @@ module.exports = {
      *    `/news/find`
      */
     find: function (req, res) {
+        var nid = req.param('id');
 
-        // Send a JSON response
-        return res.json({
-            hello: 'find'
-        });
+        if (nid) {
+            common.gapi.feednews.find(nid, function (err, response, body) {
+                if (err) {
+                    console.error(err);
+                    return res.forbidden();
+                } else {
+                    if (body.result === 'ok') {
+                        console.log(body);
+                        var form_data = {
+                            news: body.news,
+                            hotthreads: req.flash('hotthreads')
+                        };
+                        return res.view('home/newsdetail', {
+                            gconfig: common.gconfig,
+                            gfunc: common.gfunc,
+                            form: form_data
+                        });
+                    } else {
+                        console.error(body);
+                        return res.notFound();
+                    }
+                }
+            });
+        } else {
+            return res.forbidden();
+        }
     },
 
 
@@ -53,30 +72,7 @@ module.exports = {
     search: function (req, res) {
         var pageindex = +req.param('id');
         if (_.isNaN(pageindex)) pageindex = 1;
-
-        common.gapi.feednews.search({
-            status: '1',
-            limit: common.gconfig.pagesize,
-            skip: (pageindex - 1) * common.gconfig.pagesize,
-            sortOptions: {
-                date: -1
-            }
-        }, function (err, req, body) {
-            if (err) {
-                console.error(err);
-                return res.forbidden();
-            } else {
-                var form_data = {
-                    news: body.results
-                };
-                return res.view('portlet/rssnews', {
-                    gconfig: common.gconfig,
-                    gfunc: common.gfunc,
-                    form: form_data,
-                    layout: ''
-                });
-            }
-        });
+        return makenewspaging(req, res, pageindex);
     },
 
 
@@ -90,3 +86,32 @@ module.exports = {
 
 
 };
+
+function makenewspaging(req, res, pageindex) {
+    common.gapi.feednews.search({
+        status: '1',
+        limit: common.gconfig.pagesize,
+        skip: (pageindex - 1) * common.gconfig.pagesize,
+        sortOptions: {
+            date: -1
+        }
+    }, function (err, response, body) {
+        if (err) {
+            console.error(err);
+            return res.forbidden();
+        } else {
+            var form_data = {
+                news: body.results,
+                hotthreads: req.flash('hotthreads')
+            };
+            form_data.pager = common.gfunc.getpager(body.count, pageindex);
+            form_data.pager.actionurl = common.gconfig.site.nodejs.route.newssearch;
+            form_data.pager.activeindex = pageindex;
+            return res.view('home/newslist', {
+                gconfig: common.gconfig,
+                gfunc: common.gfunc,
+                form: form_data
+            });
+        }
+    });
+}

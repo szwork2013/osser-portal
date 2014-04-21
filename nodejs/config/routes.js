@@ -57,6 +57,11 @@ module.exports.routes = {
         action: 'rss'
     },
 
+    '/newsrss.xml': {
+        controller: 'HelpController',
+        action: 'newsrss'
+    },
+
     '/search': {
         controller: 'HomeController',
         action: 'search'

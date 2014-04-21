@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <!-- TOPページスレッド一覧 -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>
+                        <strong>総合ニュース</strong>
+                    </h4>
+                </div>
+
+                <div itemscope itemtype="http://schema.org/Article" style="padding:0px 10px 0px 10px;">
+                    <h3><span itemprop="name"><%= form.news.title %></span></h3>
+                    <hr>
+                    <p><span itemprop="articleBody"><%- form.news.description %></span></p>
+                    <hr>                    
+                    <p class="text-right">
+                        <% if (form.news.author) { %>
+                        <strong><span itemprop="author"><%= form.news.author %></span></strong> さんは <strong><span itemprop="datePublished"><%= gfunc.format_datestring(form.news.pubdate, true) %></span></strong> に投稿しました。
+                        <% } %>
+                        (<a href="<%= form.news.link %>" target="_blank">原文</a>)
+                    </p>
+                    <p class="text-right">
+                        <div class="pull-right" style="padding:3px;">
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-via="osserjp" data-lang="ja" data-count="none" data-dnt="true">ツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        </div>
+                        
+                        <div class="fb-like pull-right" style="padding:3px;" data-href="<%=gconfig.url.nodejs%><%=req.url%>/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+                        <div class="clearfix"></div>
+                    </p>
+                </div>
+            </div>
+
+            <%- partial('../partials/hotthreads') %>
+        </div>
+
+        <div class="col-md-3">
+            <%- partial('../partials/sponsor') %>
+            <%- partial('../partials/searchbox') %>
+            <%- partial('../partials/noresult') %>
+            <%- partial('../partials/buythebook') %>
+            
+            <%- form.rssnews %>
+            <%- partial('../partials/about_this_site') %>
+        </div>
+    </div>
+</div>

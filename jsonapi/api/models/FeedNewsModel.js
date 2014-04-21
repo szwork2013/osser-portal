@@ -65,7 +65,10 @@ var FeedNewsSchema = new Schema({
     status: {
         type: String,
         default: '1' //(1:有効;0:無効)
-    }
+    },
+    bookey: {
+        type: String
+    } // bookkey for buy the book
 });
 
 mongoose.model('feednews', FeedNewsSchema);

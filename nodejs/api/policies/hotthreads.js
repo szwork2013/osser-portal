@@ -3,7 +3,7 @@ var common = require('../../../common');
 module.exports = function (req, res, next) {
     common.gapi.post(common.gconfig.site.api.thread.search, {
         status: '公開',
-        limit: 5,
+        limit: 7,
         skip: 0,
         sortOptions: {
             visitedcount: -1

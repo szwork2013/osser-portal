@@ -140,6 +140,50 @@ module.exports = {
     },
 
 
+    newsrss: function (req, res) {
+        var feed = new RSS({
+            title: common.gconfig.name,
+            description: common.gconfig.description,
+            generator: common.gconfig.name + ' ニュースRSS',
+            feed_url: common.gurl.addhttp(common.gconfig.url.nodejs) + '/newsrss.xml',
+            site_url: common.gurl.addhttp(common.gconfig.url.nodejs),
+            image_url: common.gurl.addhttp(common.gconfig.url.nodejs) + '/images/osser.png',
+            author: common.gconfig.author,
+            language: 'ja',
+            pubDate: Date.now(),
+            ttl: 60
+        });
+
+        common.gapi.feednews.search({
+            status: '1',
+            limit: 999,
+            skip: 0,
+            sortOptions: {
+                date: -1
+            }
+        }, function (err, response, body) {
+            if (err) return res.forbidden();
+            //console.log(body);
+            if (body.results) {
+                body.results.forEach(function (result, index) {
+                    //console.log(index);
+                    feed.item({
+                        title: result.news.title,
+                        description: result.news.title,
+                        author: result.news.author,
+                        url: common.gurl.addhttp(common.gconfig.url.nodejs) + '/news/' + common.gfunc.getContentNodeUrl(result.news.nid),
+                        date: result.news.date
+                    });
+                });
+            }
+            res.header('Content-Type', 'application/xml');
+            return res.send(feed.xml());
+        });
+
+
+    },
+
+
     /**
      * Overrides for the settings in `config/controllers.js`
      * (specific to HelpController)
