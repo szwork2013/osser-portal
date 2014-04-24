@@ -2,12 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var BookSchema = new Schema({
+<<<<<<< HEAD
     alias: {
         type: String
     }, // url alias(seo)
     link: {
         type: String
     }, // amazon url
+=======
+>>>>>>> 48687fc36c17c1943a697465dce9df12a465187a
     title: {
         type: String,
         required: true
@@ -15,9 +18,12 @@ var BookSchema = new Schema({
     author: {
         type: String
     },
+<<<<<<< HEAD
     description: {
         type: String
     }, // 商品の説明
+=======
+>>>>>>> 48687fc36c17c1943a697465dce9df12a465187a
     language: {
         type: String
     },
