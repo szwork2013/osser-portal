@@ -51,7 +51,7 @@ module.exports = {
                 console.error(err);
                 return res.forbidden();
             } else {
-                if (body.results === 'ok') {
+                if (body.result === 'ok') {
                     var form_data = {
                         news: body.results
                     };

@@ -53,6 +53,7 @@ module.exports = {
                         common.gapi.portlet.recentthreads(function (body) {
                             form_data.recentthreads = body;
                             return res.view('home/newsdetail', {
+                                title: form_data.news ? form_data.news.title : '総合ニュース',
                                 gconfig: common.gconfig,
                                 gfunc: common.gfunc,
                                 form: form_data
@@ -113,6 +114,7 @@ function makenewspaging(req, res, pageindex) {
             form_data.pager.actionurl = common.gconfig.site.nodejs.route.newssearch;
             form_data.pager.activeindex = pageindex;
             return res.view('home/newslist', {
+                title: '総合ニュース',
                 gconfig: common.gconfig,
                 gfunc: common.gfunc,
                 form: form_data

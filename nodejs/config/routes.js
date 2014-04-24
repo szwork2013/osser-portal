@@ -42,6 +42,11 @@ module.exports.routes = {
         action: 'nodejs'
     },
 
+    '/books': {
+        controller: 'HomeController',
+        action: 'books'
+    },
+
     '/markdown': {
         controller: 'HelpController',
         action: 'markdown'
