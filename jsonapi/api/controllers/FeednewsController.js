@@ -123,9 +123,15 @@ module.exports = {
                 });
                 else {
                     if (news) {
-                        return res.json({
-                            result: 'ok',
-                            news: news
+                        FeedNews.findOne({_id: {$lt: news._id}}).sort({_id: -1}).exec(function(err,prev){
+                            FeedNews.findOne({_id: {$gt: news._id}}).sort({_id: 1}).exec(function(err,next){
+                                return res.json({
+                                    result: 'ok',
+                                    news: news,
+                                    prev: prev,
+                                    next: next
+                                });
+                            });
                         });
                     } else {
                         return res.json({

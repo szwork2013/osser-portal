@@ -26,13 +26,27 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                         </div>
                         
+                        <div class="pull-left"><span class="label label-success"><%= form.news.rsstitle%></span></div>
+                    
                         <div class="fb-like pull-right" style="padding:3px;" data-href="<%=gconfig.url.nodejs%><%=req.url%>/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
                         <div class="clearfix"></div>
+                    
+                        <% if (form.prev) { %>
+                        <div>
+                            Prev：<a href="<%= gconfig.site.nodejs.route.news %>/<%= form.prev.nid %>"><%= form.prev.title %></a>
+                        </div>
+                        <% } %>
+                        <% if (form.next) { %>
+                        <div>
+                            Next：<a href="<%= gconfig.site.nodejs.route.news %>/<%= form.next.nid %>"><%= form.next.title %></a>
+                        </div>
+                        <% } %>
                     </p>
                 </div>
             </div>
 
             <%- partial('../partials/hotthreads') %>
+            <%- form.recentthreads %>
         </div>
 
         <div class="col-md-3">

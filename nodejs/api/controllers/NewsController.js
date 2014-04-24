@@ -43,15 +43,20 @@ module.exports = {
                     return res.forbidden();
                 } else {
                     if (body.result === 'ok') {
-                        console.log(body);
+                        //console.log(body);
                         var form_data = {
                             news: body.news,
+                            prev: body.prev,
+                            next: body.next,
                             hotthreads: req.flash('hotthreads')
                         };
-                        return res.view('home/newsdetail', {
-                            gconfig: common.gconfig,
-                            gfunc: common.gfunc,
-                            form: form_data
+                        common.gapi.portlet.recentthreads(function (body) {
+                            form_data.recentthreads = body;
+                            return res.view('home/newsdetail', {
+                                gconfig: common.gconfig,
+                                gfunc: common.gfunc,
+                                form: form_data
+                            });
                         });
                     } else {
                         console.error(body);

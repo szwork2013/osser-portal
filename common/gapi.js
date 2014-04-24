@@ -56,11 +56,25 @@ function includeURL(url, cb) {
  * portlet
  */
 var portlet = {
-    rssnews: function (cb) {
-        includeURL(gurl.addhttp(config.url.nodejs + '/portlet/rssnews'), function (err, res, body) {
+    common: function (portletname, cb) {
+        includeURL(gurl.addhttp(config.url.nodejs + '/portlet/' + portletname), function (err, res, body) {
             if (err) console.error(err);
             cb(body);
         });
+    },
+    rssnews: function (cb) {
+        this.common('rssnews', cb);
+        //        includeURL(gurl.addhttp(config.url.nodejs + '/portlet/rssnews'), function (err, res, body) {
+        //            if (err) console.error(err);
+        //            cb(body);
+        //        });
+    },
+    recentthreads: function (cb) {
+        this.common('recentthreads', cb);
+        //        includeURL(gurl.addhttp(config.url.nodejs + '/portlet/recentthreads'), function (err, res, body) {
+        //            if (err) console.error(err);
+        //            cb(body);
+        //        });
     },
 };
 exports.portlet = portlet;

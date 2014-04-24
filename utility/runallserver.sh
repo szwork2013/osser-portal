@@ -1,18 +1,23 @@
+# sample:
+# ./runallserver.sh prod
+# or
+# ./runallserver.sh
+
 cd ../account
-./runserver.sh prod
+./runserver.sh $1
 sleep 5
 
 cd ../jsonapi
-./runserver.sh prod
+./runserver.sh $1
 sleep 5
 
 cd ../nodejs
-./runserver.sh prod
+./runserver.sh $1
 sleep 5
 
 cd ../osser
-./runserver.sh prod
+./runserver.sh $1
 sleep 5
 
 cd ../redirect
-./runserver.sh prod
+./runserver.sh $1

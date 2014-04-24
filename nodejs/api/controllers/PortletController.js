@@ -51,19 +51,55 @@ module.exports = {
                 console.error(err);
                 return res.forbidden();
             } else {
-                var form_data = {
-                    news: body.results
-                };
-                return res.view('portlet/rssnews', {
-                    gconfig: common.gconfig,
-                    gfunc: common.gfunc,
-                    form: form_data,
-                    layout: ''
-                });
+                if (body.results === 'ok') {
+                    var form_data = {
+                        news: body.results
+                    };
+                    return res.view('portlet/rssnews', {
+                        gconfig: common.gconfig,
+                        gfunc: common.gfunc,
+                        form: form_data,
+                        layout: ''
+                    });
+                } else {
+                    console.error(body);
+                    return res.forbidden();
+                }
             }
         });
     },
 
+    recentthreads: function (req, res) {
+        common.gapi.post(common.gconfig.site.api.thread.search, {
+            status: '公開',
+            limit: 7,
+            skip: 0,
+            sortOptions: {
+                upddate: -1
+            }
+        }, function (err, response, body) {
+            if (err) {
+                console.error(err);
+                return res.forbidden();
+            } else {
+                if (body.result === 'ok') {
+                    var form_data = {
+                        recentthreads: body.threads
+                    };
+                    return res.view('portlet/recentthreads', {
+                        gconfig: common.gconfig,
+                        gfunc: common.gfunc,
+                        form: form_data,
+                        layout: ''
+                    });
+                } else {
+                    console.error(body);
+                    return res.forbidden();
+                }
+            }
+        });
+
+    },
 
 
 
