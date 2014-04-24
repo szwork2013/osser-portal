@@ -13,6 +13,7 @@ mongoose.connect(gconfig.db.osser, function (err) {
     glog.info(sails, 'MongoDB Connected.');
 });
 
+require('./BookModel');
 require('./CommentModel');
 require('./ContentNodeModel');
 require('./FeedNewsModel');
@@ -26,6 +27,7 @@ require('./TagModel');
 require('./ThreadModel');
 require('./UserModel');
 
+exports.Book = mongoose.model('book');
 exports.Comment = mongoose.model('comment');
 exports.ContentNode = mongoose.model('contentnode');
 exports.FeedNews = mongoose.model('feednews');

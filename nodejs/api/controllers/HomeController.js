@@ -79,6 +79,22 @@ module.exports = {
     },
 
     /**
+     * books
+     * /books
+     */
+    books: function (req, res) {
+        var form_data = {};
+        common.gapi.portlet.rssnews(function (body) {
+            form_data.rssnews = body;
+            return res.view('home/books', {
+                title: 'Node.js Books',
+                gconfig: common.gconfig,
+                form: form_data
+            });
+        });
+    },
+
+    /**
      * /search/:pageindex
      */
     search: function (req, res) {
