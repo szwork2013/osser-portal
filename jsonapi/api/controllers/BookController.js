@@ -114,13 +114,19 @@ module.exports = {
     find: function (req, res) {
         var id = req.param('id');
         if (id) {
-            Book.findOne({
-                $or: [{
+            var searchConditions = {};
+
+            if (models.isObjectId(id)) {
+                searchConditions = {
                     _id: id
-                }, {
+                };
+            } else {
+                searchConditions = {
                     alias: id
-                }]
-            }).exec(function (err, book) {
+                };
+            }
+
+            Book.findOne(searchConditions).exec(function (err, book) {
                 if (err) return res.json({
                     result: 'fail',
                     err: err
@@ -153,11 +159,60 @@ module.exports = {
      *    `/book/search`
      */
     search: function (req, res) {
+        var searchConditions = {};
+        if (req.body.rsstitle !== undefined) {
+            var rsstitlearray = req.body.rsstitle.split(',');
+            searchConditions.rsstitle = {
+                $in: rsstitlearray
+            };
+        }
+        if (req.body.status !== undefined) {
+            searchConditions.status = req.body.status;
+        }
 
-        // Send a JSON response
-        return res.json({
-            hello: 'search'
+        var searchOptions = {};
+        if (req.body.limit !== undefined)
+            searchOptions.limit = req.body.limit;
+        if (req.body.skip !== undefined)
+            searchOptions.skip = req.body.skip;
+
+        var sortOptions = {
+            upddate: -1
+        };
+        if (req.body.sortOptions !== undefined)
+            sortOptions = req.body.sortOptions;
+
+        Book.find(searchConditions, null, searchOptions).sort(sortOptions).exec(function (err, docs) {
+            if (err)
+                return res.json({
+                    result: 'fail',
+                    err: err
+                });
+            else {
+                Book.count(searchConditions, function (err, count) {
+                    if (err)
+                        return res.json({
+                            result: 'fail',
+                            err: err
+                        });
+                    else {
+                        async.map(docs, function (book, cb) {
+                            var result = {
+                                book: book
+                            };
+                            cb(null, result);
+                        }, function (err, results) {
+                            return res.json({
+                                result: 'ok',
+                                books: results,
+                                count: count
+                            });
+                        });
+                    }
+                });
+            }
         });
+
     },
 
 
@@ -178,12 +233,10 @@ module.exports = {
                     });
                 else {
                     if (book) {
-                        console.log(req.body);
                         for (var pname in req.body) {
                             if (req.body[pname] !== undefined)
                                 book[pname] = req.body[pname];
                         }
-                        console.log(book);
                         book.save(function (err, newbook) {
                             if (err)
                                 return res.json({

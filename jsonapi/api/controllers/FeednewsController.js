@@ -123,8 +123,20 @@ module.exports = {
                 });
                 else {
                     if (news) {
-                        FeedNews.findOne({_id: {$lt: news._id}}).sort({_id: -1}).exec(function(err,prev){
-                            FeedNews.findOne({_id: {$gt: news._id}}).sort({_id: 1}).exec(function(err,next){
+                        FeedNews.findOne({
+                            _id: {
+                                $lt: news._id
+                            }
+                        }).sort({
+                            _id: -1
+                        }).exec(function (err, prev) {
+                            FeedNews.findOne({
+                                _id: {
+                                    $gt: news._id
+                                }
+                            }).sort({
+                                _id: 1
+                            }).exec(function (err, next) {
                                 return res.json({
                                     result: 'ok',
                                     news: news,
@@ -156,6 +168,9 @@ module.exports = {
             searchConditions.rsstitle = {
                 $in: rsstitlearray
             };
+        }
+        if (req.body.status !== undefined) {
+            searchConditions.status = req.body.status;
         }
 
         var searchOptions = {};

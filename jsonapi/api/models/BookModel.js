@@ -3,7 +3,12 @@ var Schema = mongoose.Schema;
 
 var BookSchema = new Schema({
     alias: {
-        type: String
+        type: String,
+        trim: true,
+        index: {
+            unique: true,
+            sparse: true
+        }
     }, // url alias(seo)
     link: {
         type: String

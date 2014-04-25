@@ -86,11 +86,26 @@ module.exports = {
         var form_data = {};
         common.gapi.portlet.rssnews(function (body) {
             form_data.rssnews = body;
-            return res.view('home/books', {
-                title: 'Node.js Books',
-                gconfig: common.gconfig,
-                form: form_data
+            common.gapi.book.search({
+                status: '公開',
+                sortOptions: {
+                    pubdate: -1
+                }
+            }, function (err, response, body) {
+                if (body.result === 'ok') {
+                    form_data.books = body.books;
+                    return res.view('home/books', {
+                        title: 'Node.js Books',
+                        gconfig: common.gconfig,
+                        gfunc: common.gfunc,
+                        form: form_data
+                    });
+                } else {
+                    console.error(body);
+                    return res.forbidden();
+                }
             });
+
         });
     },
 

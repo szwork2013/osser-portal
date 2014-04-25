@@ -423,3 +423,13 @@ exports.getRandomPersonalLogo = function () {
     return gdata.personallogos[Math.floor(Math.random() * gdata.personallogos.length)];
 }
 
+/**
+ * book-url取得
+ */
+exports.getBookUrl = function (book) {
+    if (book.alias) {
+        return gconfig.url.redirect + '/book/' + book.alias;
+    } else {
+        return book.link;
+    }
+}

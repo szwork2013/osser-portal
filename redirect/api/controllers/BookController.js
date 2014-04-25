@@ -31,7 +31,18 @@ module.exports = {
     find: function (req, res) {
         var key = req.param('id');
         if (key) {
-            return res.redirect(common.gurl.geturl(key));
+            if (common.gurl.geturl(key))
+                return res.redirect(common.gurl.geturl(key));
+            else {
+                common.gapi.book.find(key, function (err, response, body) {
+                    console.log(body);
+                    if (body.result === 'ok') {
+                        return res.redirect(body.book.link);
+                    } else {
+                        return res.end();
+                    }
+                });
+            }
         } else {
             return res.end();
         }
