@@ -118,6 +118,12 @@ var config = {
                 find: '/feednews/find',
                 search: '/feednews/search'
             },
+            book: {
+                create: '/book/create',
+                find: '/book/find',
+                search: '/book/search',
+                update: '/book/update'
+            },
             searchresult: {
                 create: '/searchresult/create',
                 search: '/searchresult/search'

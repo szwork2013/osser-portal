@@ -64,17 +64,9 @@ var portlet = {
     },
     rssnews: function (cb) {
         this.common('rssnews', cb);
-        //        includeURL(gurl.addhttp(config.url.nodejs + '/portlet/rssnews'), function (err, res, body) {
-        //            if (err) console.error(err);
-        //            cb(body);
-        //        });
     },
     recentthreads: function (cb) {
         this.common('recentthreads', cb);
-        //        includeURL(gurl.addhttp(config.url.nodejs + '/portlet/recentthreads'), function (err, res, body) {
-        //            if (err) console.error(err);
-        //            cb(body);
-        //        });
     },
 };
 exports.portlet = portlet;
@@ -86,15 +78,12 @@ var newsfeed = {
     create: function (data, cb) {
         post(config.site.api.newsfeed.create, data, cb);
     },
-
     destory: function (id, cb) {
         get(config.site.api.newsfeed.destory + '/' + id, cb);
     },
-
     search: function (searchConditions, cb) {
         post(config.site.api.newsfeed.search, searchConditions, cb);
     },
-
     update: function (id, data, cb) {
         post(config.site.api.newsfeed.update + '/' + id, data, cb);
     },
@@ -126,3 +115,22 @@ var contentnode = {
     },
 };
 exports.contentnode = contentnode;
+
+/**
+ * book
+ */
+var book = {
+    create: function (data, cb) {
+        post(config.site.api.book.create, data, cb);
+    },
+    find: function (nid, cb) {
+        get(config.site.api.book.find + '/' + nid, cb);
+    },
+    search: function (searchParams, cb) {
+        post(config.site.api.book.search, searchParams, cb);
+    },
+    update: function (id, data, cb) {
+        post(config.site.api.book.update + '/' + id, data, cb);
+    },
+};
+exports.book = book;

@@ -53,11 +53,7 @@ module.exports = {
                         common.gapi.portlet.recentthreads(function (body) {
                             form_data.recentthreads = body;
                             return res.view('home/newsdetail', {
-<<<<<<< HEAD
                                 title: form_data.news ? form_data.news.title : '総合ニュース',
-=======
-                                title: '総合ニュース',
->>>>>>> 48687fc36c17c1943a697465dce9df12a465187a
                                 gconfig: common.gconfig,
                                 gfunc: common.gfunc,
                                 form: form_data

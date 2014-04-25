@@ -2,15 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var BookSchema = new Schema({
-<<<<<<< HEAD
     alias: {
         type: String
     }, // url alias(seo)
     link: {
         type: String
     }, // amazon url
-=======
->>>>>>> 48687fc36c17c1943a697465dce9df12a465187a
     title: {
         type: String,
         required: true
@@ -18,20 +15,21 @@ var BookSchema = new Schema({
     author: {
         type: String
     },
-<<<<<<< HEAD
     description: {
         type: String
     }, // 商品の説明
-=======
->>>>>>> 48687fc36c17c1943a697465dce9df12a465187a
     language: {
+        type: String
+    },
+    formattedPrice: {
         type: String
     },
     size: {
         type: String
     }, // 寸法
     starcount: {
-        type: Number
+        type: Number,
+        default: 5
     }, // おすすめ度
     pubdate: {
         type: Date,
@@ -62,7 +60,10 @@ var BookSchema = new Schema({
     regdate: {
         type: Date,
         default: Date.now
-    } // 更新日
+    }, // 更新日
+    meta: {
+        type: String
+    } // amazon-metadata
 });
 
 mongoose.model('book', BookSchema);
