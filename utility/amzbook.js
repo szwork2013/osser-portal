@@ -18,6 +18,7 @@ program.on('--help', function () {
     console.log('使用例：');
     console.log('./amzbook.js -a -i "4873116457"');
     console.log('./amzbook.js -a -i "4873116457" -s "nginx-master"');
+    console.log('./amzbook.js -l');
     console.log('======================');
 });
 
@@ -44,7 +45,7 @@ if (program.add && program.id) {
     }, function (err, response, body) {
         if (body.result === 'ok') {
             async.forEach(body.books, function (bookinfo, done) {
-                console.log(bookinfo.book.title);
+                console.log(bookinfo.book.title, bookinfo.book.alias);
                 done();
             }, function (err) {});
         } else

@@ -98,9 +98,33 @@ module.exports = {
                 }
             }
         });
-
     },
 
+    /**
+     * /portlet/buythebook/:id or :alias
+     */
+    buythebook: function (req, res) {
+        var id = req.param('id');
+        if (id) {
+            common.gapi.book.find(id, function (err, response, body) {
+                if (body.result === 'ok') {
+                    var form_data = {
+                        book: body.book
+                    };
+                    return res.view('portlet/buythebook', {
+                        gconfig: common.gconfig,
+                        gfunc: common.gfunc,
+                        form: form_data,
+                        layout: ''
+                    });
+                } else {
+                    return res.end();
+                }
+            });
+        } else {
+            return res.end();
+        }
+    },
 
 
     /**

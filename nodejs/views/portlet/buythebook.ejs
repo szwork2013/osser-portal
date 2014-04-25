@@ -1,0 +1,20 @@
+<!-- サイトについて -->
+<% if (form.book) { %>
+    <div class="clearfix">
+        <a href="<%= gfunc.getBookUrl(form.book) %>" target="_blank">
+            <img class="img-responsive" src="<%= form.book.image %>">
+            <div>
+                <strong><%= form.book.title %></strong>
+            </div>
+        </a>
+    </div>
+    <div>
+        <img src="/images/star.png">
+        <img src="/images/star.png">
+        <img src="/images/star.png">
+        <img src="/images/star.png">
+        <img src="/images/star.png">
+    </div>
+<% } else { %>
+    <%- partial('../books/nodejs_in_action') %>
+<% } %>

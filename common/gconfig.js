@@ -79,6 +79,7 @@ var config = {
                 find: '/thread/find',
                 findBynid: '/thread/findBynid',
                 update: '/thread/update',
+                updatebookey: '/thread/updatebookey',
                 destory: '/thread/destory',
                 search: '/thread/search',
                 searchFromComment: '/thread/searchFromComment',

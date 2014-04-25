@@ -4,6 +4,10 @@
         <h5><strong>Buy the Book</strong></h5>
     </div>
     <div class="panel-body">
-        <%- partial('../books/nodejs_in_action') %>
+        <% if (form.buythebook) { %>
+            <%- form.buythebook %>
+        <% } else { %>
+            <%- partial('../books/nodejs_in_action') %>
+        <% } %>
     </div>
 </div>

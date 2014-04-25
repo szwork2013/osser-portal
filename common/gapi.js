@@ -53,6 +53,17 @@ function includeURL(url, cb) {
 }
 
 /**
+ * thread
+ */
+var thread = {
+    updatebookey: function (id, data, cb) {
+        post(config.site.api.thread.updatebookey + '/' + id, data, cb);
+    },
+};
+
+exports.thread = thread;
+
+/**
  * portlet
  */
 var portlet = {
@@ -67,6 +78,9 @@ var portlet = {
     },
     recentthreads: function (cb) {
         this.common('recentthreads', cb);
+    },
+    buythebook: function (id, cb) {
+        this.common('buythebook/' + id, cb);
     },
 };
 exports.portlet = portlet;

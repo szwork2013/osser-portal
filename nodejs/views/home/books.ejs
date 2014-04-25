@@ -7,17 +7,14 @@
                     <% _.each(form.books, function (bookinfo) { %>
                     <li class="list-group-item" style="">
                         <div itemscope itemtype="http://schema.org/Article" style="padding:10px 5px 0px 5px;">
-                            
-                            
                             <div class="media">
                                 <a class="pull-left" href="<%= gfunc.getBookUrl(bookinfo.book) %>" target="_blank">
-                                    <img src="<%= bookinfo.book.image %>" class="media-object img-thumbnail" alt="<%= bookinfo.book.title %>" style="width: 110px;" itemprop="name">
+                                    <img src="<%= bookinfo.book.image %>" class="media-object img-thumbnail" alt="<%= bookinfo.book.title %>" style="width: 120px;" itemprop="image">
                                 </a>
                                 <div class="media-body">
                                     <h4 class="media-heading"><a href="<%= gfunc.getBookUrl(bookinfo.book) %>" target="_blank"><span itemprop="name"><%= bookinfo.book.title %></span></a></h4>
-
-                                    <div><strong>作者：</strong><span><%= bookinfo.book.author %></span></div>
-                                    <div><strong>価格：</strong><span><%= bookinfo.book.formattedPrice%></span></div>
+                                    <div><strong>作者：</strong><span itemprop="author"><%= bookinfo.book.author %></span></div>
+                                    <div><strong>価格：</strong><span itemprop="price"><%= bookinfo.book.formattedPrice%></span></div>
                                     <div><strong>出版社：</strong><span><%= bookinfo.book.pubcompany %></span></div>
                                     <div><strong>発売日：</strong><span><%= gfunc.format_datestring(bookinfo.book.pubdate) %></span></div>
                                     <div><strong>ページ数：</strong><span><%= bookinfo.book.pagecount %></span></div>

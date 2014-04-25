@@ -115,7 +115,6 @@ module.exports = {
         var id = req.param('id');
         if (id) {
             var searchConditions = {};
-
             if (models.isObjectId(id)) {
                 searchConditions = {
                     _id: id
@@ -125,7 +124,6 @@ module.exports = {
                     alias: id
                 };
             }
-
             Book.findOne(searchConditions).exec(function (err, book) {
                 if (err) return res.json({
                     result: 'fail',

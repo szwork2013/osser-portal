@@ -33,11 +33,6 @@ module.exports = {
      *    `/thread`
      */
     index: function (req, res) {
-
-        // Send a JSON response
-        //        return res.json({
-        //            hello: 'world'
-        //        });
         return res.redirect('/');
     },
 
@@ -219,6 +214,8 @@ module.exports = {
                             thread.status = req.body.status;
                         if (req.body.weight !== undefined)
                             thread.weight = req.body.weight;
+                        if (req.body.bookey !== undefined)
+                            thread.bookey = req.body.bookey;
 
                         thread.upddate = new Date();
                         thread.save(function (err, newthread) {
@@ -328,19 +325,11 @@ module.exports = {
         };
         if (req.body.sortOptions !== undefined)
             sortOptions = req.body.sortOptions;
-        //        console.log(searchConditions);
-        //        console.log(searchOptions);
-        //        console.log(sortOptions);
         Comment.find(searchConditions, null, searchOptions).sort(sortOptions).exec(function (err, docs) {
             if (err) return res.json({
                 result: 'fail',
                 err: err
             });
-
-            //            _.each(docs, function (comment, index) {
-            //                console.log(index + ':' + comment.nid);
-            //            });
-
             async.map(docs, function (comment, cb) {
                 cb(null, comment.nid);
             }, function (err, results) {
@@ -497,6 +486,56 @@ module.exports = {
         });
     },
 
+    updatebookey: function (req, res) {
+        var id = req.param('id');
+
+        var searchConditions = {};
+        if (models.isObjectId(id)) {
+            searchConditions = {
+                _id: id
+            };
+        } else {
+            searchConditions = {
+                url: id
+            };
+        }
+
+        ContentNode.findOne(searchConditions, function (err, cnode) {
+            if (err)
+                return res.josn({
+                    result: 'fail',
+                    err: err
+                });
+            else {
+                if (cnode) {
+                    cnid = cnode._id;
+                    Thread.findOneAndUpdate({
+                        nid: cnid
+                    }, {
+                        bookey: req.body.bookey
+                    }).populate('uid').exec(function (err, doc) {
+                        if (err)
+                            return res.json({
+                                result: 'fail',
+                                err: err
+                            });
+                        else {
+                            return res.json({
+                                result: 'ok',
+                                thread: doc
+                            });
+                        }
+                    });
+                } else {
+                    console.error(searchConditions);
+                    return res.json({
+                        result: 'fail',
+                        err: 'data is null'
+                    });
+                }
+            }
+        });
+    },
 
     /**
      * Overrides for the settings in `config/controllers.js`

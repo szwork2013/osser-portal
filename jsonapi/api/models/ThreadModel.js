@@ -46,7 +46,10 @@ var ThreadSchema = new Schema({
     visitedcount: {
         type: Number,
         default: 0
-    } // アクセス数
+    }, // アクセス数
+    bookey: {
+        type: String
+    } // bookkey for buy the book
 });
 
 mongoose.model('thread', ThreadSchema);

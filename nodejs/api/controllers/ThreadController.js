@@ -26,11 +26,6 @@ module.exports = {
      */
     index: function (req, res) {
         var nid = req.param('id');
-        // Send a JSON response
-        //        return res.json({
-        //            hello: '/thead/index',
-        //            nid: nid
-        //        });
         return res.redirect('/');
     },
 
@@ -56,20 +51,31 @@ module.exports = {
                         },
                         istreeshow: true
                     }, function (err, response, body) {
-                        //console.log(body);
                         if (body.result === 'ok') {
-                            //console.log(body.comments[0].comment);
                             form_data.comments = body.comments;
                             form_data.commentcount = body.count;
                             form_data.hotthreads = req.flash('hotthreads');
-                            //console.log(form_data);
-                            return res.view('home/threadshow', {
-                                title: form_data.thread.title,
-                                gconfig: common.gconfig,
-                                gfunc: common.gfunc,
-                                gmd: common.gmd,
-                                form: form_data
-                            });
+
+                            if (form_data.thread.bookey) {
+                                common.gapi.portlet.buythebook(form_data.thread.bookey, function (body) {
+                                    form_data.buythebook = body;
+                                    return res.view('home/threadshow', {
+                                        title: form_data.thread.title,
+                                        gconfig: common.gconfig,
+                                        gfunc: common.gfunc,
+                                        gmd: common.gmd,
+                                        form: form_data
+                                    });
+                                });
+                            } else {
+                                return res.view('home/threadshow', {
+                                    title: form_data.thread.title,
+                                    gconfig: common.gconfig,
+                                    gfunc: common.gfunc,
+                                    gmd: common.gmd,
+                                    form: form_data
+                                });
+                            }
                         } else {
                             return res.forbidden();
                         }
