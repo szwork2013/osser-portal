@@ -146,6 +146,7 @@ var config = {
             name: 'コミュニティ・日本',
             route: {
                 nodejs: '/nodejs',
+                books: '/books',
                 helpmarkdown: '/help/markdown',
                 search: '/search',
                 news: '/news',

@@ -94,11 +94,14 @@ module.exports = {
             }, function (err, response, body) {
                 if (body.result === 'ok') {
                     form_data.books = body.books;
-                    return res.view('home/books', {
-                        title: 'Node.js Books',
-                        gconfig: common.gconfig,
-                        gfunc: common.gfunc,
-                        form: form_data
+                    common.gapi.portlet.recentthreads(function (body) {
+                        form_data.recentthreads = body;
+                        return res.view('home/books', {
+                            title: 'Node.js Books',
+                            gconfig: common.gconfig,
+                            gfunc: common.gfunc,
+                            form: form_data
+                        });
                     });
                 } else {
                     console.error(body);
