@@ -78,6 +78,11 @@ module.exports = {
             changefreq: 'monthly',
             priority: 0.9
         });
+        sm.urls.push({
+            url: '/books',
+            changefreq: 'daily',
+            priority: 0.9
+        });
 
         common.gapi.post(common.gconfig.site.api.thread.search, {
             status: '公開'

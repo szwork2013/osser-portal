@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 
+var _ = require('lodash');
 var async = require('async');
 var program = require('commander');
 var gapi = require('../common/gapi');
@@ -12,11 +13,13 @@ program
     .option('-u, --update [update]', 'update book')
     .option('-i, --id [id]', 'amazon-asin, isbn10, isbn13, ObjectId')
     .option('-l, --list', 'list books')
-    .option('-s, --shorturl [shorturl]', 'shorturl(alias)');
+    .option('-s, --shorturl [shorturl]', 'shorturl(alias)')
+    .option('-t, --test', 'get book for test');
 
 program.on('--help', function () {
     console.log('======================');
     console.log('使用例：');
+    console.log('./amzbook.js -t -i "4873116457"');
     console.log('./amzbook.js -a -i "4873116457"');
     console.log('./amzbook.js -a -i "4873116457" -s "nginx-master"');
     console.log('./amzbook.js -u -i "535a18843eb04c153bd92ba0"');
@@ -26,7 +29,26 @@ program.on('--help', function () {
 
 program.parse(process.argv);
 
-if (program.add && program.id) {
+if (program.test && program.id) {
+    var prodAdv = aws.createProdAdvClient(local.amazon.advapi.accesskey, local.amazon.advapi.securitykey, local.amazon.advapi.mytag, {
+        version: '2011-08-01'
+    });
+
+    prodAdv.call("ItemLookup", {
+        ItemId: program.id,
+        ResponseGroup: "Large"
+    }, function (err, result) {
+        if (err) {
+            done({
+                result: 'fail',
+                err: err
+            });
+        } else {
+            console.log(result.Items.Item);
+        }
+    });
+
+} else if (program.add && program.id) {
     getBook({
         id: program.id,
         alias: program.shorturl
@@ -92,8 +114,8 @@ function getBook(data, done) {
                     title: result.Items.Item.ItemAttributes.Title,
                     author: result.Items.Item.ItemAttributes.Author,
                     //description: 'book-description-3',
-                    language: result.Items.Item.ItemAttributes.Languages === undefined ? '日本語' : result.Items.Item.ItemAttributes.Languages.Language.Name,
-                    formattedPrice: result.Items.Item.ItemAttributes.ListPrice.FormattedPrice,
+                    language: getBookLang(result.Items.Item.ItemAttributes.Languages),
+                    formattedPrice: getPrice(result.Items.Item.ItemAttributes.ListPrice),
                     size: result.Items.Item.ItemAttributes.Binding,
                     //starcount: '3',
                     pubdate: result.Items.Item.ItemAttributes.PublicationDate,
@@ -115,23 +137,34 @@ function getBook(data, done) {
                     }
                 });
             }
-
-            //            console.log('==============================');
-            //            console.log('link=', result.Items.Item.DetailPageURL);
-            //            console.log('title=', result.Items.Item.ItemAttributes.Title);
-            //            console.log('author=', result.Items.Item.ItemAttributes.Author);
-            //            console.log('description=');
-            //            console.log('language=', result.Items.Item.ItemAttributes.Languages.Language.Name);
-            //            console.log('formattedPrice=', result.Items.Item.ItemAttributes.ListPrice.FormattedPrice);
-            //            console.log('size=', result.Items.Item.ItemAttributes.Binding);
-            //            console.log('pubdate=', result.Items.Item.ItemAttributes.PublicationDate);
-            //            console.log('pubcompany=', result.Items.Item.ItemAttributes.Manufacturer);
-            //            console.log('pagecount=', result.Items.Item.ItemAttributes.NumberOfPages);
-            //            console.log('isbn10=', result.Items.Item.ItemAttributes.ISBN);
-            //            console.log('isbn13=', result.Items.Item.ItemAttributes.EAN);
-            //            console.log('asin=', result.Items.Item.ASIN);
-            //            console.log('image=', result.Items.Item.LargeImage.URL);
-            //            console.log('meta=', JSON.stringify(result.Items.Item));
         }
     });
+}
+
+function getPrice(ListPrice) {
+    if (ListPrice) {
+        return ListPrice.FormattedPrice;
+    } else {
+        return "オープン価格";
+    }
+}
+
+function getBookLang(languages) {
+    var lang = '';
+    if (languages === undefined)
+        lang = '日本語';
+    else {
+        if (_.isArray(languages.Language)) {
+            async.forEachSeries(languages.Language, function (item, done) {
+                if (lang) lang += ', ' + item.Name;
+                else lang = item.Name;
+                done();
+            }, function (err) {
+                if (err) console.error(err);
+            });
+        } else {
+            lang = languages.Language.Name;
+        }
+    }
+    return lang;
 }
