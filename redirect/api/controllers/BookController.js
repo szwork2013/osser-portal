@@ -25,17 +25,19 @@ module.exports = {
      *    `/book`
      */
     index: function (req, res) {
+        console.log('redirect.book.index');
         return res.end();
     },
 
     find: function (req, res) {
+        //console.log('redirect.book.find');
         var key = req.param('id');
         if (key) {
-            if (common.gurl.geturl(key))
+            if (common.gurl.geturl(key)) {
                 return res.redirect(common.gurl.geturl(key));
-            else {
+            } else {
                 common.gapi.book.find(key, function (err, response, body) {
-                    console.log(body);
+                    //console.log(body);
                     if (body.result === 'ok') {
                         return res.redirect(body.book.link);
                     } else {

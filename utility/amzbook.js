@@ -9,7 +9,8 @@ var aws = require("./lib/aws-lib/lib/aws");
 program
     .version('0.1.0')
     .option('-a, --add [add]', 'get and add book')
-    .option('-i, --id [id]', 'amazon-asin, isbn10, isbn13')
+    .option('-u, --update [update]', 'update book')
+    .option('-i, --id [id]', 'amazon-asin, isbn10, isbn13, ObjectId')
     .option('-l, --list', 'list books')
     .option('-s, --shorturl [shorturl]', 'shorturl(alias)');
 
@@ -18,6 +19,7 @@ program.on('--help', function () {
     console.log('使用例：');
     console.log('./amzbook.js -a -i "4873116457"');
     console.log('./amzbook.js -a -i "4873116457" -s "nginx-master"');
+    console.log('./amzbook.js -u -i "535a18843eb04c153bd92ba0"');
     console.log('./amzbook.js -l');
     console.log('======================');
 });
@@ -33,6 +35,12 @@ if (program.add && program.id) {
             console.log(result.book.title, '追加済み');
         else
             console.log(result);
+    });
+} else if (program.update && program.id) {
+    gapi.book.update(program.id, {
+        alias: 'abc9876'
+    }, function (err, res, body) {
+        console.log(body.book.title, body.book.alias);
     });
 } else if (program.list) {
     gapi.book.search({

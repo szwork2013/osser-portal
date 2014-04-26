@@ -124,6 +124,7 @@ module.exports = {
                     alias: id
                 };
             }
+            //console.log('json.book.find', searchConditions);
             Book.findOne(searchConditions).exec(function (err, book) {
                 if (err) return res.json({
                     result: 'fail',
