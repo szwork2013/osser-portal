@@ -2,6 +2,7 @@
 
 var async = require('async');
 var gapi = require('../common/gapi');
+var gfunc = require('../common/gfunc');
 var program = require('commander');
 
 program
@@ -43,29 +44,32 @@ gapi.newsfeed.search({
                     //console.log(feeditem._id, item.title);
                     //console.log(feeditem.title);
                     var title = item.title;
-                    gapi.feednews.create({
-                        rsstitle: feeditem.title,
-                        title: item.title,
-                        summary: item.summary,
-                        description: item.description,
-                        link: item.link,
-                        origlink: item.origlink,
-                        date: item.date,
-                        pubdate: item.pubdate,
-                        author: item.author,
-                        guid: item.guid,
-                        comments: item.comments,
-                        image: item.image,
-                        categories: item.categories,
-                        source: item.source,
-                        enclosures: item.enclosures,
-                        meta: item.meta
-                    }, function (err, res, body) {
-                        if (err) console.error(err);
-                        if (body.result === 'fail') {
-                            console.log(body, title);
-                        }
-                    });
+                    //console.log(title.indexOf('PR'), title);
+                    if (title.indexOf('PR') < 0) {
+                        gapi.feednews.create({
+                            rsstitle: feeditem.title,
+                            title: item.title,
+                            summary: item.summary,
+                            description: item.description,
+                            link: item.link,
+                            origlink: item.origlink,
+                            date: item.date,
+                            pubdate: item.pubdate,
+                            author: item.author,
+                            guid: item.guid,
+                            comments: item.comments,
+                            image: item.image,
+                            categories: item.categories,
+                            source: item.source,
+                            enclosures: item.enclosures,
+                            meta: item.meta
+                        }, function (err, res, body) {
+                            if (err) console.error(err);
+                            if (body.result === 'fail') {
+                                console.log(body, title);
+                            }
+                        });
+                    }
                 }
                 done();
             });

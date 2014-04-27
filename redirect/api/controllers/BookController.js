@@ -25,7 +25,7 @@ module.exports = {
      *    `/book`
      */
     index: function (req, res) {
-        console.log('redirect.book.index');
+        //console.log('redirect.book.index');
         return res.end();
     },
 
@@ -33,6 +33,7 @@ module.exports = {
         //console.log('redirect.book.find');
         var key = req.param('id');
         if (key) {
+            common.glog.info(sails, key);
             if (common.gurl.geturl(key)) {
                 return res.redirect(common.gurl.geturl(key));
             } else {

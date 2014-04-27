@@ -22,7 +22,7 @@ if (program.id && program.bookey) {
     gapi.thread.updatebookey(program.id, {
         bookey: program.bookey
     }, function (err, res, body) {
-        console.log(body);
+        console.log(body.result);
     });
 } else {
     program.help();

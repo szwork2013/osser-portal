@@ -44,7 +44,20 @@ if (program.test && program.id) {
                 err: err
             });
         } else {
-            console.log(result.Items.Item);
+            //console.log(result.Items.Item);
+            console.log('[URL]', result.Items.Item.DetailPageURL);
+            console.log('[タイトル]', result.Items.Item.ItemAttributes.Title);
+            console.log('[価格]', getPrice(result.Items.Item.ItemAttributes.ListPrice));
+            console.log('[作者]', result.Items.Item.ItemAttributes.Author);
+            console.log('[出版社]', result.Items.Item.ItemAttributes.Manufacturer);
+            console.log('[発売日]', result.Items.Item.ItemAttributes.PublicationDate);
+            console.log('[ページ数]', result.Items.Item.ItemAttributes.NumberOfPages);
+            console.log('[言語]', getBookLang(result.Items.Item.ItemAttributes.Languages));
+            console.log('[Binding]', result.Items.Item.ItemAttributes.Binding);
+            console.log('[ISBN]', result.Items.Item.ItemAttributes.ISBN);
+            console.log('[EAN]', result.Items.Item.ItemAttributes.EAN);
+            console.log('[ASIN]', result.Items.Item.ASIN);
+            console.log('[image url]', result.Items.Item.LargeImage.URL);
         }
     });
 
