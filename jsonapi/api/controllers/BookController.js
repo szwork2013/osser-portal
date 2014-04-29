@@ -168,6 +168,9 @@ module.exports = {
         if (req.body.status !== undefined) {
             searchConditions.status = req.body.status;
         }
+        if (req.body.asin !== undefined) {
+            searchConditions.asin = req.body.asin;
+        }
 
         var searchOptions = {};
         if (req.body.limit !== undefined)
@@ -222,9 +225,17 @@ module.exports = {
     update: function (req, res) {
         var id = req.param('id');
         if (id) {
-            Book.findOne({
-                _id: id
-            }, function (err, book) {
+            var searchConditions = {};
+            if (models.isObjectId(id)) {
+                searchConditions = {
+                    _id: id
+                };
+            } else {
+                searchConditions = {
+                    alias: id
+                };
+            }
+            Book.findOne(searchConditions, function (err, book) {
                 if (err)
                     return res.json({
                         result: 'fail',
