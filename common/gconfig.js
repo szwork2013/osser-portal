@@ -125,6 +125,13 @@ var config = {
                 search: '/book/search',
                 update: '/book/update'
             },
+            amzbrowsenode: {
+                create: '/amzbrowsenode/create',
+                find: '/amzbrowsenode/find',
+                search: '/amzbrowsenode/search',
+                update: '/amzbrowsenode/update',
+                remove: '/amzbrowsenode/remove'
+            },
             searchresult: {
                 create: '/searchresult/create',
                 search: '/searchresult/search'

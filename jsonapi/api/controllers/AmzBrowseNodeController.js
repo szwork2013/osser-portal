@@ -1,5 +1,5 @@
 /**
- * BookController
+ * AmzBrowseNodeController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -18,31 +18,32 @@ var validator = require('validator');
 var async = require('async');
 var common = require('../../../common');
 var models = require('../models');
-var Book = models.Book;
+var AmzBrowseNode = models.AmzBrowseNode;
 
 module.exports = {
 
 
     /**
      * Action blueprints:
-     *    `/book/index`
-     *    `/book`
+     *    `/amzbrowsenode/index`
+     *    `/amzbrowsenode`
      */
     index: function (req, res) {
 
         // Send a JSON response
         return res.json({
-            hello: 'index'
+            hello: 'world'
         });
     },
 
 
     /**
      * Action blueprints:
-     *    `/book/create`
+     *    `/amzbrowsenode/create`
      */
     create: function (req, res) {
-        req.checkBody('title', common.gmsg.mustinput_title).notEmpty();
+        req.checkBody('bnodeid', 'bnodeid is null').notEmpty();
+        req.checkBody('name', 'name is null').notEmpty();
         var errors = req.validationErrors(true);
         if (errors) {
             return res.json({
@@ -50,26 +51,10 @@ module.exports = {
                 err: errors
             });
         }
-        var searchCondition = {
-            $or: []
-        };
-        if (req.body.title)
-            searchCondition.$or.push({
-                title: req.body.title
-            });
-        if (req.body.isbn10)
-            searchCondition.$or.push({
-                isbn10: req.body.isbn10
-            });
-        if (req.body.isbn13)
-            searchCondition.$or.push({
-                isbn13: req.body.isbn13
-            });
-        if (req.body.asin)
-            searchCondition.$or.push({
-                asin: req.body.asin
-            });
-        Book.findOne(searchCondition, function (err, doc) {
+
+        AmzBrowseNode.findOne({
+            bnodeid: req.body.bnodeid
+        }, function (err, doc) {
             if (err)
                 return res.json({
                     result: 'fail',
@@ -79,17 +64,16 @@ module.exports = {
                 // 既に存在している
                 return res.json({
                     result: 'fail',
-                    err: 'this book is aleady exist.'
+                    err: 'this browsenode is aleady exist.'
                 });
             } else {
-                var book = new Book({
-                    title: req.body.title
+                var bnode = new AmzBrowseNode({
+                    bnodeid: req.body.bnodeid,
+                    name: req.body.name
                 });
-                for (var pname in req.body) {
-                    if (req.body[pname] !== undefined)
-                        book[pname] = req.body[pname];
-                }
-                book.save(function (err, newdoc) {
+                if (req.body.children !== undefined)
+                    bnode.children = req.body.children;
+                bnode.save(function (err, newdoc) {
                     if (err)
                         return res.json({
                             result: 'fail',
@@ -98,17 +82,16 @@ module.exports = {
                     else
                         return res.json({
                             result: 'ok',
-                            book: newdoc
+                            bnode: newdoc
                         });
                 });
             }
         });
     },
 
-
     /**
      * Action blueprints:
-     *    `/book/find`
+     *    `/amzbrowsenode/find`
      */
     find: function (req, res) {
         var id = req.param('id');
@@ -120,20 +103,128 @@ module.exports = {
                 };
             } else {
                 searchConditions = {
-                    alias: id
+                    bnodeid: id
                 };
             }
-            //console.log('json.book.find', searchConditions);
-            Book.findOne(searchConditions).exec(function (err, book) {
+            AmzBrowseNode.findOne(searchConditions).exec(function (err, bnode) {
                 if (err) return res.json({
                     result: 'fail',
                     err: err
                 });
                 else {
-                    if (book) {
+                    if (bnode) {
                         return res.json({
                             result: 'ok',
-                            book: book
+                            bnode: bnode
+                        });
+                    } else {
+                        return res.json({
+                            result: 'fail',
+                            err: 'data is null.'
+                        });
+                    }
+                }
+            });
+        } else {
+            return res.json({
+                result: 'fail',
+                err: 'id is null.'
+            });
+        }
+    },
+
+    /**
+     * Action blueprints:
+     *    `/amzbrowsenode/search`
+     */
+    search: function (req, res) {
+        var searchConditions = {};
+        if (req.body.name !== undefined) {
+            searchConditions.name = {
+                $regex: new RegExp(req.body.name, 'i')
+            };
+        }
+        if (req.body.status !== undefined) {
+            searchConditions.status = req.body.status;
+        }
+        var searchOptions = {};
+        if (req.body.limit !== undefined)
+            searchOptions.limit = req.body.limit;
+        if (req.body.skip !== undefined)
+            searchOptions.skip = req.body.skip;
+
+        var sortOptions = {
+            upddate: -1
+        };
+        if (req.body.sortOptions !== undefined)
+            sortOptions = req.body.sortOptions;
+        
+        //console.log(searchConditions, searchOptions, sortOptions);
+        AmzBrowseNode.find(searchConditions, null, searchOptions).sort(sortOptions).exec(function (err, docs) {
+            if (err)
+                return res.json({
+                    result: 'fail',
+                    err: err
+                });
+            else {
+                AmzBrowseNode.count(searchConditions, function (err, count) {
+                    if (err)
+                        return res.json({
+                            result: 'fail',
+                            err: err
+                        });
+                    else {
+                        async.map(docs, function (bnode, cb) {
+                            var result = {
+                                bnode: bnode
+                            };
+                            cb(null, result);
+                        }, function (err, results) {
+                            return res.json({
+                                result: 'ok',
+                                bnodes: results,
+                                count: count
+                            });
+                        });
+                    }
+                });
+            }
+        });
+
+    },
+
+
+    /**
+     * Action blueprints:
+     *    `/amzbrowsenode/remove`
+     */
+    remove: function (req, res) {
+        var id = req.param('id');
+        if (id) {
+            var searchConditions = {};
+            if (models.isObjectId(id)) {
+                searchConditions = {
+                    _id: id
+                };
+            } else {
+                searchConditions = {
+                    bnodeid: id
+                };
+            }
+            AmzBrowseNode.findOneAndUpdate(searchConditions, {
+                $set: {
+                    status: '削除'
+                }
+            }, null, function (err, bnode) {
+                if (err) return res.json({
+                    result: 'fail',
+                    err: err
+                });
+                else {
+                    if (bnode) {
+                        return res.json({
+                            result: 'ok',
+                            bnode: bnode
                         });
                     } else {
                         return res.json({
@@ -154,72 +245,7 @@ module.exports = {
 
     /**
      * Action blueprints:
-     *    `/book/search`
-     */
-    search: function (req, res) {
-        var searchConditions = {};
-        if (req.body.rsstitle !== undefined) {
-            var rsstitlearray = req.body.rsstitle.split(',');
-            searchConditions.rsstitle = {
-                $in: rsstitlearray
-            };
-        }
-        if (req.body.status !== undefined) {
-            searchConditions.status = req.body.status;
-        }
-        if (req.body.asin !== undefined) {
-            searchConditions.asin = req.body.asin;
-        }
-
-        var searchOptions = {};
-        if (req.body.limit !== undefined)
-            searchOptions.limit = req.body.limit;
-        if (req.body.skip !== undefined)
-            searchOptions.skip = req.body.skip;
-
-        var sortOptions = {
-            upddate: -1
-        };
-        if (req.body.sortOptions !== undefined)
-            sortOptions = req.body.sortOptions;
-
-        Book.find(searchConditions, null, searchOptions).sort(sortOptions).exec(function (err, docs) {
-            if (err)
-                return res.json({
-                    result: 'fail',
-                    err: err
-                });
-            else {
-                Book.count(searchConditions, function (err, count) {
-                    if (err)
-                        return res.json({
-                            result: 'fail',
-                            err: err
-                        });
-                    else {
-                        async.map(docs, function (book, cb) {
-                            var result = {
-                                book: book
-                            };
-                            cb(null, result);
-                        }, function (err, results) {
-                            return res.json({
-                                result: 'ok',
-                                books: results,
-                                count: count
-                            });
-                        });
-                    }
-                });
-            }
-        });
-
-    },
-
-
-    /**
-     * Action blueprints:
-     *    `/book/update`
+     *    `/amzbrowsenode/update`
      */
     update: function (req, res) {
         var id = req.param('id');
@@ -231,22 +257,23 @@ module.exports = {
                 };
             } else {
                 searchConditions = {
-                    alias: id
+                    bnodeid: id
                 };
             }
-            Book.findOne(searchConditions, function (err, book) {
+            AmzBrowseNode.findOne(searchConditions, function (err, bnode) {
                 if (err)
                     return res.json({
                         result: 'fail',
                         err: err
                     });
                 else {
-                    if (book) {
+                    if (bnode) {
                         for (var pname in req.body) {
                             if (req.body[pname] !== undefined)
-                                book[pname] = req.body[pname];
+                                bnode[pname] = req.body[pname];
                         }
-                        book.save(function (err, newbook) {
+                        bnode.update = new Date();
+                        bnode.save(function (err, newdoc) {
                             if (err)
                                 return res.json({
                                     result: 'fail',
@@ -255,7 +282,7 @@ module.exports = {
                             else
                                 return res.json({
                                     result: 'ok',
-                                    book: newbook
+                                    bnode: newdoc
                                 });
                         });
                     } else {
@@ -274,12 +301,9 @@ module.exports = {
         }
     },
 
-
-
-
     /**
      * Overrides for the settings in `config/controllers.js`
-     * (specific to BookController)
+     * (specific to AmzBrowseNodeController)
      */
     _config: {}
 

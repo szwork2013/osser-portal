@@ -148,3 +148,26 @@ var book = {
     },
 };
 exports.book = book;
+
+/**
+ * amzbrowsernode
+ */
+var amzbrowsenode = {
+    create: function (data, cb) {
+        post(config.site.api.amzbrowsenode.create, data, cb);
+    },
+    find: function (nid, cb) {
+        get(config.site.api.amzbrowsenode.find + '/' + nid, cb);
+    },
+    search: function (searchParams, cb) {
+        post(config.site.api.amzbrowsenode.search, searchParams, cb);
+    },
+    update: function (id, data, cb) {
+        post(config.site.api.amzbrowsenode.update + '/' + id, data, cb);
+    },
+    remove: function (nid, cb) {
+        get(config.site.api.amzbrowsenode.remove + '/' + nid, cb);
+    },
+};
+exports.amzbrowsenode = amzbrowsenode;
+
