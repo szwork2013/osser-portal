@@ -171,3 +171,24 @@ var amzbrowsenode = {
 };
 exports.amzbrowsenode = amzbrowsenode;
 
+/**
+ * amzbooknode
+ */
+var amzbooknode = {
+    create: function (data, cb) {
+        post(config.site.api.amzbooknode.create, data, cb);
+    },
+    find: function (nid, cb) {
+        get(config.site.api.amzbooknode.find + '/' + nid, cb);
+    },
+    search: function (searchParams, cb) {
+        post(config.site.api.amzbooknode.search, searchParams, cb);
+    },
+    update: function (id, data, cb) {
+        post(config.site.api.amzbooknode.update + '/' + id, data, cb);
+    },
+    remove: function (nid, cb) {
+        get(config.site.api.amzbooknode.remove + '/' + nid, cb);
+    },    
+};
+exports.amzbooknode = amzbooknode;

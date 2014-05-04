@@ -132,6 +132,13 @@ var config = {
                 update: '/amzbrowsenode/update',
                 remove: '/amzbrowsenode/remove'
             },
+            amzbooknode: {
+                create: '/amzbooknode/create',
+                remove: '/amzbooknode/remove',
+                find: '/amzbooknode/find',
+                search: '/amzbooknode/search',
+                update: '/amzbooknode/update'
+            },
             searchresult: {
                 create: '/searchresult/create',
                 search: '/searchresult/search'

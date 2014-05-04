@@ -13,6 +13,7 @@ mongoose.connect(gconfig.db.osser, function (err) {
     glog.info(sails, 'MongoDB Connected.');
 });
 
+require('./AmzBookNodeModel');
 require('./AmzBrowseNodeModel');
 require('./BookModel');
 require('./CommentModel');
@@ -28,6 +29,7 @@ require('./TagModel');
 require('./ThreadModel');
 require('./UserModel');
 
+exports.AmzBookNode = mongoose.model('amzbooknode');
 exports.AmzBrowseNode = mongoose.model('amzbrowsenode');
 exports.Book = mongoose.model('book');
 exports.Comment = mongoose.model('comment');

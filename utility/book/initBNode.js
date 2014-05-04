@@ -83,7 +83,7 @@ function mainLoop(bNodeId, level, done) {
                                     mainLoop(item.BrowseNodeId, level + 1, done);
                                 }, 5000);
                             }, function (err) {
-                                if (err) console.error('2:', err);
+                                if (err) console.error('3:', err);
                                 if (done != null)
                                     done();
                             });

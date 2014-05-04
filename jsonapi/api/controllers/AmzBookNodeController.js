@@ -1,5 +1,5 @@
 /**
- * BookController
+ * AmzBookNodeController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -18,27 +18,26 @@ var validator = require('validator');
 var async = require('async');
 var common = require('../../../common');
 var models = require('../models');
-var Book = models.Book;
+var AmzBookNode = models.AmzBookNode;
 
 module.exports = {
 
     /**
      * Action blueprints:
-     *    `/book/index`
-     *    `/book`
+     *    `/amzbooknode/index`
+     *    `/amzbooknode`
      */
     index: function (req, res) {
-
         // Send a JSON response
         return res.json({
-            hello: 'index'
+            hello: 'world'
         });
     },
 
 
     /**
      * Action blueprints:
-     *    `/book/create`
+     *    `/amzbooknode/create`
      */
     create: function (req, res) {
         req.checkBody('title', common.gmsg.mustinput_title).notEmpty();
@@ -68,7 +67,7 @@ module.exports = {
             searchCondition.$or.push({
                 asin: req.body.asin
             });
-        Book.findOne(searchCondition, function (err, doc) {
+        AmzBookNode.findOne(searchCondition, function (err, doc) {
             if (err)
                 return res.json({
                     result: 'fail',
@@ -81,7 +80,7 @@ module.exports = {
                     err: 'this book is aleady exist.'
                 });
             } else {
-                var book = new Book({
+                var book = new AmzBookNode({
                     title: req.body.title
                 });
                 for (var pname in req.body) {
@@ -107,7 +106,20 @@ module.exports = {
 
     /**
      * Action blueprints:
-     *    `/book/find`
+     *    `/amzbooknode/remove`
+     */
+    remove: function (req, res) {
+
+        // Send a JSON response
+        return res.json({
+            hello: 'world'
+        });
+    },
+
+
+    /**
+     * Action blueprints:
+     *    `/amzbooknode/find`
      */
     find: function (req, res) {
         var id = req.param('id');
@@ -123,7 +135,7 @@ module.exports = {
                 };
             }
             //console.log('json.book.find', searchConditions);
-            Book.findOne(searchConditions).exec(function (err, book) {
+            AmzBookNode.findOne(searchConditions).exec(function (err, book) {
                 if (err) return res.json({
                     result: 'fail',
                     err: err
@@ -153,16 +165,10 @@ module.exports = {
 
     /**
      * Action blueprints:
-     *    `/book/search`
+     *    `/amzbooknode/search`
      */
     search: function (req, res) {
         var searchConditions = {};
-//        if (req.body.rsstitle !== undefined) {
-//            var rsstitlearray = req.body.rsstitle.split(',');
-//            searchConditions.rsstitle = {
-//                $in: rsstitlearray
-//            };
-//        }
         if (req.body.status !== undefined) {
             searchConditions.status = req.body.status;
         }
@@ -182,14 +188,14 @@ module.exports = {
         if (req.body.sortOptions !== undefined)
             sortOptions = req.body.sortOptions;
 
-        Book.find(searchConditions, null, searchOptions).sort(sortOptions).exec(function (err, docs) {
+        AmzBookNode.find(searchConditions, null, searchOptions).sort(sortOptions).exec(function (err, docs) {
             if (err)
                 return res.json({
                     result: 'fail',
                     err: err
                 });
             else {
-                Book.count(searchConditions, function (err, count) {
+                AmzBookNode.count(searchConditions, function (err, count) {
                     if (err)
                         return res.json({
                             result: 'fail',
@@ -212,13 +218,12 @@ module.exports = {
                 });
             }
         });
-
     },
 
 
     /**
      * Action blueprints:
-     *    `/book/update`
+     *    `/amzbooknode/update`
      */
     update: function (req, res) {
         var id = req.param('id');
@@ -233,7 +238,7 @@ module.exports = {
                     alias: id
                 };
             }
-            Book.findOne(searchConditions, function (err, book) {
+            AmzBookNode.findOne(searchConditions, function (err, book) {
                 if (err)
                     return res.json({
                         result: 'fail',
@@ -278,7 +283,7 @@ module.exports = {
 
     /**
      * Overrides for the settings in `config/controllers.js`
-     * (specific to BookController)
+     * (specific to AmzBookNodeController)
      */
     _config: {}
 
