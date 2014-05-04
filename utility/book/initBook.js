@@ -54,7 +54,7 @@ function sortLoop(bnodeid, sortKey, cb) {
             console.error('3:', err);
             sortKey(bnodeid, sortKey, cb);
         } else {
-            console.log(result.Items.TotalPages, result.Items.TotalResults);
+            console.log(bnodeid, sortKey, result.Items.TotalPages, result.Items.TotalResults);
             var pagecount = +result.Items.TotalPages;
             if (_.isNaN(pagecount)) pagecount = 1;
             if (pagecount > 10) pagecount = 10;

@@ -188,6 +188,7 @@ module.exports = {
         if (req.body.sortOptions !== undefined)
             sortOptions = req.body.sortOptions;
 
+        //console.log(searchConditions,searchOptions,sortOptions);
         AmzBookNode.find(searchConditions, null, searchOptions).sort(sortOptions).exec(function (err, docs) {
             if (err)
                 return res.json({
