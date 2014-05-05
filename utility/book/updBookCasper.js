@@ -21,15 +21,22 @@ if (options.asin) {
     //console.log(url);
     casper.start(url, function () {
         //this.echo(this.getTitle());
-        var desc = casper.getHTML(xpath('//*[@id="productDescription"]/div'));
+        //var desc = casper.getHTML(xpath('//*[@id="productDescription"]/div'));
         //var desc = casper.fetchText(xpath('//*[@id="productDescription"]/div'));
 
+        var desc = '';
+        try {
+            desc = casper.getHTML(xpath('//*[@id="productDescription"]/div'));
+        } catch (e) {
+            console.error(e);
+            casper.exit();
+        }
         //desc = _s.trim(desc);
         desc = desc.trim();
         if (options.test)
             console.log(desc, '---get ok---');
         // add/update
-        casper.open('http://127.0.0.1:8080/book/search', {
+        casper.open('http://127.0.0.1:8080/amzbooknode/search', {
             headers: {
                 'Accept': 'application/json'
             },
@@ -58,13 +65,15 @@ if (options.asin) {
                         });
                         casper.then(function () {
                             var body = JSON.parse(this.getPageContent());
-                            if (body.result ==='ok')
-                                console.log('更新済み');
+                            if (body.result === 'ok')
+                                console.log(options.asin, '更新済み');
                             else
-                                console.error(body);
+                                console.error(JSON.stringify(body));
                         });
                     }
                 }
+            } else {
+                console.error(JSON.stringify(body));
             }
         });
 
