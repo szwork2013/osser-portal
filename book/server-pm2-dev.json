@@ -1,0 +1,6 @@
+{
+    "name": "book-dev",
+    "script": "app.js",
+    "port": 8086,
+    "options": [""]
+}

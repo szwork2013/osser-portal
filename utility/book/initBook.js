@@ -30,7 +30,7 @@ gapi.amzbrowsenode.search({
     async.eachSeries(body.bnodes, function (item, done) {
         async.eachSeries(sortList, function (sortKey, cb) {
             setTimeout(function () {
-                sortLoop(item.bnode.bnodeid, sortKey, cb);
+                sortLoop(item.bnode, sortKey, cb);
             }, 5000);
         }, function (err) {
             if (err) console.error('1:', err);
@@ -41,20 +41,19 @@ gapi.amzbrowsenode.search({
     });
 });
 
-function sortLoop(bnodeid, sortKey, cb) {
-    //console.log(item.bnode.bnodeid, item.bnode.name);
+function sortLoop(bnode, sortKey, cb) {
     awsClient.call("ItemSearch", {
         SearchIndex: "Books",
-        BrowseNode: bnodeid,
+        BrowseNode: bnode.bnodeid,
         ItemPage: 1,
         ResponseGroup: 'Small',
         Sort: sortKey
     }, function (err, result) {
         if (err) {
             console.error('3:', err);
-            sortKey(bnodeid, sortKey, cb);
+            sortLoop(bnode.bnodeid, sortKey, cb);
         } else {
-            console.log(bnodeid, sortKey, result.Items.TotalPages, result.Items.TotalResults);
+            console.log(bnode.bnodeid, bnode.name, sortKey, result.Items.TotalPages, result.Items.TotalResults);
             var pagecount = +result.Items.TotalPages;
             if (_.isNaN(pagecount)) pagecount = 1;
             if (pagecount > 10) pagecount = 10;
@@ -67,7 +66,7 @@ function sortLoop(bnodeid, sortKey, cb) {
                     awsClient.call("ItemSearch", {
                         SearchIndex: "Books",
                         //Keywords: "Javascript"
-                        BrowseNode: bnodeid,
+                        BrowseNode: bnode.bnodeid,
                         ItemPage: pageindex,
                         ResponseGroup: 'Large',
                         Sort: sortKey
@@ -75,12 +74,11 @@ function sortLoop(bnodeid, sortKey, cb) {
                         if (err) {
                             console.error('4:', err);
                             pgcb();
-                            //sortKey(bnodeid, sortKey, cb);
                         } else {
-                            //console.log(result);
                             async.eachSeries(result.Items.Item, function (book, done) {
-                                console.log(pageindex, sortKey, bnodeid, book.ASIN, book.ItemAttributes.Title);
-
+                                console.log(pageindex, sortKey, bnode.bnodeid, book.ASIN, book.ItemAttributes.Title);
+                                var tags = [bnode.bnodeid];
+                                //console.log(tags);
                                 gapi.amzbooknode.create({
                                     //alias: 'book-alias-3',
                                     link: book.DetailPageURL,
@@ -98,6 +96,7 @@ function sortLoop(bnodeid, sortKey, cb) {
                                     isbn13: book.ItemAttributes.EAN,
                                     asin: book.ASIN,
                                     image: getLargeImageURL(book.LargeImage),
+                                    tags: tags,
                                     meta: JSON.stringify(book)
                                 }, function (err, res, body) {
                                     if (err) console.error(err);

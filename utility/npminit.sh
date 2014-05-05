@@ -21,3 +21,11 @@ npm update
 cd ../redirect
 #npm install
 npm update
+
+cd ../book
+#npm install
+npm update
+
+cd ../tools
+#npm install
+npm update

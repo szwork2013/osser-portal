@@ -46,6 +46,8 @@ var config = {
         oldosser: '//old.osser.jp',
         admin: '//admin.ossser.jp',
         resource: '//resource.osser.jp',
+        book: '//book.osser.jp',
+        tools: '//tools.osser.jp',
 
         // 各サイト共通URL
         image: {
@@ -216,6 +218,8 @@ if (process.env.NODE_ENV != 'production') {
     config.url.nodejs = '//' + serverip + ':8083';
     config.url.redirect = '//' + serverip + ':8084';
     config.url.osser = '//' + serverip + ':8085';
+    config.ur.book = '//' + serverip + ':8086';
+    config.url.tools = '//' + serverip + ':8087';
 
     config.cookie_opts.secure = false;
     config.cookie_opts.domain = serverip;

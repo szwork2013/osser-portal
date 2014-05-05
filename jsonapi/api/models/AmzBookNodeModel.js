@@ -64,7 +64,7 @@ var AmzBookNodeSchema = new Schema({
     }, // 公開;削除
     tags:{
         type: [String]
-    },
+    }, // asin array
     regdate: {
         type: Date,
         default: Date.now
