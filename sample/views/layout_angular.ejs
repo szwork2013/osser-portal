@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        angular - osser sample
+    </title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/lib/metroui/css/metro-bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/metroui/css/metro-bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="/lib/metroui/css/iconFont.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="/lib/metroui/js/metro.min.js"></script>
+
+    <!--STYLES-->
+    
+    <!--STYLES END-->
+</head>
+
+<body class="metro">
+    <nav class="navigation-bar dark">
+        <nav class="navigation-bar-content">
+            <div class="container">
+                <div class="element">
+                    <i class="icon-delicious"></i>
+                    <a class="brand" href="/" style="color:white;">OSSER Sample - AngularJS</a>
+                </div>
+
+                <a class="pull-menu" href="#"></a>
+                <ul class="element-menu place-right">
+                    <li>
+                        <a class="element" href="/menu1.html">Menu1</a>
+                    </li>
+                    <li>
+                        <a class="element" href="#">Menu2</a>
+                    </li>
+                    <li>
+                        <a class="element" href="#">Menu3</a>
+                    </li>
+                    <li>
+                        <a class="element" href="#">Menu4</a>
+                    </li>
+                    <li>
+                        <a class="element fg-yellow" href="/angular">AngularJS</a>
+                    </li>
+                    <!--pullmenu徹底日表示する場合はa.elementを利用-->
+                    <li class="no-tablet-portrait no-phone">
+                        <a title="GitHub" href="https://github.com/osser" class="" target="_blank">
+                            <span class="icon-github"></span>
+                        </a>
+                    </li>
+                    <li class="no-tablet-portrait no-phone">
+                        <a title="Metro-UI-CSS" href="http://osser.jp/" class="" target="_blank">
+                            <span class="icon-grid-view"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </nav>
+    <div class="grid bg-yellow" style="min-height:3px;">
+    </div>
+    
+    <%- body %>
+
+        <!--TEMPLATES-->
+        
+        <!--TEMPLATES END-->
+
+        <!--SCRIPTS-->
+        <script src="/linker/js/socket.io.js"></script>
+        <script src="/linker/js/sails.io.js"></script>
+        <script src="/linker/js/app.js"></script>
+        <!--SCRIPTS END-->
+</body>
+
+</html>

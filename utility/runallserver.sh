@@ -25,5 +25,8 @@ cd ../redirect
 cd ../book
 ./runserver.sh $1
 
-cd ../book
+cd ../tools
+./runserver.sh $1
+
+cd ../sample
 ./runserver.sh $1

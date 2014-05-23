@@ -1,0 +1,6 @@
+{
+    "name": "sample-dev",
+    "script": "app.js",
+    "port": 8088,
+    "options": [""]
+}

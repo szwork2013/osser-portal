@@ -48,6 +48,7 @@ var config = {
         resource: '//resource.osser.jp',
         book: '//book.osser.jp',
         tools: '//tools.osser.jp',
+        sample: '//sample.osser.jp',
 
         // 各サイト共通URL
         image: {
@@ -220,6 +221,7 @@ if (process.env.NODE_ENV != 'production') {
     config.url.osser = '//' + serverip + ':8085';
     config.ur.book = '//' + serverip + ':8086';
     config.url.tools = '//' + serverip + ':8087';
+    config.url.sample = '//' + serverip + ':8088';
 
     config.cookie_opts.secure = false;
     config.cookie_opts.domain = serverip;
