@@ -14,6 +14,8 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+var fs = require('fs');
+var _s = require('underscore.string');
 
 module.exports = {
 
@@ -29,8 +31,21 @@ module.exports = {
         });
     },
 
-
-
+    sample: function (req, res) {
+        var id = req.param('id');
+        //console.log('id', id);
+        if (id) {
+            if (id.length == 4) {
+                var filepath = 'angular/' + id.slice(0, 2) + "/" + id.slice(2, 4);
+                fs.readFile('views/' + filepath + '.ejs', function (err, data) {
+                    if (err) return console.error(err);
+                    return redirect(res, filepath, data.toString());
+                });
+            } else
+                return res.notFound();
+        } else
+            return res.notFound();
+    },
 
     /**
      * Overrides for the settings in `config/controllers.js`
@@ -40,3 +55,11 @@ module.exports = {
 
 
 };
+
+function redirect(res, path, source) {
+    //console.log(_s.escapeHTML(source));
+    return res.view(path, {
+        layout: 'layout_angular',
+        source: _s.escapeHTML(source)
+    });
+}
