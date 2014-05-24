@@ -1,0 +1,45 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular">
+            <i class="icon-arrow-left-3 fg-darker"></i>
+        </a>
+        AngularJSサンプル
+        <small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <div>
+            <div class="input-control radio default-style" data-role="input-control">
+                <label>
+                    <input type="radio" name="r1" value="p1" ng-model="activeview">
+                    <span class="check"></span>
+                    Portlet1
+                </label>
+            </div>
+            <div class="input-control radio default-style" data-role="input-control">
+                <label>
+                    <input type="radio" name="r1" value="p2" ng-model="activeview">
+                    <span class="check"></span>
+                    Portlet2
+                </label>
+            </div>
+        </div>
+    </p>
+    <p>
+        <ng-include src="selectView()"></ng-include>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.activeview = "p1";
+        $scope.selectView = function(){
+            return $scope.activeview == 'p1' ? '/angular/portlet1' : '/angular/portlet2';
+        }
+    });
+</script>

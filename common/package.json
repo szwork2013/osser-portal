@@ -1,25 +1,25 @@
 {
-  "name": "osser.jp",
-  "version": "0.1.11",
-  "description": "osser common library",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "koma",
-  "license": "MIT",
-  "dependencies": {
-    "request": "~2.31.0",
-    "nodemailer": "~0.6.0",
-    "recaptcha": "~1.2.0",
-    "gravatar": "~1.0.6",
-    "urlencode": "0.0.1",
-    "marked": "~0.3.0",
-    "validator": "~3.2.1",
-    "highlight.js": "~8.0.0"
-  },
-  "devDependencies": {
-    "mocha": "~1.17.0",
-    "should": "~2.1.1"
-  }
+    "name": "osser.jp",
+    "version": "0.1.11",
+    "description": "osser common library",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "koma",
+    "license": "MIT",
+    "dependencies": {
+        "request": "~2.31.0",
+        "nodemailer": "~0.6.0",
+        "recaptcha": "~1.2.0",
+        "gravatar": "~1.0.6",
+        "urlencode": "0.0.1",
+        "marked": "~0.3.0",
+        "validator": "~3.2.1",
+        "highlight.js": "~8.0.0"
+    },
+    "devDependencies": {
+        "mocha": "~1.17.0",
+        "should": "~2.1.1"
+    }
 }
