@@ -1,0 +1,42 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <div ng-repeat="item in todos">{{item}}</div>
+    </p>
+    <p>
+        <table class="table bordered">
+            <tr ng-repeat="item in todos">
+                <td>{{$index+1}}</td>
+                <td ng-repeat="(key, value) in item">{{key}}={{value}}</td>
+            </tr>
+        </table>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.todos = [
+            {
+                name: 'nodejs',
+                complete: true
+            },
+            {
+                name: 'angularjs',
+                complete: false
+            },
+            {
+                name: 'linux',
+                complete: true
+            },
+        ];
+    });
+</script>

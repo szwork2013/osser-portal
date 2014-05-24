@@ -1,0 +1,184 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>データバインディング</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">名称</th>
+                <th class="text-left">適用</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in binding_members">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">{{item.applied}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>テンプレートディレクティブ</h3>
+    <table class="table hovered">
+        <thead>
+            <tr>
+                <th class="text-left">名称</th>
+                <th class="text-left">適用</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in template_directives">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">{{item.applied}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>ng-repeat変数</h3>
+    <table class="table hovered">
+        <thead>
+            <tr>
+                <th class="text-left">変数</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in ngrepeat_variables">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>ng-includeディレクティブ</h3>
+    <table class="table hovered">
+        <thead>
+            <tr>
+                <th class="text-left">名称</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in nginclude_options">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.binding_members = [
+            {
+                name: 'ng-bind',
+                applied: 'Attribute, class',
+                desc: '<p>Angularに指定したHTML要素のテキスト内容を与えた式の値に置換するように指示し、 式の値が変更された際にテキスト内容を更新します。</p><p>一般的には、ngBindを直接使用せず、代わりに同様でより冗長では無い{{ 式 }}のような二重中括弧を使用します。</p><p>Angularがブラウザによってテンプレートがコンパイルされる直前の生の状態が{{ 式 }}として、瞬間的にそのまま表示されてしまう場合に、 代わりにngBindを使用するのが好ましいでしょう。 ngBindは要素の属性のため、ページの読み込み中にはユーザーに対して内も表示しません。</p><p>ngCloakを使用して、この問題を解決することもできます。</p>'
+            },
+            {
+                name: 'ng-bind-html',
+                applied: 'Attribute, class',
+                desc: '<p>紐付けを作成し、式の評価の結果がその要素にセキュアな方法でinnerHTMLとして処理されます。 デフォルトでは、innerHTMLされるコンテンツは、$sanitizeサービスを使用してサニタイズされます。 この機能を利用するために、例えばモジュールの依存関係(Angularのコア部分では無く)にngSanitizeを含めることによって、 $sanitizeを利用可能にしておく必要があります。 安全だとわかっている値に対して、サニタイズを迂回することも可能です。 これを行うために、$sce.trustAsHtmlを通して値が信頼できるものであることを明らかにします。 サンプルは、Strict Contextual Escaping (SCE)を確認してみてください。</p><p>注意: もし、$sanitizeサービスが利用出来ず、紐付けられた値が信頼できることが明らかではない場合、 例外が発生します。(悪用されるかもしれないため、代わりとして)</p>'
+            },
+            {
+                name: 'ng-bind-template',
+                applied: 'Attribute, class',
+                desc: 'ngBindTemplateディレクティブでは、ngBindTemplate属性内に 要素のテキスト内容が補完されて置き換えられるべきテンプレート内容を指定します。 ngBindとは異なり、ngBindTemplateは複数の{{ }}式を含めることが可能です。 このディレクティブは、SPAN要素を含むことが出来ないHTML要素(titleやoptionのような)から必要とされます。'
+            },
+            {
+                name: 'ng-model',
+                applied: 'Attribute, class',
+                desc: 'ngModelは、Angularに相互のデータバインディングを行うように伝えるディレクティブです。 これは、input、select、textarea、また、NgModelControllerを使用し、 このディレクティブによって公開されたフォームのカスタム入力要素でも動作します。'
+            },
+            {
+                name: 'ng-non-bindable',
+                applied: 'Attribute, class',
+                desc: 'Angularの{{}}のようなAngularに紐付けられるように見える文字列を、 Angularに評価されずにそのまま用事したいというケースがあるかもしれません。 ngNonBindableを使用することで、HTMLのそういった部分をAngularに無視させることが出来ます。'
+            }
+        ];
+        $scope.template_directives = [
+            {
+                name: 'ng-cloak',
+                applied: 'Attribute, class',
+                desc: '<p>このディレクティブは、HTMLテンプレート表示によって引き起こされる画面のチラつきを避けるために使用します。</p><p>このディレクティブは<body>要素に適用できますが、ページ上の各部分に適用することで、 ブラウザ表示のレンダリングが段階を追って進めることが可能になるため、この方法が好ましいです。</p><p>ngCloakは、angular.jsまたはangular.min.js内に埋め込まれたCSSルールに沿って、協同で動作します。</p>'
+            },
+            {
+                name: 'ng-inlcude',
+                applied: 'Element, Attribute, class',
+                desc: '<p>外部のHTMLの断片を取得し、コンパイルしてその場所に取り込みます。</p><p>デフォルトでは、テンプレートのURLはアプリケーションのドキュメントと同じドメインとプロトコルに制限されます。 これは、$sce.getTrustedResourceUrlを呼び出すことで実行されます。 別のドメイン、プロトコルからテンプレートを読み込むには、それらのホワイトリスト化するか、信頼できるものとしてラップするかします。 詳細は、AngularのStrict Contextual Escapingを確認してください。</p><p>加えて、ブラウザの同一生成元ポリシーとCORS(Cross-Origin Resource Sharing)ポリシーは、 テンプレートが正常に読み込まれたかを、より制限するかもしれません。 例えば、全てのブラウザでのクロスドメインリクエストと、いくつかのブラウザでのfile://アクセスは、 ngIncludeでは動作しません。</p>'
+            },
+            {
+                name: 'ng-repeat',
+                applied: 'Attribute, class',
+                desc: 'ngRepeatディレクティブは、コレクションから各項目のテンプレートをインスタンス化します。 各テンプレートのインスタンスは、現在のコレクション項目が設定されたループの変数と、 　項目のインデックスまたはキーが設定された$indexが与えられた、自身のスコープを取得します。'
+            },
+            {
+                name: 'ng-repeat-start, ng-repeat-end',
+                applied: 'Attribute, class',
+                desc: '親要素に代わり、ひと続きの要素を繰り返し処理するために、ngRepeat(もしくは同等のngディレクティブ)は、 最初と最後のポイントをng-repeat-startとng-repeat-endを使用してそれぞれ明確に定義することで、 リピーターの範囲拡張をサポートします。 ng-repeat-startディレクティブは、ng-repeatと同様に動作しますが、 ng-repeat-endが設定されたHTMLタグまでを含む、全てのHTMLコード(定義されたタグを含む)を繰り返し処理します。'
+            },
+            {
+                name: 'ng-switch',
+                applied: 'Element, Attribute, class',
+                desc: '<p>ngSwitchディレクティブは、テンプレートのscope式を元にDOM構造を条件によって取り替える場合に使用されます。 ngSwitchWhenでも、ngSwitchDefaultでも無く、 ngSwitchの要素がテンプレート内の指定された場所に配置されます。</p><p>ディレクティブ自体の動作はngIncludeに似ていますが、テンプレートのコードをダウンロードする(または、そのキャッシュの読み込み)代わりに、 ngSwitchは単純に入れ子にしている要素の1つを選択し、式の評価から得られる値と一致する要素を表示します。 言い方を変えると、コンテナ要素を定義(ディレクティブ指定した要素)し、 on="..."属性(または、ng-switch="..."属性)に式を設定し、 このディレクティブ要素内にwhen属性付きの各要素を定義します。 when属性は、式の評価によって表示する要素をngSwitchに知らせるために使用されます。 もし、when属性から式に一致するものが見つからない場合は、default属性の要素が表示されます。</p>'
+            }
+        ];
+        $scope.ngrepeat_variables = [
+            {
+                name: '$index',
+                desc: '現在、繰り返し処理中の何番目なのかを示します。(0..length-1)'
+            },
+            {
+                name: '$first',
+                desc: '現在、要素の繰り返し処理中の最初であれば、trueになります。'
+            },
+            {
+                name: '$middle',
+                desc: '現在、要素の繰り返し処理中の中間(最初と最後で無い)であれば、trueになります。'
+            },
+            {
+                name: '$last',
+                desc: '現在、要素の繰り返し処理中の最後であれば、trueになります。'
+            },
+            {
+                name: '$even',
+                desc: '$indexが偶数であればtrue、そうでなければfalseです。'
+            },
+            {
+                name: '$odd',
+                desc: '$indexが奇数であればtrue、そうでなければfalseです。'
+            }
+        ];
+        $scope.nginclude_options = [
+            {
+                name: 'src',
+                desc: '<p>URLとして評価するAngular式を指定します。 もし、決まった文字列を指定するのであれば、クォートで囲ってください。</p><p>例).src="’my-partial-template.html’"</p>'
+            },
+            {
+                name: 'onload',
+                desc: '新しい断片が読み込まれた際に評価される式を指定します。'
+            },
+            {
+                name: 'autoscroll',
+                desc: 'コンテンツが読み込まれた後にngIncludeが$anchorScrollを呼び出して、 ビューポートをスクロールするべきかを指定します。'
+            }
+        ];
+    });
+</script>

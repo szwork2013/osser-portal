@@ -4,7 +4,9 @@
         AngularJSサンプル<small class="on-right">osser.jp</small>
     </h2>
     <hr/>
-    <p>{{day}}</p>
+    <p highlight>today:{{day || "(unknown)" | tojapan }}</p>
+    <p>tomorrow:{{tomorrow || "(unknown)" | tojapan }}</p>
+    <p>day after tomorrow:{{day_after_tomorrow || "(unknown)"}}</p>
     <hr/>
     <p>
         <pre ng-non-bindable><%- source %></pre>
@@ -16,5 +18,43 @@
     myApp.controller('mainCtrl', function ($scope) {
         var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         $scope.day = dayNames[new Date().getDay()];
+        $scope.tomorrow = dayNames[(new Date().getDay() + 1) % 7];
+    });
+    myApp.directive('highlight', function () {
+        return function (scope, element, attrs) {
+            element.css("color", "red");
+        }
+    });
+    myApp.filter('tojapan', function () {
+        return function (input) {
+            console.log(input);
+            var result = '';
+            switch (input) {
+            case 'Sunday':
+                result = '日曜日';
+                break;
+            case 'Monday':
+                result = '月曜日';
+                break;
+            case 'Tuesday':
+                result = '火曜日';
+                break;
+            case 'Wednesday':
+                result = '水曜日';
+                break;
+            case 'Thursday':
+                result = '木曜日';
+                break;
+            case 'Friday':
+                result = '金曜日';
+                break;
+            case 'Saturday':
+                result = '土曜日';
+                break;
+            default:
+                break;
+            }
+            return result;
+        }
     });
 </script>

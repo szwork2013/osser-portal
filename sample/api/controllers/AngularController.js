@@ -47,6 +47,18 @@ module.exports = {
             return res.notFound();
     },
 
+    portlet1: function (req, res) {
+        return res.view('angular/portlet/01', {
+            layout: ''
+        });
+    },
+
+    portlet2: function (req, res) {
+        return res.view('angular/portlet/02', {
+            layout: ''
+        });
+    },
+
     /**
      * Overrides for the settings in `config/controllers.js`
      * (specific to AngularController)

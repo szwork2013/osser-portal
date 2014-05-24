@@ -1,0 +1,79 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>moduleオブジェクト</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">名称</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in module_members">
+                <td class="text-left">{{item.name}}</td>
+                <td class="text-left">{{item.desc}}</td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.module_members = [
+            {
+                name: 'animation(name, factory)',
+                desc: 'アニメーション効果、ngAnimateモジュールがロードされている場合にのみ、アニメーションが有効になります。'
+            },
+            {
+                name: 'config(callback)',
+                desc: 'モジュール読み込み中に実行が必要な動作をこのメソッドを使用して登録します。'
+            },
+            {
+                name: 'constant(key, value)',
+                desc: '定数は固定されるため、他のメソッドが提供される前に適用されます。'
+            },
+            {
+                name: 'controller',
+                desc: 'コントローラー作成'
+            },
+            {
+                name: 'directive(name, factory)',
+                desc: 'ディレクティブ作成'
+            },
+            {
+                name: 'factory(name, provider)',
+                desc: 'ファクトリー作成'
+            },
+            {
+                name: 'filter(name, factory)',
+                desc: 'フィルター作成'
+            },
+            {
+                name: 'provider(name, type)',
+                desc: 'プロバイダー作成'
+            },
+            {
+                name: 'name',
+                desc: 'モジュール名称取得'
+            },
+            {
+                name: 'run(callback)',
+                desc: 'このメソッドを使用して、インジェクターが全てのモジュール読み込みが完了した際に実行されるべき動作を登録します。'
+            },
+            {
+                name: 'service(name, constructor)',
+                desc: 'サービス作成'
+            },
+            {
+                name: 'value(name, value)',
+                desc: 'バリュー宣言'
+            },
+        ];
+    });
+</script>

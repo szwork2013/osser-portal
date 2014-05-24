@@ -1,0 +1,33 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>{{today | tojapan}}</h3>
+        <h3>{{tomorrow | tojapan}}</h3>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope, dayService) {
+        $scope.today = dayService.today;
+        $scope.tomorrow = dayService.tomorrow;
+    });
+    myApp.service('dayService', function () {
+        this.today = new Date().getDay();
+        this.tomorrow = (this.today + 1) % 7;
+    });
+    myApp.filter('tojapan', function () {
+        return function (input) {
+            var dayNames = ["日曜日", "月曜日", "火曜日", "水曜日", "目標日", "金曜日", "土曜日"];
+            return dayNames[input];
+        }
+    });
+</script>

@@ -1,0 +1,47 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>Todo list</h3>
+    <table class="table hovered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>名称</th>
+                <th>状態</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in todos" ng-class="$odd ? 'odd' : 'even' ">
+                <td>{{$index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.complete}} - <span ng-if="$first || $last">Top/Bottom</span><span ng-if="item.complete">完了</span></td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.todos = [
+            {name:'nodejs', complete:true},
+            {name:'angularjs', complete:false},
+            {name:'emberjs', complete:false},
+            {name:'mongodb', complete:false},
+            {name:'linux', complete:true},
+            {name:'macos', complete:false},
+        ];
+    });
+</script>
+<style>
+    .odd {background-color:#97caeb}
+    .even {background-color:lightgray}
+</style>

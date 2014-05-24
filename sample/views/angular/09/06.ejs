@@ -1,0 +1,27 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>constant, config, run</h3>
+        <h4>console...</h4>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.constant('startTime', new Date().toLocaleTimeString());
+    myApp.config(function (startTime) {
+        console.log('Main Module config:', startTime);
+    });
+    myApp.run(function (startTime) {
+        console.log('Main Module run:', startTime);
+    });
+    myApp.controller('mainCtrl', function ($scope) {});
+</script>

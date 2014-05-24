@@ -1,0 +1,30 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p class="padding20 bg-grayLighter">
+        {{todo}}
+    </p>
+    <p>
+        <form>
+            <label>TODO:</label>
+            <div class="input-control text" data-role="input-control">
+                <input type="text" placeholder="node.js勉強" ng-model="todo">
+                <button class="btn-clear" tabindex="-1"></button>
+            </div>
+        </form>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.todo = "AngularJS勉強";
+    });
+</script>

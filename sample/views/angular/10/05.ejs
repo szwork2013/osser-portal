@@ -1,0 +1,34 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>ng-repeat-start/ng-repeat-end</h3>
+        <div ng-repeat-start="item in todos">
+            <i class="icon-rocket"></i>
+        </div>
+        <div ng-repeat-end>
+            {{item.name}}, {{item.complete}}
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.todos = [
+            {name:'nodejs', complete:true},
+            {name:'angularjs', complete:false},
+            {name:'emberjs', complete:false},
+            {name:'mongodb', complete:false},
+            {name:'linux', complete:true},
+            {name:'macos', complete:false},
+        ];        
+    });
+</script>

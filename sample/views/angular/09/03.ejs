@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3 ng-controller="mainCtrl">{{message}}</h3>
+        <h3 ng-controller="secondCtrl">{{message}}</h3>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.message = "message of mainCtrl";
+    });
+    myApp.controller('secondCtrl', function ($scope) {
+        $scope.message = "message of secondCtrl";
+    });
+</script>

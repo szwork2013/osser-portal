@@ -1,0 +1,34 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h4>todos.length:{{todos.length}}</h4>
+        <h4>todos数：<span ng-bind="todos.length"></span></h4>
+        <div ng-bind-template="{{todos[0].action}} is {{todos[0].complete}}"></div>
+        <div>{{todos[1].action}} is {{todos[1].complete}}</div>
+        <div ng-non-bindable>{{todos[1].action}} is {{todos[1].complete}}</div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.todos = [
+            {
+                action: 'nodejs勉強',
+                complete: true
+            },
+            {
+                action: 'angularjs勉強',
+                complete: false
+            },
+        ];
+    });
+</script>

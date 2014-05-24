@@ -1,0 +1,25 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>ng-include</h3>
+        <div class="grid">
+            <div class="row">
+                <div class="span4"><ng-include src="'/angular/portlet1'"></ng-include></div>
+                <div class="span8"><ng-include src="'/angular/portlet2'"></ng-include></div>
+            </div>
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {});
+</script>
