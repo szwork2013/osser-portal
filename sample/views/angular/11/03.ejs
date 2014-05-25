@@ -1,0 +1,51 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>ng-hide/ng-show/filter</h3>
+        <table class="table striped ">
+            <thead>
+                <th colspan="3">Table1</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in todos" ng-hide="item.complete">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.complete}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table striped ">
+            <thead>
+                <th colspan="3">Table2</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in todos | filter:{complete:false}">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.complete}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.todos = [
+            {name:'nodejs',complete:false},
+            {name:'angularjs',complete:false},
+            {name:'linux',complete:true},
+            {name:'macos',complete:false},
+            {name:'windows',complete:false},
+        ];
+    });
+</script>

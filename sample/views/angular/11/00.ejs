@@ -1,0 +1,70 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>moduleオブジェクト</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">ディレクティブ</th>
+                <th class="text-left">応用</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in module_members">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">{{item.applied}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.module_members = [
+            {
+                name: 'ng-if',
+                applied: 'Attribute',
+                desc: '<p>ngIfディレクティブは、{式}に基づくDOMツリーの一部を削除または再作成します。 もし、ngIfに割り当てられている式がfalseの値になると、要素はDOMから削除され、 そうでなければ要素の複製がDOM内に再挿入されます。</p><p>ngIfがngShowとngHideと異なるのは、 CSSプロパティのdisplayを通して表示を切り替えるのではなく、ngIfは完全に要素を削除したり、またDOM内に要素を再作成する事です。 DOM内の要素の場所に依存した:first-childまたは:last-childのような擬似セレクタを使用するケースで、 この違いが大きな意味を持つことになります。</p><p>ngIfを使用して要素が削除されると、そのスコープが削除され、 要素が再度作成されると新しいスコープが作成されることに注意してください。 スクープはngIfによって、プロトタイプ継承を使用して親のスコープを継承して作成されます。 もし、ngModelがngIf内で使用されていた場合は、 親スコープ内で定義されたJavaScriptのプリミティブと紐づくため、重要な影響を及ぼします。 この場合、子スコープ内の変数に対して行われた変更は、親スコープ内の値(非表示)を上書きします。</p><p>ngIfはまた、コンパイルされた際の状態を使用した、要素の再作成も行います。 この挙動の例として、例えば要素のクラス属性がコンパイル後に、 jQueryの.addClass()のようなメソッドを使用して動的に変更され、 その後に要素が削除されたような場合です。 ngIfが要素を再作成する際に、元のコンパイルされた状態が要素の再作成に使用されるため、追加されたクラスは失われます。</p><p>更に、ngAnimateモジュールを通して作成される時と削除される時のアニメーションを提供する事が可能です。</p>'
+            },
+            {
+                name: 'ng-class',
+                applied: 'Attribute, class',
+                desc: '<p>ngClassは、追加される全てのクラスを表す式をデータバインディングすることによって、 動的にHTML要素に対してCSS用のクラスの設定を可能にしてくれます。</p><p>もし、既に該当するクラスが設定されている場合、ディレクティブは重複するようなクラスの追加は行いません。 式が変更された場合、予め追加されていたクラスは削除され、新しいクラスだけが追加されます。</p>'
+            },
+            {
+                name: 'ng-class-even',
+                applied: 'Attribute, class',
+                desc: '<p>ngClassOddとngClassEvenディレクティブは、 厳密にはngClassとして動作し、 ngRepeatと組み合わせて動作させることが期待されており、 偶数行にだけ反映されます。</p><p>このディレクティブは、ngRepeatのスコープ内でのみ適用されます。</p>'
+            },
+            {
+                name: 'ng-class-odd',
+                applied: 'Attribute, class',
+                desc: '<p>ngClassOddとngClassEvenディレクティブは、 厳密にはngClassとして動作し、 ngRepeatと組み合わせて動作させることが期待されており、 奇数行にだけ反映されます。</p><p>このディレクティブは、ngRepeatのスコープ内でのみ適用されます。</p>'
+            },
+            {
+                name: 'ng-hide',
+                applied: 'Attribute, class',
+                desc: '<p>ngHideディレクティブは、ngHide属性に提供された式を元に、HTML要素を表示または非表示にします。 要素は要素上のng-hideのCSSクラスを削除または追加されることによって、表示と非表示が切り替えられます。 .ng-hideCSSクラスはAngularJSによって予め定義されており、displayスタイルにnoneが設定されています。 (!importantフラグが指定されています。)</p><p>ngHideの式がtrueと評価されると、.ng-hideCSSクラスが追加され、要素が非表示になります。 falseの場合は、.ng-hideCSSクラスが削除され、要素が表示されます。</p>'
+            },
+            {
+                name: 'ng-show',
+                applied: 'Attribute, class',
+                desc: '<p>ngShowディレクティブは、ngShow属性に提供された式を元に、HTML要素を表示または非表示にします。 要素は要素上のng-hideのCSSクラスを削除または追加されることによって、表示と非表示が切り替えられます。 .ng-hideCSSクラスはAngularJSによって予め定義されており、displayスタイルにnoneが設定されています。 (!importantフラグが指定されています。)</p><p>ngShowの式がfalseと評価されると、.ng-hideCSSクラスが追加され、要素が非表示になります。 trueの場合は、.ng-hideCSSクラスが削除され、要素が表示されます。</p>'
+            },
+            {
+                name: 'ng-style',
+                applied: 'Attribute, class',
+                desc: 'ngStyleディレクティブは、条件付きでHTML要素にCSSスタイルを設定します。'
+            },
+        ];
+    });
+</script>

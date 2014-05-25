@@ -219,7 +219,7 @@ if (process.env.NODE_ENV != 'production') {
     config.url.nodejs = '//' + serverip + ':8083';
     config.url.redirect = '//' + serverip + ':8084';
     config.url.osser = '//' + serverip + ':8085';
-    config.ur.book = '//' + serverip + ':8086';
+    config.url.book = '//' + serverip + ':8086';
     config.url.tools = '//' + serverip + ':8087';
     config.url.sample = '//' + serverip + ':8088';
 

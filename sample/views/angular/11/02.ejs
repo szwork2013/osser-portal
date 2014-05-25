@@ -1,0 +1,34 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>ng-hide/ng-show/css:first-child</h3>
+        <div class="loopcss" ng-repeat="item in todos">
+            <span ng-if="!item.complete">{{item.name}}:未完成</span>
+            <span ng-if="item.complete">{{item.name}}:完成</span>
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.todos = [
+            {name:'nodejs',complete:false},
+            {name:'angularjs',complete:false},
+            {name:'linux',complete:true},
+            {name:'macos',complete:false},
+            {name:'windows',complete:true},
+        ];
+    });
+</script>
+<style type="text/css">
+    div.loopcss > *:first-child {color:red}
+</style>
