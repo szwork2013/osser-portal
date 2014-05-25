@@ -1,0 +1,39 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>ng-switch/ng-switch-when/ng-switch-default</h3>
+        <div class="input-control checkbox" data-role="input-control">
+            <label>
+                <input type="checkbox" checked="" ng-model="boldview">
+                <span class="check"></span>
+                Bold View
+            </label>
+        </div>
+    </p>
+    <p>
+        <div ng-switch on="boldview">
+            <div ng-switch-when="true">
+                <strong>{{message}}</strong>
+            </div>
+            <div ng-switch-default>
+                {{message}}
+            </div>
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.boldview = false;
+        $scope.message = "これはテスト内容です。";
+    });
+</script>

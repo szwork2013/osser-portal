@@ -26,7 +26,7 @@
         </div>
     </p>
     <p>
-        <ng-include src="selectView()"></ng-include>
+        <ng-include src="selectView()" onload="reportChange()"></ng-include>
     </p>
     <hr/>
     <p>
@@ -38,8 +38,11 @@
     var myApp = angular.module('exampleApp', []);
     myApp.controller('mainCtrl', function ($scope) {
         $scope.activeview = "p1";
-        $scope.selectView = function(){
+        $scope.selectView = function () {
             return $scope.activeview == 'p1' ? '/angular/portlet1' : '/angular/portlet2';
+        }
+        $scope.reportChange = function () {
+            console.log('reportChange:', $scope.selectView());
         }
     });
 </script>
