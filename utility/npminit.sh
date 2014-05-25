@@ -29,3 +29,7 @@ npm update
 cd ../tools
 #npm install
 npm update
+
+cd ../sample
+#npm install
+npm update

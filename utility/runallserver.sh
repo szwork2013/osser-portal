@@ -21,12 +21,16 @@ sleep 5
 
 cd ../redirect
 ./runserver.sh $1
+sleep 5
 
-cd ../book
-./runserver.sh $1
+#cd ../book
+#./runserver.sh $1
+#sleep 5
 
-cd ../tools
-./runserver.sh $1
+#cd ../tools
+#./runserver.sh $1
+#sleep 5
 
 cd ../sample
 ./runserver.sh $1
+sleep 5
