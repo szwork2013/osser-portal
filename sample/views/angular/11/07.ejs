@@ -1,0 +1,33 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>Booleanプロパティ</h3>
+        <div class="padding20">
+            <div class="input-control checkbox" data-role="input-control">
+                <label>
+                    <input type="checkbox" checked="" ng-model="btnStatus">
+                    <span class="check"></span>
+                    ボタン使用禁止
+                </label>
+            </div>
+        </div>
+        <div class="">
+            <button class="default" ng-disabled="btnStatus">テストボタン</button>
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.btnStatus = false;
+    });
+</script>

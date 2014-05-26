@@ -64,6 +64,26 @@
         </tbody>
         <tfoot></tfoot>
     </table>
+    <h3>Otherプロパティ</h3>
+    <table class="table hovered">
+        <thead>
+            <tr>
+                <th class="text-left">名称</th>
+                <th class="text-left">応用</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in other_attributes">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">{{item.applied}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
 </div>
 
 <script>
@@ -178,7 +198,24 @@
                 name: 'ng-selected',
                 applied: 'Attribute',
                 desc: 'HTMLの仕様では、selectedのような特別な属性をブラウザに保持することを必要としていません。 (存在すればtrueとし、しなければfalseという事を意味します。) これは、紐付けられた式を正しく取得するAngularコンパイルの妨げになります。 この問題を解決するために、ngSelectedディレクティブが存在します。'
+            }
+        ];
+        $scope.other_attributes = [
+            {
+                name: 'ng-href',
+                applied: 'Attribute',
+                desc: '<p>Angularを使用して、href属性の中で{{hash}}のようなマークアップをすると、 もし、Angularが{{hash}}の値を置換する前にユーザーがクリックしてしまうと間違ったURLへのリンクとして誘導されてしまいます。 Angularがリンクのマークアップを置換するまでリンクは壊れた状態になっており、 404エラーを返すような事が発生するはずです。</p><p>ngHrefディレクティブは、この問題を解決します。</p>'
             },
+            {
+                name: 'ng-src',
+                applied: 'Attribute',
+                desc: '{{hash}}のようなAngularマークアップを使用したsrc属性の指定は正しく動作しません。 ブラウザは、Angularが{{hash}}内の式を置き換える前に、リテラルのテキスト{{hash}}としてURLを取得してしまいます。 ngSrcディレクティブはこの問題を解決します。'
+            },
+            {
+                name: 'ng-srcset',
+                applied: 'Attribute',
+                desc: '{{hash}}のようなAngularマークアップを使用したsrcset属性の指定は正しく動作しません。 ブラウザは、Angularが{{hash}}内の式を置き換える前に、リテラルのテキスト{{hash}}としてURLを取得してしまいます。 ngSrcsetディレクティブはこの問題を解決します。'
+            }
         ];
     });
 </script>
