@@ -24,6 +24,46 @@
         </tbody>
         <tfoot></tfoot>
     </table>
+    <h3>イベントハンドラー</h3>
+    <table class="table hovered">
+        <thead>
+            <tr>
+                <th class="text-left">ディレクティブ</th>
+                <th class="text-left">応用</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in eventhandlers">
+                <td class="text-left">{{item.name}}</td>
+                <td class="text-left">{{item.applied}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>Booleanプロパティ</h3>
+    <table class="table hovered">
+        <thead>
+            <tr>
+                <th class="text-left">ディレクティブ</th>
+                <th class="text-left">応用</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in boolean_attributes">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">{{item.applied}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
 </div>
 
 <script>
@@ -64,6 +104,80 @@
                 name: 'ng-style',
                 applied: 'Attribute, class',
                 desc: 'ngStyleディレクティブは、条件付きでHTML要素にCSSスタイルを設定します。'
+            }
+        ];
+        $scope.eventhandlers = [
+            {
+                name: 'ng-blur',
+                applied: 'Attribute, class',
+                desc: 'blurイベントの動作をカスタマイズします。'
+            },
+            {
+                name: 'ng-change',
+                applied: 'Attribute, class',
+                desc: '<p>ユーザーが入力値を変更した際に、与えられた式が評価されます。 モデルからの値の変更の際には、式は評価されません。</p><p>このディレクティブは、ngModelの提供が必要なことに注意してください。</p>'
+            },
+            {
+                name: 'ng-click',
+                applied: 'Attribute, class',
+                desc: 'ngClickディレクティブは、要素がクリックされた際に特定の振る舞いを指定出来るようにしてくれます。'
+            },
+            {
+                name: 'ng-copy,ng-cut,ng-paste',
+                applied: 'Attribute, class',
+                desc: 'コピー、カット、ペーストイベントの振る舞いのカスタマイズを指定します。'
+            },
+            {
+                name: 'ng-dblclick',
+                applied: 'Attribute, class',
+                desc: 'ngDblclickディレクティブを使用すると、ダブルクリックイベントにカスタム動作を指定することができます。'
+            },
+            {
+                name: 'ng-focus',
+                applied: 'Attribute, class',
+                desc: 'フォーカスイベントにカスタム動作を指定します。'
+            },
+            {
+                name: 'ng-keydown,ng-keypress,ng-keyup',
+                applied: 'Attribute, class',
+                desc: 'keydown、keypress、keyupイベントのカスタム動作を指定します。'
+            },
+            {
+                name: 'ng-mousedown,ng-mouseenter,ng-mouseleave,ng-mousemove,ng-mouseover,ng-mouseup',
+                applied: 'Attribute, class',
+                desc: 'mousedown、mouseenter、mouseleave、mousemove、mouseover、mouseupイベントのカスタム動作を指定します。'
+            },
+            {
+                name: 'ng-submit',
+                applied: 'Attribute, class',
+                desc: '<p>onsubmitイベントに対し、Angular式の紐付けを有効にします。</p><p>加えて、action属性がフォームに含まれていない場合のみ、 デフォルトのアクション(フォームがリクエストをサーバに送り、現在のページがリロードされる)をキャンセルします。</p>'
+            }
+        ];
+        $scope.boolean_attributes = [
+            {
+                name: 'ng-checked',
+                applied: 'Attribute',
+                desc: 'HTMLの仕様では、checkedのような特別な属性を、ブラウザが保持することを必要とはしていません。 (これは存在すればtrueであることを意味し、存在しなければfalseであることを意味します。) これは、Angularコンパイラが、正しく紐付けられた式を取得する事の妨げになります。 この問題を解決するために、ngCheckedディレクティブがあります。'
+            },
+            {
+                name: 'ng-disabled',
+                applied: 'Attribute',
+                desc: 'HTMLの仕様では、disabledのような特別な属性の値を保持する事をブラウザに必要としていません。 (提供されればtrueとみなし、そうでなければfalseとみなします) これがAngularコンパイラが紐付いている式を正しく取得する事の妨げになっています。 この問題を解決するために、ngDisabledディレクティブがあります。'
+            },
+            {
+                name: 'ng-open',
+                applied: 'Attribute',
+                desc: 'HTMLの仕様では、openのような特別な属性をブラウザに保持することを必要としていません。 (存在すればtrueとし、しなければfalseという事を意味します。) これは、紐付けられた式を正しく取得するAngularコンパイルの妨げになります。 この問題を解決するために、ngOpenディレクティブが存在します。    '
+            },
+            {
+                name: 'ng-readonly',
+                applied: 'Attribute',
+                desc: 'HTMLの仕様では、readonlyのような特別な属性をブラウザに保持することを必要としていません。 (存在すればtrueとし、しなければfalseという事を意味します。) これは、紐付けられた式を正しく取得するAngularコンパイルの妨げになります。 この問題を解決するために、ngReadonlyディレクティブが存在します。'
+            },
+            {
+                name: 'ng-selected',
+                applied: 'Attribute',
+                desc: 'HTMLの仕様では、selectedのような特別な属性をブラウザに保持することを必要としていません。 (存在すればtrueとし、しなければfalseという事を意味します。) これは、紐付けられた式を正しく取得するAngularコンパイルの妨げになります。 この問題を解決するために、ngSelectedディレクティブが存在します。'
             },
         ];
     });

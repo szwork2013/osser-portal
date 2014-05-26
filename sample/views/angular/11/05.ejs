@@ -1,0 +1,62 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>ng-click/ng-mouseenter/ng-mouseleave</h3>
+        <p class="padding20 bg-grayLighter">
+            <span ng-repeat="button in buttonNames">
+                <button class="default" ng-click="data.rowColor=button">{{button}}</button>
+            </span>
+        </p>
+        <table class="table">
+            <thead>
+                <th>No.</th>
+                <th>タスク</th>
+                <th>進捗</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in todos" ng-class="data.rowColor" ng-mouseenter="handleEvent($event)" ng-mouseleave="handleEvent($event)">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td ng-style="{'background-color':data.columnColor}">{{item.complete}}</td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.todos = [
+            {name:'nodejs',complete:false},
+            {name:'angularjs',complete:false},
+            {name:'linux',complete:true},
+            {name:'macos',complete:false},
+            {name:'windows',complete:false},
+        ];
+        $scope.buttonNames = ['Red', 'Green', 'Blue'];
+        $scope.data = {
+            rowColor:'Blue',
+            columnColor:'Green'
+        };
+        $scope.handleEvent = function(e) {
+            //console.log("Event type: " + e.type);
+            $scope.data.columnColor = (e.type == "mouseenter" ? "Green" : "Blue");
+            //console.log($scope.data.columnColor);
+        }
+    });
+</script>
+<style>
+    tr.Red{background-color:lightcoral}
+    tr.Green{background-color:lightgreen}
+    tr.Blue{background-color:lightblue}
+</style>

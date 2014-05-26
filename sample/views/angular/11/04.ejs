@@ -1,0 +1,80 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <div class="grid fluid bg-grayLighter">
+            <div class="row padding10">
+                <div class="span6" ng-repeat="(key,val) in settings">
+                    <h4>{{key}}</h4>
+                    <div class="input-control radio default-style" data-role="input-control" ng-repeat="button in buttonNames">
+                        <label>
+                            <input type="radio" name="{{key}}" ng-model="settings[key]" value="{{button}}">
+                            <span class="check"></span>
+                            {{button}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p>
+    <p>
+        <h3>ng-class/ng-style/ng-class-even/ng-class-odd</h3>
+        <table class="table">
+            <thead>
+                <th>No.</th>
+                <th>タスク</th>
+                <th>進捗</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in todos" ng-class="settings.Rows">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td ng-style="{'background-color': settings.Columns}">{{item.complete}}</td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+        <table class="table">
+            <thead>
+                <th>No.</th>
+                <th>タスク</th>
+                <th>進捗</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in todos" ng-class-even="settings.Rows" ng-class-odd="settings.Columns">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.complete}}</td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.todos = [
+            {name:'nodejs',complete:false},
+            {name:'angularjs',complete:false},
+            {name:'linux',complete:true},
+            {name:'macos',complete:false},
+            {name:'windows',complete:false},
+        ];
+        $scope.buttonNames = ['Red', 'Green', 'Blue'];
+        $scope.settings = {Rows:'Red',Columns:'Green'};
+    });
+</script>
+<style>
+    tr.Red{background-color:lightcoral}
+    tr.Green{background-color:lightgreen}
+    tr.Blue{background-color:lightblue}
+</style>

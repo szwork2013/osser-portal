@@ -1,0 +1,32 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>Creating a Custom Event Directive</h3>
+        <h4>touchstart/touchend</h4>
+        <div class="padding20 bg-grayLighter" tap="message='Tapped.'">
+            {{message}}
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.message = 'Tap Me!';
+    });
+    myApp.directive('tap', function () {
+        return function (scope, elem, attrs) {
+            elem.on('touchstart touchend', function () {
+                scope.$apply(attrs["tap"]);
+            });
+        }
+    });
+</script>
