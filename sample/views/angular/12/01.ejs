@@ -1,0 +1,44 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>Todoリスト<small class="bg-green fg-white padding5">{{(todos | filter: {complete:false}).length}}</small></h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>タスク</th>
+                    <th>進捗</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in todos">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.complete}}</td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.todos = [
+            {name:'nodejs',complete:false},
+            {name:'angularjs',complete:false},
+            {name:'linux',complete:true},
+            {name:'macos',complete:false},
+            {name:'windows',complete:false},
+        ];        
+    });
+</script>

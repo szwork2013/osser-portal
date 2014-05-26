@@ -1,0 +1,132 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>Form-Inputエリメント</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in input_elements">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>Form検証変数</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in formvalidation_variables">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>AngularJS検証クラス</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in angularjs_validation_classes">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.input_elements = [
+            {
+                name: 'checkbox',
+                desc: 'HTMLのcheckbox要素です。'
+            },
+            {
+                name: 'email',
+                desc: 'メールアドレス検証付きのテキスト入力要素です。正しいメールアドレスで無ければ、メールアドレス検証エラーのキーが設定されます。'
+            },
+            {
+                name: 'number',
+                desc: '数値検証と変換付きのテキスト入力要素です。数値で無ければ、数値検証エラーのキーが設定されます。'
+            },
+            {
+                name: 'radio',
+                desc: 'HTMLのradioボタンです。'
+            },
+            {
+                name: 'text',
+                desc: 'Angularのデータバインディングがされた標準のHTMLテキストinputです。'
+            },
+            {
+                name: 'url',
+                desc: 'URL検証付きのテキストinputです。正しいURLでなければ、URL検証エラーのキーが設定ｓあれます。'
+            }
+        ];
+        $scope.formvalidation_variables = [
+            {
+                name: '$pristine',
+                desc: 'ユーザーがまだフォームに手を加えていなければtrueになります。'
+            },
+            {
+                name: '$dirty',
+                desc: 'ユーザーが既にフォームに手を加えていればtrueになります。'
+            },
+            {
+                name: '$valid',
+                desc: 'フォームとそれに含まれる全ての入力要素が正当であれば、trueになります。'
+            },
+            {
+                name: '$invalid',
+                desc: 'フォームとそれに含まれる全ての入力要素に1つでも不正なものがあれば、trueになります。'
+            },
+            {
+                name: '$error',
+                desc: '<p>オブジェクトハッシュになっており、全ての不正な入力要素またはフォームへの参照を含みます。</p><p>キー:required、url、emailのような、検証トークン(エラー名)です。</p><p>値:エラーとなっている不正なフォームまたは入力要素の配列です。</p>'
+            }
+        ];
+        $scope.angularjs_validation_classes = [
+            {
+                name: 'ng-pristine,ng-dirty',
+                desc: 'Angularの入力ディレクティブは、ユーザーが何も触れていない新しい入力ウィジットの要素に対し、ng-pristineクラスを適用します。 ユーザーが入力ウィジットに触れると、クラスはng-dirtyに変更されます。'
+            },
+            {
+                name: 'ng-valid,ng-invalid',
+                desc: 'Angularは入力ウィジットの要素に、入力が有効か否かで、 これらのクラスのどちらかを適用します。'
+            },
+            {
+                name: 'ng-scope',
+                desc: 'Angularは新しいスコープが定義された要素に、このクラスを適用します。'
+            },
+            {
+                name: 'ng-binding',
+                desc: 'Angularは、例えばng-bindまたは二重中括弧({{}})によってデータバインディングが割り当てられた要素に、このクラスを割り当てます。'
+            }
+        ];
+    });
+</script>

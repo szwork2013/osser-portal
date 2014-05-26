@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="">
-            <button class="default" ng-disabled="btnStatus">テストボタン</button>
+            <button class="default" ng-disabled="btnStatus" ng-click="testmsg()">テストボタン</button>
         </div>
     </p>
     <hr/>
@@ -29,5 +29,8 @@
     var myApp = angular.module('exampleApp', []);
     myApp.controller('mainCtrl', function ($scope) {
         $scope.btnStatus = false;
+        $scope.testmsg = function(){
+            alert('test message from button-ng-click');
+        }
     });
 </script>

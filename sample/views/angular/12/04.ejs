@@ -1,0 +1,72 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>フォーム検証</h3>
+        <form name="frmMain" class="span6" ng-submit="dosubmit(user)" novalidate>
+            <fieldset>
+                <legend>基本フォーム</legend>
+                <label>ユーザー名</label>
+                <div class="input-control text" data-role="input-control">
+                    <input type="text" placeholder="type text" ng-model="user.name" required>
+                    <button class="btn-clear" tabindex="-1" type="button" ng-click="user.name=''"></button>
+                </div>
+                <label>パスワード</label>
+                <div class="input-control password" data-role="input-control">
+                    <input type="password" placeholder="type password" autofocus="" ng-model="user.password" required>
+                    <button class="btn-reveal" tabindex="-1" type="button" ng-click="user.password=''"></button>
+                </div>
+                <label>EMail</label>
+                <div class="input-control text" data-role="input-control">
+                    <input type="email" placeholder="type text" ng-model="user.email" required>
+                    <button class="btn-clear" tabindex="-1" type="button" ng-click="user.email=''"></button>
+                </div>
+                <div class="input-control checkbox" data-role="input-control">
+                    <label>
+                        <input type="checkbox" ng-model="user.expflg">
+                        <span class="check"></span>
+                        I agree to the terms and conditions
+                    </label>
+                </div>
+                <div>
+                    <button type="submit" class="large" ng-disabled="!frmMain.$valid">送信</button>
+                </div>
+            </fieldset>
+        </form>
+        <div class="padding10 bg-grayLighter">{{message}}</div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.message = "メッセージエリア";
+        $scope.user = {
+            name: '',
+            password: '',
+            expflg: false,
+            email: ''
+        };
+        $scope.dosubmit = function (user) {
+            $scope.message = user;
+        }
+    });
+</script>
+<style type="text/css">
+    form .ng-invalid-required {
+        background-color: lightblue;
+    }
+    form .ng-invalid.ng-dirty {
+        background-color: lightpink;
+    }
+    form .ng-valid.ng-dirty {
+        background-color: lightgreen;
+    }
+</style>

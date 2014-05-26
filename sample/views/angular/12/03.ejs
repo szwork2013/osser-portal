@@ -1,0 +1,87 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <div class="grid">
+            <div class="row">
+                <div class="span4 bg-grayLighter padding10">
+                    <form name="frmMain" novalidate>
+                        <fieldset>
+                            <legend>新規</legend>
+                            <label>タスク名</label>
+                            <div class="input-control text" data-role="input-control">
+                                <input type="text" placeholder="type text" ng-model="newItem.name" required>
+                                <button class="btn-clear" tabindex="-1" type="button"></button>
+                            </div>
+                            <div class="input-control select" data-role="input-control">
+                                <select ng-model="newItem.city">
+                                    <option value="Osaka">Osaka</option>
+                                    <option value="Tokyo">Tokyo</option>
+                                    <option value="Nagoya">Nagoya</option>
+                                </select>
+                            </div>
+                            <div>
+                                <div class="input-control checkbox" data-role="input-control">
+                                    <label>
+                                        <input type="checkbox" ng-model="newItem.complete">
+                                        <span class="check"></span>
+                                        完成
+                                    </label>
+                                </div>
+                            </div>
+                            <input type="submit" value="Submit" ng-click="addItem(newItem)" ng-disabled="!frmMain.$valid">
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="span8">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>名称</th>
+                                <th>完成</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in todos">
+                                <td>{{$index+1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.complete}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot></tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.newItem = {
+            name: '',
+            city: 'Tokyo',
+            complete: false
+        };
+        $scope.todos = [{
+            name: 'nodejs',
+            complete: true
+        }];
+        $scope.addItem = function (newItem) {
+            console.log(newItem);
+            $scope.todos.push({
+                name: newItem.name + '(' + newItem.city + ')',
+                complete: newItem.complete
+            });
+        }
+    });
+</script>

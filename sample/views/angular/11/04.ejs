@@ -24,9 +24,11 @@
         <h3>ng-class/ng-style/ng-class-even/ng-class-odd</h3>
         <table class="table">
             <thead>
-                <th>No.</th>
-                <th>タスク</th>
-                <th>進捗</th>
+                <tr>
+                    <th>No.</th>
+                    <th>タスク</th>
+                    <th>進捗</th>
+                </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in todos" ng-class="settings.Rows">
@@ -39,9 +41,11 @@
         </table>
         <table class="table">
             <thead>
-                <th>No.</th>
-                <th>タスク</th>
-                <th>進捗</th>
+                <tr>
+                    <th>No.</th>
+                    <th>タスク</th>
+                    <th>進捗</th>
+                </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in todos" ng-class-even="settings.Rows" ng-class-odd="settings.Columns">
