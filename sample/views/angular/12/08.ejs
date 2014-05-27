@@ -11,7 +11,7 @@
         <form name="frmMain" novalidate class="span4">
             <fieldset>
                 <div class="input-control select" data-role="input-control">
-                    <select ng-model="selectValue" ng-options="item.id as '(' + item.id + ') ' + item.name for item in todos">
+                    <select ng-model="selectValue" ng-options="item.id as '(' + item.id + ') ' + item.name group by item.group for item in todos">
                         <option value="">(Pick One)</option>
                     </select>
                 </div>
