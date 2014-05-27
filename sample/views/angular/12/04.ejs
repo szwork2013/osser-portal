@@ -11,18 +11,36 @@
                 <legend>基本フォーム</legend>
                 <label>ユーザー名</label>
                 <div class="input-control text" data-role="input-control">
-                    <input type="text" placeholder="type text" ng-model="user.name" required>
+                    <input name="username" type="text" placeholder="type text" ng-model="user.name" required>
                     <button class="btn-clear" tabindex="-1" type="button" ng-click="user.name=''"></button>
+                    <span class="error" ng-show="frmMain.username.$invalid && frmMain.username.$dirty">
+                        <span ng-show="frmMain.username.$error.required">必須項目</span>
+                    </span>
                 </div>
                 <label>パスワード</label>
                 <div class="input-control password" data-role="input-control">
-                    <input type="password" placeholder="type password" autofocus="" ng-model="user.password" required>
-                    <button class="btn-reveal" tabindex="-1" type="button" ng-click="user.password=''"></button>
+                    <input name="password" type="password" placeholder="type password" autofocus="" ng-model="user.password" required>
+                    <button class="btn-clear" tabindex="-1" type="button" ng-click="user.password=''"></button>
+                    <span class="error" ng-show="frmMain.password.$invalid">
+                        <span ng-show="frmMain.password.$error.required">パスワード必須</span>
+                    </span>
                 </div>
                 <label>EMail</label>
                 <div class="input-control text" data-role="input-control">
-                    <input type="email" placeholder="type text" ng-model="user.email" required>
+                    <input name="mymail" type="email" placeholder="type email" ng-model="user.email" required>
                     <button class="btn-clear" tabindex="-1" type="button" ng-click="user.email=''"></button>
+                    <span class="error" ng-show="frmMain.mymail.$invalid && frmMain.mymail.$dirty">
+                        <span ng-show="frmMain.mymail.$error.required">email必須</span>
+                    <span ng-show="frmMain.mymail.$error.email">email形式必要</span>
+                    </span>
+                </div>
+                <label>Homepage</label>
+                <div class="input-control text" data-role="input-control">
+                    <input name="myurl" type="url" placeholder="type url" ng-model="user.myurl">
+                    <button class="btn-clear" tabindex="-1" type="button" ng-click="user.myurl=''"></button>
+                    <span class="error" ng-show="frmMain.myurl.$invalid && frmMain.myurl.$dirty">
+                        <span ng-show="frmMain.myurl.$error.url">url形式必要</span>
+                    </span>
                 </div>
                 <div class="input-control checkbox" data-role="input-control">
                     <label>
@@ -52,7 +70,8 @@
             name: '',
             password: '',
             expflg: false,
-            email: ''
+            email: '',
+            myurl: ''
         };
         $scope.dosubmit = function (user) {
             $scope.message = user;
@@ -68,5 +87,9 @@
     }
     form .ng-valid.ng-dirty {
         background-color: lightgreen;
+    }
+    span.error {
+        color: red;
+        font-weight: bold;
     }
 </style>

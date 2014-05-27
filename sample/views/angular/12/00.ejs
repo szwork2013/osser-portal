@@ -58,6 +58,42 @@
         </tbody>
         <tfoot></tfoot>
     </table>
+    <h3>input検証プロパティ</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in input_attributes">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>checkboxプロパティ</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in checkbox_attributes">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
 </div>
 <script>
     var myApp = angular.module('exampleApp', ['ngSanitize']);
@@ -126,6 +162,50 @@
             {
                 name: 'ng-binding',
                 desc: 'Angularは、例えばng-bindまたは二重中括弧({{}})によってデータバインディングが割り当てられた要素に、このクラスを割り当てます。'
+            }
+        ];
+        $scope.input_attributes = [
+            {
+                name: 'ng-model',
+                desc: 'ngModelは、Angularに相互のデータバインディングを行うように伝えるディレクティブです。 これは、input、select、textarea、また、NgModelControllerを使用し、 このディレクティブによって公開されたフォームのカスタム入力要素でも動作します。'
+            },
+            {
+                name: 'ng-change',
+                desc: '<p>ユーザーが入力値を変更した際に、与えられた式が評価されます。 モデルからの値の変更の際には、式は評価されません。</p><p>このディレクティブは、ngModelの提供が必要なことに注意してください。</p>'
+            },
+            {
+                name: 'ng-minlength',
+                desc: 'minlengthより値が短い場合、minlength検証エラーのキーを設定します。'
+            },
+            {
+                name: 'ng-maxlength',
+                desc: 'maxlengthより値が長い場合、maxlength検証エラーのキーを設定します。'
+            },
+            {
+                name: 'ng-pattern',
+                desc: 'RegExpパターン式に値が一致しない場合、pattern検証エラーのキーがー設定されます。 /正規表現/のインラインのパターンか、スコープ式として定義された正規表現のパターンを指定します。'
+            },
+            {
+                name: 'ng-required',
+                desc: 'ngRequired式がtrueと評価された際に、required属性を追加して要素に対して、必須であることを強制します。 データ紐付けにrequired属性をしたい場合に、reqired属性の代わりにngRequiredを使用します。'
+            }
+        ];
+        $scope.checkbox_attributes = [
+            {
+                name: 'ng-model',
+                desc: 'データ紐付けのための、Angular式を割り当てます。'
+            },
+            {
+                name: 'ng-change',
+                desc: 'ユーザーの操作によってinput要素の入力内容が変更された際に、ここで指定したAngular式が実行されます。'
+            },
+            {
+                name: 'ng-true-value',
+                desc: '選択された際に設定される値を式で指定します。'
+            },
+            {
+                name: 'ng-false-value',
+                desc: '選択されていない際に設定される値を式で指定します。'
             }
         ];
     });

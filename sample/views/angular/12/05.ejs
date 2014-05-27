@@ -1,0 +1,41 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>input検証プロパティ</h3>
+        <form name="frmMain" class="span6" novalidate>
+            <fieldset>
+                <label>ユーザー名</label>
+                <div class="input-control text" data-role="input-control">
+                    <input name="username" type="text" placeholder="type text" ng-model="inputValue" ng-required="requireValue" ng-minlength="3" ng-maxlength="20" ng-pattern="matchPattern">
+                    <button class="btn-clear" tabindex="-1" type="button" ng-click="inputValue=''"></button>
+                </div>
+            </fieldset>
+        </form>
+        <div class="padding20 bg-grayLighter">
+            <p>Required Error: {{frmMain.username.$error.required}}</p>
+            <p>Min Length Error: {{frmMain.username.$error.minlength}}</p>
+            <p>Max Length Error: {{frmMain.username.$error.maxlength}}</p>
+            <p>Pattern Error: {{frmMain.username.$error.pattern}}</p>
+            <p>Element Valid: {{frmMain.username.$valid}}</p>
+            <p>{{frmMain.username.$error}}</p>
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.inputValue = 'init';
+        $scope.message = 'aa';
+        $scope.requireValue = true;
+        $scope.matchPattern = new RegExp("^[a-z]");
+    });
+</script>
