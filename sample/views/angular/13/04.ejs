@@ -1,0 +1,41 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>controller継承</h3>
+        <div class="padding20 bg-grayLighter">
+            {{dataValue}}
+            <div>
+                <input type="text" ng-model="dataValue" class="span6">
+            </div>
+        </div>
+        <div class="padding20 bg-lime" ng-controller="firstCtrl">
+            {{dataValue}}
+            <div>
+                <input type="text" ng-model="dataValue" class="span6">
+            </div>
+        </div>
+        <div class="padding20 bg-green" ng-controller="secondCtrl">
+            {{dataValue}}
+            <div>
+                <input type="text" ng-model="dataValue" class="span6">
+            </div>
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.dataValue = 'default data value';
+    });
+    myApp.controller('firstCtrl', function ($scope) {});
+    myApp.controller('secondCtrl', function ($scope) {});
+</script>

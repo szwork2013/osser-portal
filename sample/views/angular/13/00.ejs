@@ -1,0 +1,46 @@
+<div class="container" ng-controller="mainCtrl1300">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>The Scope Methods for Sending and Receiving Events</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in scope_events">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl1300', function ($scope) {
+        $scope.scope_events = [
+            {
+                name: '$broadcast(name, args)',
+                desc: '<p>ng.$rootScope.Scope#$onに登録されたリスナーに指定した名前のイベント名の通知を発行します。 これは子スコープ(更にその子スコープ)へ、伝搬していきます。</p><p>イベントのライフサイクルは、$broadcastが呼び出されたスコープで開始されます。 このスコープ上で、nameのイベントをリッスンする全てのリスナーは、通知を取得します。 その後、イベントは現在のスコープ全てに直接または間接的に伝搬し、この方法に沿って登録されているリスナーを呼び出します。 このイベントは、キャンセルすることが出来ません。</p>'
+            },
+            {
+                name: '$emit(name, args)',
+                desc: '<p>ng.$rootScope.Scope#$onに登録されているリスナーに、指定された名前のイベント通知を スコープの階層を通して上方に送ります。</p><p>イベントのライフサイクルは、$emitが呼び出されたスコープから開始されます。 このスコープ上で、nameのイベントをリッスンしている全てのリスナーは、通知を取得します。 その後、イベントはrootスコープに向かって上方に進み、 その途中の登録されているリスナーを呼び出します。 もし、その中のリスナーの1つがキャンセルすると、イベントの伝播は停止されます。</p><p>リスナーから発行された何らかの例外は、$exceptionHandlerサービスに渡されます。</p>'
+            },
+            {
+                name: '$on(name, handler)',
+                desc: '<p>与えられた型のイベントをリッスンします。 イベントのライフサイクルについては、$emitを参照してください。</p>'
+            }
+        ];
+    });
+</script>

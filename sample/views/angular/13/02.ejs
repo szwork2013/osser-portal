@@ -1,0 +1,52 @@
+<div class="container">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>scope領域</h3>
+        <h4>controller1</h4>
+        <div ng-controller="mainCtrl1302">
+            <div>
+                <input type="text" ng-model="message" class="span6">
+            </div>
+            {{message}}
+            <div>
+                <input type="text" ng-model="pubmessage" class="span6">
+            </div>
+            {{pubmessage}}
+        </div>
+        <h4>controller2</h4>
+        <div ng-controller="mainCtrl1302">
+            <div>
+                <input type="text" ng-model="message" class="span6">
+            </div>
+            {{message}}
+            <div>
+                <input type="text" ng-model="pubmessage" class="span6">
+            </div>
+            {{pubmessage}}
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl1302', function ($scope, $rootScope) {
+        $scope.message = 'this is a scope message.';
+        $scope.pubmessage = "public message";
+        $scope.$on('pubmessageUpdated', function (event, args) {
+            $scope.pubmessage = args.pubmessage;
+        });
+        $scope.$watch('pubmessage', function () {
+            $rootScope.$broadcast("pubmessageUpdated", {
+                pubmessage: $scope.pubmessage
+            });
+        });
+    });
+</script>
