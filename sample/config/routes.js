@@ -36,6 +36,11 @@ module.exports.routes = {
         view: 'home/index'
     },
 
+    '/sitemap.xml': {
+        controller: 'HomeController',
+        action: 'sitemap'
+    },
+
     '/temp.html': {
         controller: 'HomeController',
         action: 'temp'

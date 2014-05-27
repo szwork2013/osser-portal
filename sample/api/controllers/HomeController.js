@@ -14,6 +14,8 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+var sitemap = require('sitemap');
+//var common = require('../../../common');
 
 module.exports = {
 
@@ -28,6 +30,56 @@ module.exports = {
         });
     },
 
+    /**
+     * sitemap.xml
+     * https://www.npmjs.org/package/sitemap
+     * http://www.sitemaps.org/protocol.html
+     */
+    sitemap: function (req, res) {
+        var sm = sitemap.createSitemap({
+            hostname: 'http://sample.osser.jp',
+            cacheTime: 60 * 1000,
+            urls: []
+        });
+
+        sm.urls.push({
+            url: '/',
+            changefreq: 'always',
+            priority: 1
+        });
+        sm.urls.push({
+            url: '/angular/',
+            changefreq: 'daily',
+            priority: 0.9
+        });
+        sm.urls.push({
+            url: '/angular/sample/0900/',
+            changefreq: 'daily',
+            priority: 0.9
+        });
+        sm.urls.push({
+            url: '/angular/sample/1000/',
+            changefreq: 'daily',
+            priority: 0.9
+        });
+        sm.urls.push({
+            url: '/angular/sample/1100/',
+            changefreq: 'daily',
+            priority: 0.9
+        });
+        sm.urls.push({
+            url: '/angular/sample/1200/',
+            changefreq: 'daily',
+            priority: 0.9
+        });
+        sm.urls.push({
+            url: '/angular/sample/1300/',
+            changefreq: 'daily',
+            priority: 0.9
+        });
+        res.header('Content-Type', 'application/xml');
+        return res.send(sm.toString());
+    },
 
 
 
