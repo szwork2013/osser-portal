@@ -1,0 +1,48 @@
+<div id="angularRegion" class="container" ng-controller="mainCtrl1306">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>jQueryと連携</h3>
+        <div class="padding20 bg-grayLighter">
+            <label>
+                <input type="checkbox" ng-model="buttonEnabled">Enable Button
+            </label>
+            Click counter: {{clickCounter}}
+        </div>
+    </p>
+    <p>
+        <div id="jqui" class="padding20 bg-lightBlue">
+            <h4>jQuery UI</h4>
+            <button>Click Me!</button>
+        </div>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#jqui button').button().click(function (e) {
+            angular.element(angularRegion).scope().$apply('handleClick()');
+        });
+    });
+
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl1306', function ($scope) {
+        $scope.buttonEnabled = true;
+        $scope.clickCounter = 0;
+        $scope.handleClick = function () {
+            $scope.clickCounter++;
+        }
+        $scope.$watch('buttonEnabled', function (newValue) {
+            $('#jqui button').button({
+                disabled: !newValue
+            });
+        });
+    });
+</script>

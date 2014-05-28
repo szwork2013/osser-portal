@@ -22,6 +22,24 @@
         </tbody>
         <tfoot></tfoot>
     </table>
+    <h3>scope監視</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in scope_monitor_methods">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
 
 </div>
 
@@ -40,6 +58,20 @@
             {
                 name: '$on(name, handler)',
                 desc: '<p>与えられた型のイベントをリッスンします。 イベントのライフサイクルについては、$emitを参照してください。</p>'
+            }
+        ];
+        $scope.scope_monitor_methods = [
+            {
+                name: '$apply(expression)',
+                desc: '<p>$apply()は、Angularフレームワークの外側からAngular内のものとして式を実行するのに使用されます。 (例えば、ブラウザのDOMイベント、setTimeout、XHR、またはサードパーティ製のライブラリ) 例外処理、監視実行のライフサイクルのある適したスコープで実行される必要があるため、Angularのフレームワーク内で呼び出します。</p>'
+            },
+            {
+                name: '$watch(expression, handler)',
+                desc: '監視式(watchExpression)が変更される度に、実行されるリスナーコールバックを登録します。'
+            },
+            {
+                name: '$watchCollection(object, handler)',
+                desc: 'オブジェクトのプロパティを監視し、何らかのプロパティの変更があれば発火します。 (配列であれば配列の項目の監視が含まれ、オブジェクトのマップであればプロパティの監視が含まれます) もし変更が検知されると、リスナーのコールバックが発火されます。'
             }
         ];
     });

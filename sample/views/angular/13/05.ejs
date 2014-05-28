@@ -1,0 +1,31 @@
+<div class="container" ng-controller="mainCtrl1305 as ctrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <h3>Scope-less Controller</h3>
+        <p>{{ctrl.dataValue}}</p>
+        <p>
+            <input type="text" ng-model="ctrl.dataValue">
+        </p>
+        <p>
+            <button class="button primary" ng-click="ctrl.reverseText()">reverse text</button>
+        </p>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl1305', function () {
+        this.dataValue = 'helo,テスト';
+        this.reverseText = function () {
+            this.dataValue = this.dataValue.split("").reverse().join("");
+        }
+    });
+</script>
