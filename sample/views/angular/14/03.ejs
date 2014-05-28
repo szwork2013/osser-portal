@@ -1,0 +1,126 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <p>
+        <div class="padding15 bg-grayLighter">
+            <h3>Books<small class="padding5 bg-emerald fg-white">filter</small></h3>
+        </div>
+        <h4>Books<small class="bg-grayLighter">filter:{category:'nodejs'}</small></h4>
+        <table class="table hovered ">
+            <thead>
+                <tr>
+                    <th>タイトル</th>
+                    <th>カテゴリ</th>
+                    <th>発売日</th>
+                    <th>値段</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in books | filter:{category:'nodejs'}">
+                    <td><a ng-href="{{book.url}}" target="_blank">{{book.title}}</a>
+                    </td>
+                    <td>{{book.category | uppercase}}</td>
+                    <td class="text-center">
+                        <div>{{book.pubdate | date:"yy MMM dd"}}</div>
+                        <div>{{book.pubdate | date:"fullDate"}}</div>
+                    </td>
+                    <td class="text-right">
+                        <div>{{book.price|currency}}</div>
+                        <div>{{book.price|number:2}}</div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+        <h4>Books <small class="bg-grayLighter">filter:custom(javascript,server)</small></h4>
+        <ul>
+            <li ng-repeat="book in books | filter:selectItems | orderBy:'price'">{{book.title}}, {{book.price}}</li>
+        </ul>
+        <h4>Books <small class="bg-grayLighter">orderBy:'-price'</small></h4>
+        <ul>
+            <li ng-repeat="book in books | filter:selectItems | orderBy:'-price'">{{book.title}}, {{book.price}}</li>
+        </ul>
+    </p>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.books = [
+            {
+                title: 'AngularJSアプリケーション開発ガイド',
+                price: 2592,
+                url: 'http://r.osser.jp/book/angularjs',
+                category: 'javascript',
+                pubdate: new Date(2014, 4 - 1, 8)
+            },
+            {
+                title: '現場で通用する力を身につける Node.jsの教科書',
+                price: 3434,
+                url: 'http://r.osser.jp/book/nodejs-textbook',
+                category: 'nodejs',
+                pubdate: new Date(2014, 3 - 1, 25)
+            },
+            {
+                title: 'サーバサイドJavaScript　Node.js入門 (アスキー書籍)',
+                price: 3040,
+                url: 'http://r.osser.jp/book/serverside-javascript-nodejs',
+                category: 'javascript',
+                pubdate: new Date(2014, 2 - 1, 27)
+            },
+            {
+                title: 'JavaScriptで学ぶ関数型プログラミング',
+                price: 3240,
+                url: 'http://r.osser.jp/book/Functional-JavaScript-Introducing-Programming-Underscore-js-ebook',
+                category: 'javascript',
+                pubdate: new Date(2014, 1 - 1, 18)
+            },
+            {
+                title: 'Redis入門 インメモリKVSによる高速データ管理',
+                price: 3672,
+                url: 'http://r.osser.jp/book/redis-ruby',
+                category: 'server',
+                pubdate: new Date(2013, 12 - 1, 27)
+            },
+            {
+                title: 'Node.js in Action',
+                price: 4744,
+                url: 'http://r.osser.jp/book/node-in-action',
+                category: 'nodejs',
+                pubdate: new Date(2013, 11 - 1, 25)
+            },
+            {
+                title: 'マスタリングNginx',
+                price: 3240,
+                url: 'http://r.osser.jp/book/nginx-master',
+                category: 'server',
+                pubdate: new Date(2013, 10 - 1, 26)
+            },
+            {
+                title: '開眼! JavaScript ―言語仕様から学ぶJavaScriptの本質',
+                price: 2376,
+                url: 'http://r.osser.jp/book/javascript-enlightenment',
+                category: 'javascript',
+                pubdate: new Date(2013, 6 - 1, 19)
+            },
+            {
+                title: 'Nodeクックブック',
+                price: 3672,
+                url: 'http://r.osser.jp/book/node-cookbook',
+                category: 'nodejs',
+                pubdate: new Date(2013, 2 - 1, 23)
+            }
+        ];
+        $scope.selectItems = function (item) {
+            return item.category == "server" || item.category == "javascript";
+        };
+    });
+</script>
+<script src="/lib/angularjs/i18n/angular-locale_ja-jp.js"></script>

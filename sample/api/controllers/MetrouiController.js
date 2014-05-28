@@ -26,7 +26,9 @@ module.exports = {
      *    `/metroui`
      */
     index: function (req, res) {
-        return res.view('metroui/index', {});
+        return res.view('metroui/index', {
+            layout: 'layout_angular',
+        });
     },
 
     sample: function (req, res) {

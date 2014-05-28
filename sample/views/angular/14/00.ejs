@@ -1,0 +1,168 @@
+<div class="container" ng-controller="mainCtrl1400">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>Date Filter Formatter<small class="padding5 bg-grayLighter">{{date_filter_formatter.length}}</small></h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">書式</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in date_filter_formatter">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>Date Filter Formatter(Shortcut)</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+                <th>日付例</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in date_filter_formatter_shortcut">
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+                <td>{{now|date:item.name}}</td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl1400', function ($scope) {
+        $scope.now = new Date();
+        $scope.date_filter_formatter = [
+            {
+                name: 'yyyy',
+                desc: '4桁の年表記です。(例: 西暦1 => 0001、西暦2010 => 2010)'
+            },
+            {
+                name: 'yy',
+                desc: '2桁の年表記です。(例: 西暦2001 => 01、 西暦2010 => 10)'
+            },
+            {
+                name: 'MMMM',
+                desc: 'January ～ Decemberの形式の月表記です。'
+            },
+            {
+                name: 'MMM',
+                desc: 'Jan ～ Decの形式の月表記です。'
+            },
+            {
+                name: 'MM',
+                desc: '01 ～ 12の月表記です。'
+            },
+            {
+                name: 'M',
+                desc: '1 ～ 12の月表記です。'
+            },
+            {
+                name: 'dd',
+                desc: '01 ～ 31の日表記です。'
+            },
+            {
+                name: 'd',
+                desc: '1 ～ 31の日表記です。'
+            },
+            {
+                name: 'EEEE',
+                desc: 'Sunday ～ Saturdayの週表記です。'
+            },
+            {
+                name: 'EEE',
+                desc: 'Sun ～ Satの週表記です。'
+            },
+            {
+                name: 'HH',
+                desc: '00 ～ 23の時間表記です。'
+            },
+            {
+                name: 'H',
+                desc: '0 ～ 23の時間表記です。'
+            },
+            {
+                name: 'hh',
+                desc: '午前・午後の01 ～ 12の時間表記です。'
+            },
+            {
+                name: 'h',
+                desc: '午前・午後の1 ～ 12の時間表記です。'
+            },
+            {
+                name: 'mm',
+                desc: '00～59の分表記です。'
+            },
+            {
+                name: 'm',
+                desc: '0～59の分表記です。'
+            },
+            {
+                name: 'ss',
+                desc: '00～59の秒表記です。'
+            },
+            {
+                name: 's',
+                desc: '0～59の秒表記です。'
+            },
+            {
+                name: 'a',
+                desc: 'am/pmを作成します。'
+            },
+            {
+                name: 'z',
+                desc: '-1200～+1200の4桁のタイムゾーンのオフセットです。'
+            }
+        ];
+        $scope.date_filter_formatter_shortcut = [
+            {
+                name: 'medium',
+                desc: "en_USロケール向けに、'MMM d, y h:mm:ss a'として評価されます。(例: Sep 3, 2010 12:05:08 pm)"
+            },
+            {
+                name: 'short',
+                desc: "en_USロケール向けに、'M/d/yy h:mm a'として評価されます。(例: 9/3/10 12:05 pm)"
+            },
+            {
+                name: 'fullDate',
+                desc: "en_USロケール向けに、'EEEE, MMMM d,y'として評価されます。(例: Friday, September 3, 2010)"
+            },
+            {
+                name: 'longDate',
+                desc: "en_USロケール向けに、'MMMM d, y'として評価されます。(例: September 3, 2010)"
+            },
+            {
+                name: 'mediumDate',
+                desc: "en_USロケール向けに、'MMM d, y'として評価されます。(例: Sep 3, 2010)"
+            },
+            {
+                name: 'shortDate',
+                desc: "en_USロケール向けに、'M/d/yy'として評価されます。(例: 9/3/10)"
+            },
+            {
+                name: 'mediumTime',
+                desc: "en_USロケール向けに、'h:mm:ss a'として評価されます。(例: 12:05:08 pm)"
+            },
+            {
+                name: 'shortTime',
+                desc: "en_USロケール向けに、'h:mm a'として評価されます。(例: 12:05 pm)"
+            }
+        ];
+    });
+</script>
+<script src="/lib/angularjs/i18n/angular-locale_ja-jp.js"></script>
