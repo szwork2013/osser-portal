@@ -4,9 +4,203 @@
         AngularJSサンプル<small class="on-right">osser.jp</small>
     </h2>
     <hr/>
+    <h3>jqLite</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in jqlite_dom_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>Tagプロパティ修正</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in tag_modify_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>Tag作成、削除</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in tag_create_remove_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>jqLiteイベント処理</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in jqlite_event_handlers">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
 
 </div>
 <script>
-    var myApp = angular.module('exampleApp', []);
-    myApp.controller('mainCtrl1500', function ($scope) {});
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl1500', function ($scope) {
+        $scope.jqlite_dom_methods = [
+            {
+                name: 'children()',
+                desc: 'Returns the set of child elements. The jqLite implementation of this method does not support the selectors feature that jQuery provides.'
+            },
+            {
+                name: 'eq(index)',
+                desc: 'Returns an element at the specified index from a collection of elements.'
+            },
+            {
+                name: 'find(tag)',
+                desc: 'Locates all of the descendant elements with the specified tag name. The jQuery implementation provides additional options for selecting elements, which are not available in the jqLite implementation of this method.'
+            },
+            {
+                name: 'next()',
+                desc: 'Gets the next sibling element. The jqLite implementation of this method does not support the selectors feature that jQuery provides'
+            },
+            {
+                name: 'parent()',
+                desc: 'Returns the parent element. The jqLite implementation of this method does not support the selectors feature that jQuery provides'
+            }
+        ];
+        $scope.tag_modify_methods = [
+            {
+                name: 'addClass(name)',
+                desc: 'Adds all of the elements in the jqLite object to the specified class'
+            },
+            {
+                name: 'attr(name),attr(name, value)',
+                desc: 'Gets the value of the specified attribute for the first element in the jqLite object or sets the specified value for all of the elements.'
+            },
+            {
+                name: 'css(name),css(name, value)',
+                desc: 'Gets the value of the specified CSS property from the first element or sets the property to the specified value for all the elements in the jqLite object.'
+            },
+            {
+                name: 'hasClass(name)',
+                desc: 'Returns true if any of the elements in the jqLite object belong to the specified class.'
+            },
+            {
+                name: 'prop(name),prop(name, value)',
+                desc: 'Gets the value of the specified property for the first element in the jqLite object or sets the specified value for all of the elements.'
+            },
+            {
+                name: 'removeAttr(name)',
+                desc: 'Removes the attribute from all of the elements in the jqLite object.'
+            },
+            {
+                name: 'removeClass(name)',
+                desc: 'Removes the elements in the jqLite object from the specified class.'
+            },
+            {
+                name: 'text(),text(value)',
+                desc: 'Gets the concatenated text content from all the elements or sets the text content for all the elements in the jqLite object.'
+            },
+            {
+                name: 'toggleClass(name)',
+                desc: 'Toggles membership of the specified class for all the elements in the jqLite object. Those elements that were not in the class will be added to it, and those that were in the class will be removed from it.'
+            },
+            {
+                name: 'val(),val(value)',
+                desc: 'Gets the value attribute for the first element or sets the value attribute for all the elements in the jqLite object.'
+            }
+        ];
+        $scope.tag_create_remove_methods = [
+            {
+                name: 'angular.element(html)',
+                desc: 'Creates a jqLite object that represents the element specified by the HTML string'
+            },
+            {
+                name: 'after(elements)',
+                desc: 'Inserts the specified content after the element on which the method is called'
+            },
+            {
+                name: 'append(elements)',
+                desc: 'Inserts the specified elements as the last child of each element in the jqLite object on which the method has been called'
+            },
+            {
+                name: 'clone()',
+                desc: 'Returns a new jqLite object that duplicates the elements from the object on which the method is called'
+            },
+            {
+                name: 'prepend(elements)',
+                desc: 'Inserts the specified elements as the first child of each element in the jqLite object on which the method has been called'
+            },
+            {
+                name: 'remove()',
+                desc: 'Removes the elements in the jqLite object from the DOM'
+            },
+            {
+                name: 'replaceWith(elements)',
+                desc: 'Replaces the elements in the jqLite object on which the method is called with the specified elements'
+            },
+            {
+                name: 'wrap(elements)',
+                desc: 'Wraps each element in the jqLite object with the specified elements'
+            }
+        ];
+        $scope.jqlite_event_handlers = [
+            {
+                name: 'on(events, handler)',
+                desc: 'Registers a handler for one or more events emitted by the elements represented by the jqLite object. The jqLite implementation of this method does not support the selectors or event data features that jQuery provides.'
+            },
+            {
+                name: 'off(events, handler)',
+                desc: 'Removes a previously registered handler for the specified events from the elements represented by the jqLite object. The jqLite implementation of this method does not support the selectors feature that jQuery provides.'
+            },
+            {
+                name: 'triggerHandler(event)',
+                desc: 'Triggers all of the handlers for the specified event registered on the elements represented by the jqLite object'
+            }
+        ];
+
+    });
 </script>

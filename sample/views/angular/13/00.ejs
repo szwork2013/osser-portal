@@ -8,12 +8,14 @@
     <table class="table hovered ">
         <thead>
             <tr>
+                <th>No.</th>
                 <th class="text-left">Type</th>
                 <th class="text-left">説明</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="item in scope_events">
+                <td>{{$index+1}}</td>
                 <td class="text-left" nowrap>{{item.name}}</td>
                 <td class="text-left">
                     <p ng-bind-html="item.desc"></p>
@@ -26,12 +28,14 @@
     <table class="table hovered ">
         <thead>
             <tr>
+                <th>No.</th>
                 <th class="text-left">Type</th>
                 <th class="text-left">説明</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="item in scope_monitor_methods">
+                <td>{{$index+1}}</td>
                 <td class="text-left" nowrap>{{item.name}}</td>
                 <td class="text-left">
                     <p ng-bind-html="item.desc"></p>

@@ -8,6 +8,7 @@
     <table class="table hovered ">
         <thead>
             <tr>
+                <th>No.</th>
                 <th class="text-left">ディレクティブ</th>
                 <th class="text-left">応用</th>
                 <th class="text-left">説明</th>
@@ -15,6 +16,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="item in module_members">
+                <td>{{$index+1}}</td>
                 <td class="text-left" nowrap>{{item.name}}</td>
                 <td class="text-left">{{item.applied}}</td>
                 <td class="text-left">
@@ -28,6 +30,7 @@
     <table class="table hovered">
         <thead>
             <tr>
+                <th>No.</th>
                 <th class="text-left">ディレクティブ</th>
                 <th class="text-left">応用</th>
                 <th class="text-left">説明</th>
@@ -35,6 +38,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="item in eventhandlers">
+                <td>{{$index+1}}</td>
                 <td class="text-left">{{item.name}}</td>
                 <td class="text-left">{{item.applied}}</td>
                 <td class="text-left">
@@ -48,6 +52,7 @@
     <table class="table hovered">
         <thead>
             <tr>
+                <th>No.</th>
                 <th class="text-left">ディレクティブ</th>
                 <th class="text-left">応用</th>
                 <th class="text-left">説明</th>
@@ -55,6 +60,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="item in boolean_attributes">
+                <td>{{$index+1}}</td>
                 <td class="text-left" nowrap>{{item.name}}</td>
                 <td class="text-left">{{item.applied}}</td>
                 <td class="text-left">
@@ -68,6 +74,7 @@
     <table class="table hovered">
         <thead>
             <tr>
+                <th>No.</th>
                 <th class="text-left">名称</th>
                 <th class="text-left">応用</th>
                 <th class="text-left">説明</th>
@@ -75,6 +82,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="item in other_attributes">
+                <td>{{$index+1}}</td>
                 <td class="text-left" nowrap>{{item.name}}</td>
                 <td class="text-left">{{item.applied}}</td>
                 <td class="text-left">

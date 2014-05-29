@@ -8,12 +8,14 @@
     <table class="table hovered ">
         <thead>
             <tr>
+                <th>No.</th>
                 <th class="text-left">書式</th>
                 <th class="text-left">説明</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="item in date_filter_formatter">
+                <td>{{$index+1}}</td>
                 <td class="text-left" nowrap>{{item.name}}</td>
                 <td class="text-left">
                     <p ng-bind-html="item.desc"></p>
@@ -26,6 +28,7 @@
     <table class="table hovered ">
         <thead>
             <tr>
+                <th>No.</th>
                 <th class="text-left">Type</th>
                 <th class="text-left">説明</th>
                 <th>日付例</th>
@@ -33,6 +36,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="item in date_filter_formatter_shortcut">
+                <td>{{$index+1}}</td>
                 <td class="text-left" nowrap>{{item.name}}</td>
                 <td class="text-left">
                     <p ng-bind-html="item.desc"></p>

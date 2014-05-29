@@ -1,0 +1,62 @@
+<div class="container" ng-controller="mainCtrl1506">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                event-button.on
+            </div>
+            <div class="panel-content">
+                <div test1>
+                    <button class="primary">テストボタン1</button>
+                    <button class="primary">テストボタン2</button>
+                </div>
+                <div class="padding20 bg-grayLighter">{{pubmessage}}</div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.service('updService', function ($rootScope) {
+        return {
+            updpubmessage: function (pubmessage) {
+                $rootScope.$broadcast("pubmessageUpdated", {
+                    pubmessage: pubmessage
+                });
+            }
+        }
+    });
+    myApp.controller('mainCtrl1506', function ($scope) {
+        $scope.pubmessage = "public message";
+        $scope.$on('pubmessageUpdated', function (event, args) {
+            $scope.pubmessage = args.pubmessage;
+            $scope.$apply();
+        });
+    });
+    myApp.directive('test1', function (updService) {
+        return function (scope, element, attrs) {
+            var buttons = element.find('button');
+            buttons.on('click', function (e) {
+                buttons.toggleClass("bold");
+                var message = e.target.innerText + ' is clicked.';
+                //console.log(message);
+                updService.updpubmessage(message);
+                //alert(message);
+            });
+        }
+    });
+</script>
+<style type="text/css">
+    .bold {
+        font-weight: bolder
+    }
+</style>

@@ -1,0 +1,46 @@
+<div class="container" ng-controller="mainCtrl1505">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                element.find()
+            </div>
+            <div class="panel-content">
+                <ul demo1>
+                    <li>node.js</li>
+                    <ol>
+                        <li>javascript</li>
+                        <li>underscore</li>
+                        <li>lodash</li>
+                    </ol>
+                    <li>angular.js</li>
+                    <li>ember.js</li>
+                    <li>underscore</li>
+                    <li>metro.js</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl1505', function ($scope) {});
+    myApp.directive('demo1', function () {
+        return function (scope, element, attrs) {
+            var items = element.find('li');
+            for (var i = 0; i < items.length; i++) {
+                if (items.eq(i).text() == 'underscore')
+                    items.eq(i).css('color', 'red');
+            }
+        }
+    });
+</script>

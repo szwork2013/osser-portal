@@ -11,7 +11,12 @@
             </div>
             <div class="panel-content">
                 <div>
+                    <h4>連動パターン</h4>
                     <div unordered-list></div>
+                </div>
+                <div>
+                    <h4>連動しないパターン</h4>
+                    <div unordered-list2></div>
                 </div>
             </div>
             <div class="padding10 bg-grayLighter">
@@ -28,26 +33,11 @@
 <script>
     var myApp = angular.module('exampleApp', []);
     myApp.controller('mainCtrl1501', function ($scope, dataService) {
-        $scope.books = [
-            {
-                title: 'AngularJSアプリケーション開発ガイド',
-                price: 2592,
-                url: 'http://r.osser.jp/book/angularjs',
-                category: 'javascript',
-                pubdate: new Date(2014, 4 - 1, 8)
-                },
-            {
-                title: '現場で通用する力を身につける Node.jsの教科書',
-                price: 3434,
-                url: 'http://r.osser.jp/book/nodejs-textbook',
-                category: 'nodejs',
-                pubdate: new Date(2014, 3 - 1, 25)
-                }
-            ];
+        $scope.books = dataService.getBooks();
         $scope.addPrice = function () {
             for (var i = 0; i < $scope.books.length; i++) {
-                $scope.books[i].price += 100;
-                console.log($scope.books[i]);
+                if (i === 3) //個別更新
+                    $scope.books[i].price += 100;
             }
         }
     });
@@ -57,11 +47,35 @@
             var listTag = angular.element("<ul>");
             element.append(listTag);
             for (var i = 0; i < books.length; i++) {
-                var itemTag = angular.element("<li>");
-                listTag.append(itemTag);
-                itemTag.text(books[i].title + ', ' + $filter('currency')(books[i].price));
+                (function () {
+                    var index = i;
+                    var itemTag = angular.element("<li>");
+                    listTag.append(itemTag);
+                    var watcherFn = function (watchScope) {
+                        console.log('unorderedList', index);
+                        return books[index].price;
+                    }
+                    scope.$watch(watcherFn, function (newValue, oldValue) {
+                        console.log('scope.$watch', newValue, oldValue);
+                        itemTag.text(books[index].title + ', ' + $filter('currency')(newValue));
+                    });
+                }());
             }
         }
+    });
+    myApp.directive('unorderedList2', function ($filter) {
+        return function (scope, element, attrs) {
+            var books = scope.books;
+            var listTag = angular.element("<ul>");
+            element.append(listTag);
+            for (var i = 0; i < books.length; i++) {
+                var index = i;
+                var itemTag = angular.element("<li>");
+                listTag.append(itemTag);
+                itemTag.text(books[index].title + ', ' + $filter('currency')(books[index].price));
+            }
+        }
+
     });
 </script>
 <script src="/lib/angularjs/js/books.js"></script>

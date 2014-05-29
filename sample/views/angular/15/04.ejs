@@ -1,0 +1,47 @@
+<div class="container" ng-controller="mainCtrl1504">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                <%- req.path %>
+            </div>
+            <div class="panel-content">
+                <h4>angular-list</h4>
+                <ol demo1>
+                    <li ng-repeat="book in books">{{book.title}}</li>
+                </ol>
+                <h4>固定list</h4>
+                <ul demo1>
+                    <li>I like Node.js</li>
+                    <li>Node.js in Action</li>
+                    <li>I like linux</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl1504', function ($scope, dataService) {
+        $scope.books = dataService.getBooks();
+    });
+    myApp.directive('demo1', function () {
+        return function (scope, element, attrs) {
+            var items = element.children();
+            for (var i = 0; i < items.length; i++) {
+                if (items.eq(i).text() == "Node.js in Action")
+                    items.eq(i).css('color', 'red');
+            }
+        }
+    });
+</script>
+<script src="/lib/angularjs/js/books.js"></script>
