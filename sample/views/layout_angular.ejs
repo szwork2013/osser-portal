@@ -44,6 +44,17 @@
                 </div>
 
                 <a class="pull-menu" href="#"></a>
+                <div class="no-tablet-portrait no-phone">
+                    <span class="element-divider place-right"></span>
+                    <a title="Metro-UI-CSS" href="http://osser.jp/" class="element place-right" target="_blank">
+                        <span class="icon-grid-view"></span>
+                    </a>
+                    <span class="element-divider place-right"></span>
+                    <a title="GitHub" href="https://github.com/osser" class="element place-right" target="_blank">
+                        <span class="icon-github"></span>
+                    </a>
+                    <span class="element-divider place-right"></span>
+                </div>
                 <ul class="element-menu place-right">
                     <li>
                         <a class="element" href="/">ホーム</a>
@@ -54,24 +65,13 @@
                     <li>
                         <a class="element fg-yellow" href="/angular">AngularJS</a>
                     </li>
-                    <!--pullmenu徹底日表示する場合はa.elementを利用-->
-                    <li class="no-tablet-portrait no-phone">
-                        <a title="GitHub" href="https://github.com/osser" class="" target="_blank">
-                            <span class="icon-github"></span>
-                        </a>
-                    </li>
-                    <li class="no-tablet-portrait no-phone">
-                        <a title="Metro-UI-CSS" href="http://osser.jp/" class="" target="_blank">
-                            <span class="icon-grid-view"></span>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </nav>
     </nav>
     <div class="grid bg-yellow" style="min-height:3px;">
     </div>
-    
+
     <%- body %>
 
         <!--TEMPLATES-->
@@ -84,15 +84,22 @@
         <script src="/linker/js/app.js"></script>
         <!--SCRIPTS END-->
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-36130359-6', 'osser.jp');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-</script>
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-36130359-6', 'osser.jp');
+            ga('require', 'displayfeatures');
+            ga('send', 'pageview');
+        </script>
 </body>
 
 </html>

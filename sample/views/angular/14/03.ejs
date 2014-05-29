@@ -35,7 +35,7 @@
             </tbody>
             <tfoot></tfoot>
         </table>
-        <h4>Books <small class="bg-grayLighter">filter:custom(javascript,server)</small></h4>
+        <h4>Books <small class="bg-grayLighter">filter:selectItems(javascript,server)</small></h4>
         <ul>
             <li ng-repeat="book in books | filter:selectItems | orderBy:'price'">{{book.title}}, {{book.price}}</li>
         </ul>

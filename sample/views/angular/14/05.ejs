@@ -1,0 +1,121 @@
+<div class="container" ng-controller="mainCtrl1405">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <h3>filter/service</h3>
+        <div>{{message1 | labelCase}}</div>
+        <div>{{message2 | labelCase:true}}</div>
+        <div class="padding20 bg-grayLighter">{{message}}</div>
+        <div>
+            <h3>todo list</h3>
+            <ul>
+                <li ng-repeat="item in todos">{{item.id}} : {{item.name}} : {{item.complete}}</li>
+            </ul>
+        </div>
+        <div>
+            <h3>skip:2,limitTo:3</h3>
+            <ul>
+                <li ng-repeat="item in todos | skip:2 | limitTo:3 ">{{item.id}} : {{item.name}} : {{item.complete}}</li>
+            </ul>
+        </div>
+        <div>
+            <h3>filter:selectItems</h3>
+            <ul>
+                <li ng-repeat="item in todos | filter:selectItems ">{{item.id}} : {{item.name}} : {{item.complete}}</li>
+            </ul>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl1405', function ($scope) {
+        $scope.message = "";
+        $scope.message1 = "MyMessage1";
+        $scope.message2 = "MyMessage2";
+        $scope.$on('messageUpdated', function (event, args) {
+            $scope.message = args.message;
+        });
+        $scope.selectItems = function (item) {
+            return item.complete;
+        }
+        $scope.todos = [
+            {
+                id: 100,
+                name: 'node.js',
+                complete: true
+            },
+            {
+                id: 200,
+                name: 'javascript',
+                complete: true
+            },
+            {
+                id: 300,
+                name: 'vb.net',
+                complete: false
+            },
+            {
+                id: 400,
+                name: 'linux',
+                complete: true
+            },
+            {
+                id: 500,
+                name: 'macos',
+                complete: true
+            },
+            {
+                id: 600,
+                name: 'apache',
+                complete: false
+            },
+            {
+                id: 700,
+                name: 'nginx',
+                complete: false
+            }
+        ];
+    });
+    myApp.service('updService', function ($rootScope) {
+        return {
+            updmessage: function (message) {
+                $rootScope.$broadcast("messageUpdated", {
+                    message: message
+                });
+            }
+        }
+    });
+    myApp.filter('labelCase', function (updService) {
+        return function (value, reverse) {
+            updService.updmessage(value + ", " + reverse);
+            if (angular.isString(value)) {
+                var intermediate = reverse ? value.toUpperCase() : value.toLowerCase();
+                return (reverse ? intermediate[0].toLowerCase() :
+                    intermediate[0].toUpperCase()) + intermediate.substr(1);
+            } else {
+                return value;
+            }
+        }
+    });
+    myApp.filter('skip', function () {
+        return function (data, count) {
+            if (angular.isArray(data) && angular.isNumber(count)) {
+                if (count > data.length || count < 1) {
+                    return data;
+                } else {
+                    return data.slice(count);
+                }
+            } else {
+                return data;
+            }
+        }
+    });
+</script>

@@ -23,9 +23,9 @@ cd ../redirect
 ./runserver.sh $1
 sleep 5
 
-#cd ../book
-#./runserver.sh $1
-#sleep 5
+cd ../book
+./runserver.sh $1
+sleep 5
 
 #cd ../tools
 #./runserver.sh $1

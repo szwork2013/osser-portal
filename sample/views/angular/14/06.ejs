@@ -1,0 +1,93 @@
+<div class="container" ng-controller="mainCtrl1406">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <h3>$filter利用</h3>
+        <div>
+            <ul>
+                <li ng-repeat="item in todos">{{item.id}} : {{item.name}} : {{item.complete}}</li>
+            </ul>
+        </div>
+        <h3>take:2:3</h3>
+        <div>
+            <ul>
+                <li ng-repeat="item in todos | take:2:3 ">{{item.id}} : {{item.name}} : {{item.complete}}</li>
+            </ul>
+        </div>
+        <h3>skip:2, limitTo:3</h3>
+        <div>
+            <ul>
+                <li ng-repeat="item in todos | skip:2 | limitTo:3 ">{{item.id}} : {{item.name}} : {{item.complete}}</li>
+            </ul>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.filter('skip', function () {
+        return function (data, count) {
+            if (angular.isArray(data) && angular.isNumber(count)) {
+                if (count > data.length || count < 1) {
+                    return data;
+                } else {
+                    return data.slice(count);
+                }
+            } else {
+                return data;
+            }
+        }
+    });
+    myApp.filter('take', function ($filter) {
+        return function (data, skipCount, takeCount) {
+            var skippedData = $filter("skip")(data, skipCount);
+            return $filter("limitTo")(skippedData, takeCount);
+        }
+    });
+    myApp.controller('mainCtrl1406', function ($scope) {
+        $scope.todos = [
+            {
+                id: 100,
+                name: 'node.js',
+                complete: true
+            },
+            {
+                id: 200,
+                name: 'javascript',
+                complete: true
+            },
+            {
+                id: 300,
+                name: 'vb.net',
+                complete: false
+            },
+            {
+                id: 400,
+                name: 'linux',
+                complete: true
+            },
+            {
+                id: 500,
+                name: 'macos',
+                complete: true
+            },
+            {
+                id: 600,
+                name: 'apache',
+                complete: false
+            },
+            {
+                id: 700,
+                name: 'nginx',
+                complete: false
+            }
+        ];
+    });
+</script>
