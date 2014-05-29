@@ -1,0 +1,52 @@
+<div class="container" ng-controller="mainCtrl1502">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                directive sample
+            </div>
+            <div class="panel-content">
+                <div>
+                    <h4>ng-repeat</h4>
+                    <ol>
+                        <li ng-repeat="book in books">{{book.title}}</li>
+                    </ol>
+                </div>
+                <div>
+                    <h4>directive:unordered-list</h4>
+                    <div unordered-list="books" show-field="title" test1="1" test2="2" test3='3'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl1502', function ($scope, dataService) {
+        $scope.books = dataService.getBooks();
+    });
+    myApp.directive('unorderedList', function () {
+        return function (scope, element, attrs) {
+            //console.log('unorderedList.scope', scope);
+            //console.log('unorderedList.element', element);
+            console.log('unorderedList.attrs', attrs);
+
+            var listTag = angular.element("<ul>");
+            element.append(listTag);
+            var books = scope.books;
+            for (var i = 0; i < books.length; i++) {
+                listTag.append(angular.element("<li>").text(books[i][attrs.showField]));
+            }
+        }
+    });
+</script>
+<script src="/lib/angularjs/js/books.js"></script>

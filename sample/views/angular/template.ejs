@@ -5,7 +5,16 @@
     </h2>
     <hr/>
     <div>
-        <h3><%- req.path %></h3>
+        <div class="panel">
+            <div class="panel-header">
+                <%- req.path %>
+            </div>
+            <div class="panel-content">
+                <ol>
+                    <li ng-repeat="book in books">{{book.title}}</li>
+                </ol>
+            </div>
+        </div>        
     </div>
     <hr/>
     <p>

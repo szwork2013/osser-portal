@@ -5,7 +5,19 @@
     </h2>
     <hr/>
     <div>
-        <h3><%- req.path %></h3>
+        <div class="panel">
+            <div class="panel-header">
+                初めてのdirective
+            </div>
+            <div class="panel-content">
+                <ol>
+                    <li ng-repeat="book in books">{{book.title}}</li>
+                </ol>
+                <div>
+                    <div unordered-list test1 test2 test3></div>
+                </div>
+            </div>
+        </div>
     </div>
     <hr/>
     <p>
@@ -15,5 +27,28 @@
 
 <script>
     var myApp = angular.module('exampleApp', []);
-    myApp.controller('mainCtrl1501', function ($scope) {});
+    myApp.controller('mainCtrl1501', function ($scope, dataService) {
+        $scope.books = dataService.getBooks();
+    });
+    myApp.directive('unorderedList', function () {
+        return function (scope, element, attrs) {
+            console.log('unorderedList', scope, element, attrs);
+        }
+    });
+    myApp.directive('test1', function () {
+        return function (scope, element, attrs) {
+            console.log('directive-test1');
+        }
+    });
+    myApp.directive('test2', function () {
+        return function (scope, element, attrs) {
+            console.log('directive-test2');
+        }
+    });
+    myApp.directive('test3', function () {
+        return function (scope, element, attrs) {
+            console.log('directive-test3');
+        }
+    });
 </script>
+<script src="/lib/angularjs/js/books.js"></script>

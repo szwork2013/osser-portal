@@ -41,8 +41,9 @@ module.exports = {
                     if (err) return console.error(err);
                     return redirect(res, filepath, data.toString());
                 });
-            } else
+            } else {
                 return res.notFound();
+            }
         } else
             return res.notFound();
     },

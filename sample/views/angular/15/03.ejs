@@ -1,0 +1,68 @@
+<div class="container" ng-controller="mainCtrl1501">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                Evaluating Expressions
+            </div>
+            <div class="panel-content">
+                <div>
+                    <div unordered-list></div>
+                </div>
+            </div>
+            <div class="padding10 bg-grayLighter">
+                <button class="button primary" ng-click="addPrice()">AddPrice</button>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl1501', function ($scope, dataService) {
+        $scope.books = [
+            {
+                title: 'AngularJSアプリケーション開発ガイド',
+                price: 2592,
+                url: 'http://r.osser.jp/book/angularjs',
+                category: 'javascript',
+                pubdate: new Date(2014, 4 - 1, 8)
+                },
+            {
+                title: '現場で通用する力を身につける Node.jsの教科書',
+                price: 3434,
+                url: 'http://r.osser.jp/book/nodejs-textbook',
+                category: 'nodejs',
+                pubdate: new Date(2014, 3 - 1, 25)
+                }
+            ];
+        $scope.addPrice = function () {
+            for (var i = 0; i < $scope.books.length; i++) {
+                $scope.books[i].price += 100;
+                console.log($scope.books[i]);
+            }
+        }
+    });
+    myApp.directive('unorderedList', function ($filter) {
+        return function (scope, element, attrs) {
+            var books = scope.books;
+            var listTag = angular.element("<ul>");
+            element.append(listTag);
+            for (var i = 0; i < books.length; i++) {
+                var itemTag = angular.element("<li>");
+                listTag.append(itemTag);
+                itemTag.text(books[i].title + ', ' + $filter('currency')(books[i].price));
+            }
+        }
+    });
+</script>
+<script src="/lib/angularjs/js/books.js"></script>
+<script src="/lib/angularjs/i18n/angular-locale_ja-jp.js"></script>
