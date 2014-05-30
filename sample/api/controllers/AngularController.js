@@ -27,6 +27,7 @@ module.exports = {
      */
     index: function (req, res) {
         return res.view('angular/index', {
+            samplename: 'AngularJS',
             layout: 'layout_angular'
         });
     },
@@ -72,6 +73,7 @@ module.exports = {
 function redirect(res, path, source) {
     //console.log(_s.escapeHTML(source));
     return res.view(path, {
+        samplename: 'AngularJS',
         layout: 'layout_angular',
         source: _s.escapeHTML(source)
     });

@@ -1,0 +1,26 @@
+<div class="container" ng-controller="mainCtrl1601">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel collapsed" data-role="panel">
+            <div class="panel-header">
+                <%- req.path %>
+            </div>
+            <div class="panel-content" style="display:none;">
+                ...
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl1601', function ($scope) {});
+</script>

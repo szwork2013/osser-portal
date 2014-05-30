@@ -26,6 +26,7 @@ module.exports = {
      */
     temp: function (req, res) {
         return res.view('home/temp', {
+            samplename:'Coming Soon',
             layout: 'layout_angular'
         });
     },

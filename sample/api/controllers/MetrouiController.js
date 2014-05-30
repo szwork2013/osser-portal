@@ -27,6 +27,7 @@ module.exports = {
      */
     index: function (req, res) {
         return res.view('metroui/index', {
+            samplename: 'Metro UI',
             layout: 'layout_angular',
         });
     },
@@ -55,6 +56,7 @@ module.exports = {
 function redirect(res, path, source) {
     //console.log(_s.escapeHTML(source));
     return res.view(path, {
+        samplename: 'Metro UI',
         layout: 'layout_angular',
         source: _s.escapeHTML(source)
     });

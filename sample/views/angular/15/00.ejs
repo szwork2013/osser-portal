@@ -84,6 +84,46 @@
         </tbody>
         <tfoot></tfoot>
     </table>
+    <h3>Other jqLite Methods</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in jqlite_other_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>jqLite Methods That Access AngularJS Features</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in jqlite_angularjs_features">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
 
 </div>
 <script>
@@ -199,6 +239,46 @@
             {
                 name: 'triggerHandler(event)',
                 desc: 'Triggers all of the handlers for the specified event registered on the elements represented by the jqLite object'
+            }
+        ];
+        $scope.jqlite_other_methods = [
+            {
+                name: 'data(key, value),data(key)',
+                desc: 'Associates arbitrary data with all the elements or retrieves a value for the specified key from the first element represented by the jqLite object'
+            },
+            {
+                name: 'removeData(key)',
+                desc: 'Removes data associated with the specified key from the elements represented by the jqLite object'
+            },
+            {
+                name: 'html()',
+                desc: 'Returns an HTML representation of the content of the first element represented by the jqLite object'
+            },
+            {
+                name: 'ready(handler)',
+                desc: 'Registers a handler function that will be invoked once the contents of the DOM are fully loaded'
+            }
+        ];
+        $scope.jqlite_angularjs_features = [
+            {
+                name: 'controller(),controller(name)',
+                desc: 'Returns the controller associated with the current element or its parent'
+            },
+            {
+                name: 'injector()',
+                desc: 'Returns the injector associated with the current element or its parent.'
+            },
+            {
+                name: 'isolatedScope()',
+                desc: 'Returns an isolated scope if there is one associated with the current element.'
+            },
+            {
+                name: 'scope()',
+                desc: 'Returns the scope associated with the current element or its parent.'
+            },
+            {
+                name: 'inheritedData(key)',
+                desc: 'This method performs the same function as the jQuery data method but will walk up the element hierarchy looking for a value to match the specified key.'
             }
         ];
 
