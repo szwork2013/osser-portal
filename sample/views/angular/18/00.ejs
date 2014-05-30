@@ -1,0 +1,209 @@
+<div class="container" ng-controller="mainCtrl1800">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>The Members of the Module Object</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in module_object_members">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Built-in AngularJS Services</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in angular_builtin_services">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl1800', function ($scope) {
+        $scope.module_object_members = [
+            {
+                name: 'animation(name, factory)',
+                desc: 'Supports the animation feature'
+            },
+            {
+                name: 'config(callback)',
+                desc: 'Registers a function that can be used to configure a module when it is loaded.'
+            },
+            {
+                name: 'constant(key, value)',
+                desc: 'Defines a service that returns a constant value.'
+            },
+            {
+                name: 'controller(name, constructor)',
+                desc: 'Creates a controller'
+            },
+            {
+                name: 'directive(name, factory)',
+                desc: 'Creates a directive.'
+            },
+            {
+                name: 'factory(name, provider)',
+                desc: 'Creates a factory.'
+            },
+            {
+                name: 'filter(name, factory)',
+                desc: 'Creates a filter that formats data for display to the user.'
+            },
+            {
+                name: 'provider(name, type)',
+                desc: 'Creates a provider'
+            },
+            {
+                name: 'name',
+                desc: 'Returns the name of the module.'
+            },
+            {
+                name: 'run(callback)',
+                desc: 'Registers a function that is invoked after AngularJS has loaded and configured all of the modules.'
+            },
+            {
+                name: 'service(name, constructor)',
+                desc: 'Creates a service'
+            },
+            {
+                name: 'value(name, value)',
+                desc: 'Defines a service that returns a constant value.'
+            }
+        ];
+        $scope.angular_builtin_services = [
+            {
+                name: '$anchorScroll',
+                desc: 'Scrolls the browser window to a specified anchor.'
+            },
+            {
+                name: '$animate',
+                desc: 'Animates the content transitions.'
+            },
+            {
+                name: '$compile',
+                desc: 'Processes an HTML fragment to create a function that can be used to generate content.'
+            },
+            {
+                name: '$controller',
+                desc: 'A wrapper around the $injector service that instantiates controllers.'
+            },
+            {
+                name: '$document',
+                desc: 'Provides a jqLite objects that contains the DOM window.document object.'
+            },
+            {
+                name: '$exceptionHandler',
+                desc: 'Handles exceptions that arise in the application.'
+            },
+            {
+                name: '$filter',
+                desc: 'Provides access to filters'
+            },
+            {
+                name: '$http',
+                desc: 'Creates and manages Ajax requests.'
+            },
+            {
+                name: '$injector',
+                desc: 'Creates instances of AngularJS components.'
+            },
+            {
+                name: '$interpolate',
+                desc: 'Processes a string that contains binding expressions to create a function that can be used to generate content.'
+            },
+            {
+                name: '$interval',
+                desc: 'Provides an enhanced wrapper around the window.setInterval function.'
+            },
+            {
+                name: '$location',
+                desc: 'Provides a wrapper around the browser location object.'
+            },
+            {
+                name: '$log',
+                desc: 'Provides a wrapper around the global console object.'
+            },
+            {
+                name: '$parse',
+                desc: 'Processes an expression to create a function that can be used to generate content.'
+            },
+            {
+                name: '$provide',
+                desc: 'Implements many of the methods that are exposed by Module.'
+            },
+            {
+                name: '$q',
+                desc: 'Provides deferred objects/promises.'
+            },
+            {
+                name: '$resource',
+                desc: 'Provides support for working with RESTful APIs.'
+            },
+            {
+                name: '$rootElement',
+                desc: 'Provides access to the root element in the DOM.'
+            },
+            {
+                name: '$rootScope',
+                desc: 'Provides access to the top of the scope hierarchy'
+            },
+            {
+                name: '$route',
+                desc: 'Provides support for changing view content based on the browser’s URL path.'
+            },
+            {
+                name: '$routeParams',
+                desc: 'Provides information about URL routes.'
+            },
+            {
+                name: '$sanitize',
+                desc: 'Replaces dangerous HTML characters with their display-safe counterparts.'
+            },
+            {
+                name: '$sce',
+                desc: 'Removes dangerous elements and attributes from HTML strings in order to make them safe to display.'
+            },
+            {
+                name: '$swipe',
+                desc: 'Recognizes swipe gestures.'
+            },
+            {
+                name: '$timeout',
+                desc: 'Provides an enhanced wrapper around the window.setITimeout function.'
+            },
+            {
+                name: '$window',
+                desc: 'Provides a reference to the DOM window object.'
+            }
+        ];
+
+    });
+</script>

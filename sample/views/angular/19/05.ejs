@@ -1,0 +1,47 @@
+<div class="container" ng-controller="mainCtrl1905">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                $location.hash()
+            </div>
+            <div class="panel-content">
+                <div class="padding20">
+                    <span id="top"></span>
+                    <div>
+                        <button class="success" ng-click="show('bottom')">Goto Bottom</button>
+                    </div>
+                    <ol>
+                        <li ng-repeat="item in items">{{item}}</li>
+                    </ol>
+                    <span id="bottom"></span>
+                    <div>
+                        <button class="success" ng-click="show('top')">Goto Top</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl1905', function ($scope, $location, $anchorScroll) {
+        $scope.itemCount = 100;
+        $scope.items = [];
+        for (var i = 0; i < $scope.itemCount; i++) {
+            $scope.items[i] = "Item " + (i + 1);
+        }
+        $scope.show = function (id) {
+            $location.hash(id);
+        }
+    });
+</script>

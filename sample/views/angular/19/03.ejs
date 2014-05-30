@@ -1,0 +1,58 @@
+<div class="container" ng-controller="mainCtrl1903">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                $location
+            </div>
+            <div class="panel-content">
+                <p>The URL is: {{url}}</p>
+                <div class="btn-group ">
+                    <button class="btn btn-primary" ng-click="setUrl('reset')">Reset</button>
+                    <button class="btn btn-primary" ng-click="setUrl('path')">Path</button>
+                    <button class="btn btn-primary" ng-click="setUrl('hash')">Hash</button>
+                    <button class="btn btn-primary" ng-click="setUrl('search')">Search</button>
+                    <button class="btn btn-primary" ng-click="setUrl('url')">URL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl1903', function ($scope, $location) {
+        $scope.$on("$locationChangeSuccess", function (event, newUrl) {
+            $scope.url = newUrl;
+        });
+        $scope.setUrl = function (component) {
+            switch (component) {
+            case "reset":
+                $location.path("");
+                $location.hash("");
+                $location.search("");
+                break;
+            case "path":
+                $location.path("/cities/london");
+                break;
+            case "hash":
+                $location.hash("north");
+                break;
+            case "search":
+                $location.search("select", "hotels");
+                break;
+            case "url":
+                $location.url("/cities/london?select=hotels#north");
+                break;
+            }
+        }
+    });
+</script>

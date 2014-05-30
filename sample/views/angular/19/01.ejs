@@ -1,4 +1,4 @@
-<div class="container" ng-controller="mainCtrl">
+<div class="container" ng-controller="mainCtrl1901">
     <h2>
         <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
         AngularJSサンプル<small class="on-right">osser.jp</small>
@@ -10,7 +10,7 @@
                 <%- req.path %>
             </div>
             <div class="panel-content">
-                ...
+                <button>テストボタン</button>
             </div>
         </div>
     </div>
@@ -22,5 +22,9 @@
 
 <script>
     var myApp = angular.module('exampleApp', ['ngSanitize']);
-    myApp.controller('mainCtrl', function ($scope) {});
+    myApp.controller('mainCtrl1901', function ($scope, $window, $document) {
+        $document.find("button").on("click", function (event) {
+            $window.alert(event.target.innerText);
+        });
+    });
 </script>

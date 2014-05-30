@@ -1,0 +1,78 @@
+<div class="container" ng-controller="mainCtrl9901">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                Service, Factory, Provider
+            </div>
+            <div class="panel-content">
+                <h4>myFactory</h4>
+                <pre>{{myFactory|json}}</pre>
+                <pre>{{myFactory.message}}</pre>
+                <pre>{{myFactory.sayHelo('Mike')}}</pre>
+                <h4>myService</h4>
+                <pre>{{myService|json}}</pre>
+                <pre>{{myService.message}}</pre>
+                <pre>{{myService.sayGoodBye('John')}}</pre>
+                <h4>myProvider</h4>
+                <pre>{{myProvider|json}}</pre>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.factory('myFactory', function () {
+        return {
+            message: 'myFactory message',
+            sayHelo: function (name) {
+                return 'helo ' + name;
+            }
+        }
+    });
+    myApp.service('myService', function () {
+        return {
+            message: 'MyService message',
+            sayGoodBye: function (name) {
+                return 'goodbye ' + name;
+            }
+        }
+    });
+    myApp.provider('myProvider', function () {
+        return {
+            initConfig: {
+                a: 'a',
+                b: 'b',
+                c: 'c'
+            },
+            $get: function () {
+                return {
+                    message: 'myProvider message',
+                    initConfig: this.initConfig
+                }
+            }
+        }
+    });
+    myApp.config(function (myProviderProvider) {
+        // myProvider初期化
+        myProviderProvider.initConfig.a = "init-a";
+    });
+    myApp.controller('mainCtrl9901', function ($scope, myFactory, myService, myProvider) {
+        console.log(myFactory);
+        console.log(myService);
+        console.log(myProvider);
+        $scope.myFactory = myFactory;
+        $scope.myService = myService;
+        $scope.myProvider = myProvider;
+        $scope.message = "message from controller";
+    });
+</script>

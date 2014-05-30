@@ -1,4 +1,4 @@
-<div class="container" ng-controller="mainCtrl">
+<div class="container" ng-controller="mainCtrl1902">
     <h2>
         <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
         AngularJSサンプル<small class="on-right">osser.jp</small>
@@ -7,10 +7,10 @@
     <div>
         <div class="panel">
             <div class="panel-header">
-                <%- req.path %>
+                Using Intervals and Timeouts
             </div>
             <div class="panel-content">
-                ...
+                {{time|date:'medium'}}
             </div>
         </div>
     </div>
@@ -22,5 +22,11 @@
 
 <script>
     var myApp = angular.module('exampleApp', ['ngSanitize']);
-    myApp.controller('mainCtrl', function ($scope) {});
+    myApp.controller('mainCtrl1902', function ($scope, $interval) {
+        $scope.time = new Date();
+        $interval(function () {
+            $scope.time = new Date();
+        }, 1000);
+    });
 </script>
+<script src="/lib/angularjs/i18n/angular-locale_ja-jp.js"></script>

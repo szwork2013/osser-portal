@@ -1,11 +1,11 @@
-<div class="container" ng-controller="mainCtrl">
+<div class="container" ng-controller="mainCtrl1701">
     <h2>
         <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
         AngularJSサンプル<small class="on-right">osser.jp</small>
     </h2>
     <hr/>
     <div>
-        <div class="panel">
+        <div class="panel" data-role="panel">
             <div class="panel-header">
                 <%- req.path %>
             </div>
@@ -21,6 +21,6 @@
 </div>
 
 <script>
-    var myApp = angular.module('exampleApp', ['ngSanitize']);
-    myApp.controller('mainCtrl', function ($scope) {});
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl1701', function ($scope) {});
 </script>

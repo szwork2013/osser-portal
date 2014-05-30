@@ -1,0 +1,190 @@
+<div class="container" ng-controller="mainCtrl1900">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>The Services That Expose DOM API Features</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in dom_api_features">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Arguments Used with the $interval and $timeout Services</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in interval_timeout_services">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Methods Defined by the $location Service</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in location_service">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Events Defined by the $location Service</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in location_events">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+</div>
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl1900', function ($scope) {
+        $scope.dom_api_features = [
+            {
+                name: '$anchorScroll',
+                desc: 'Scrolls the browser window to a specified anchor'
+            },
+            {
+                name: '$document',
+                desc: 'Provides a jqLite object that contains the DOM window.document object'
+            },
+            {
+                name: '$interval',
+                desc: 'Provides an enhanced wrapper around the window.setInterval function'
+            },
+            {
+                name: '$location',
+                desc: 'Provides access to the URL'
+            },
+            {
+                name: '$log',
+                desc: 'Provides a wrapper around the console object'
+            },
+            {
+                name: '$timeout',
+                desc: 'Provides an enhanced wrapper around the window.setITimeout function'
+            },
+            {
+                name: '$window',
+                desc: 'Provides a reference to the DOM window object'
+            }
+        ];
+        $scope.interval_timeout_services = [
+            {
+                name: 'fn',
+                desc: 'A function whose execution will be delayed.'
+            },
+            {
+                name: 'delay',
+                desc: 'The number of milliseconds before fn will be executed.'
+            },
+            {
+                name: 'count',
+                desc: 'The number of times that the delay/execute cycle will be repeated ($interval only). The default value is zero, which means there is no limit.'
+            },
+            {
+                name: 'invokeApply',
+                desc: 'When set to true, which is the default value'
+            }
+        ];
+        $scope.location_service = [
+            {
+                name: 'absUrl()',
+                desc: 'Returns the complete URL of the current document, including the parts before the first # character '
+            },
+            {
+                name: 'hash(), hash(target)',
+                desc: 'Gets or sets the hash section of the URL'
+            },
+            {
+                name: 'host()',
+                desc: 'Returns the hostname component of the URL (mydomain.com).'
+            },
+            {
+                name: 'path(), path(target)',
+                desc: 'Gets or sets the path component of the URL'
+            },
+            {
+                name: 'port()',
+                desc: 'Returns the port number. This is implied in my example URL and defaults to 80.'
+            },
+            {
+                name: 'protocol()',
+                desc: 'Returns the protocol component of the URL (http).'
+            },
+            {
+                name: 'replace()',
+                desc: 'When called on an HTML5 browser, the change in the URL replaces the most recent entry in the browser history rather than creating a new one.'
+            },
+            {
+                name: 'search(), search(term, params)',
+                desc: 'Gets or sets the search term'
+            },
+            {
+                name: 'url(), url(target)',
+                desc: 'Gets or sets the path, query string, and hash together'
+            }
+        ];
+        $scope.location_events = [
+            {
+                name: '$locationChangeStart',
+                desc: 'Triggered before the URL is changed. You can prevent the URL from changing by calling the preventDefault method on the Event object.'
+            },
+            {
+                name: '$locationChangeSuccess',
+                desc: 'Triggered after the URL has changed.'
+            }
+        ];
+
+    });
+</script>
