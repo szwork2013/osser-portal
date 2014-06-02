@@ -1,0 +1,48 @@
+<div class="container" ng-controller="mainCtrl2004">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                $http(post)
+            </div>
+            <div class="panel-content">
+                <button ng-click="sendData()">Postテスト</button>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl2004', function ($scope, $http) {
+        $scope.book = {
+            title: 'i like angularjs.',
+            score: 100
+        };
+        $scope.sendData = function () {
+            $http.post('/angular/testpost', $scope.book, {
+                headers: {
+                    "content-type": "application/xml"
+                },
+                transformRequest: function (data, headers) {
+                    var rootElem = angular.element("<xml>");
+                    var bookdElem = angular.element("<book>");
+                    bookdElem.attr('title', data.title);
+                    rootElem.append(bookdElem);
+                    rootElem.children().wrap("<books>");
+                    return rootElem.html();
+                }
+            }).success(function (data) {
+                console.log(data);
+            });
+        }
+    });
+</script>

@@ -1,4 +1,4 @@
-<div class="container" ng-controller="mainCtrl">
+<div class="container" ng-controller="mainCtrl2001">
     <h2>
         <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
         AngularJSサンプル<small class="on-right">osser.jp</small>
@@ -7,11 +7,18 @@
     <div>
         <div class="panel">
             <div class="panel-header">
-                <%- req.path %>
+                $http(get,json)
             </div>
             <div class="panel-content">
-                ...
+                <ul>
+                    <li ng-repeat="book in books"><a ng-href="{{book.url}}" target="_blank">{{book.title}}</a>
+                    </li>
+                </ul>
             </div>
+        </div>
+        <div class="padding15 bg-grayLighter">
+            <h4>$http.get()-response</h4>
+            <pre>{{ajax_response|json}}</pre>
         </div>
     </div>
     <hr/>
@@ -22,5 +29,17 @@
 
 <script>
     var myApp = angular.module('exampleApp', ['ngSanitize']);
-    myApp.controller('mainCtrl', function ($scope) {});
+    myApp.controller('mainCtrl2001', function ($scope, $http) {
+        $scope.books = [];
+        $scope.ajax_response = {};
+        $http.get('/lib/angularjs/books.json').then(function (response) {
+            $scope.books = response.data;
+            $scope.ajax_response = response;
+            console.log(response.headers('content-type'));
+            console.log(response.headers('content-length'));
+        });
+        //$http.get('/lib/angularjs/books.json').success(function (data) {
+        //    console.log(data);
+        //});
+    });
 </script>

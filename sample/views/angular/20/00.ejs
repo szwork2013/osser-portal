@@ -24,6 +24,69 @@
         </tbody>
         <tfoot></tfoot>
     </table>
+    <h3>The Methods Defined Promise Objects Returned by $http Service Methods</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in http_method_promise">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Properties of the Object Passed by the then Method</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in httpservice_then_informations">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Configuration Properties for $http Methods</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in httpservice_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+
+
 
 </div>
 
@@ -54,6 +117,80 @@
             {
                 name: 'jsonp(url, config)',
                 desc: '<p>Performs a GET request to obtain a fragment of JavaScript code that is then executed. JSONP, which stands for JSON with Padding, is a way of working around the limitations that browsers apply to where JavaScript code can be loaded from. </p><p>see http://en.wikipedia.org/wiki/JSONP for details.</p>'
+            }
+        ];
+        $scope.http_method_promise = [
+            {
+                name: 'success(fn)',
+                desc: 'Invokes the specified function when the HTTP request has successfully completed'
+            },
+            {
+                name: 'error(fn)',
+                desc: 'Invokes the specified function when the request does not complete successfully'
+            },
+            {
+                name: 'then(fn, fn)',
+                desc: 'Registers a success function and an error function'
+            }
+        ];
+        $scope.httpservice_then_informations = [
+            {
+                name: 'data',
+                desc: 'Returns the data from the request'
+            },
+            {
+                name: 'status',
+                desc: 'Returns the HTTP status code returned by the server'
+            },
+            {
+                name: 'headers',
+                desc: 'Returns a function that can be used to obtain headers by name'
+            },
+            {
+                name: 'config',
+                desc: 'The configuration object used to make the request (see the “Configuring Ajax Requests”section for details)'
+            }
+        ];
+        $scope.httpservice_methods = [
+            {
+                name: 'data',
+                desc: ' Sets the data sent to the server. If you set this to an object, AngularJS will serialize it to the JSON format.'
+            },
+            {
+                name: 'headers',
+                desc: ' Used to set request headers. Set headers to an object with properties whose names and values correspond to the headers and values you want to add to the request.'
+            },
+            {
+                name: 'method',
+                desc: ' Sets the HTTP method used for the request.'
+            },
+            {
+                name: 'params',
+                desc: ' Used to set the URL parameters. Set params to an object whose property names and values correspond to the parameters you want to include.'
+            },
+            {
+                name: 'timeout',
+                desc: ' Specifies the number of milliseconds before the request expires.'
+            },
+            {
+                name: 'transformRequest',
+                desc: ' Used to manipulate the request before it is sent to the server '
+            },
+            {
+                name: 'transformResponse',
+                desc: ' Used to manipulate the response when it arrives from the server '
+            },
+            {
+                name: 'url',
+                desc: ' Sets the URL for the request.'
+            },
+            {
+                name: 'withCredentials',
+                desc: ' When set to true, the withCredentials option on the underlying browser request object is enabled, which includes authentication cookies in the request.'
+            },
+            {
+                name: 'xsrfHeaderNamexsrfCookieName',
+                desc: ' These properties are used to response to cross-site request forgery tokens that can be demanded by servers. See http://en.wikipedia.org/wiki/Cross-site_request_forgery for details.'
             }
         ];
 

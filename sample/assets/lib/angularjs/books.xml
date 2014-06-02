@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<books>
+    <book title="AngularJS Guide" url="http://r.osser.jp/book/angularjs"></book>
+    <book title="Node.js Guide" url="http://r.osser.jp/book/nodejs-textbook"></book>
+</books>

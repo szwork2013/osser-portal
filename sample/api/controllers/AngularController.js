@@ -61,6 +61,15 @@ module.exports = {
         });
     },
 
+    testpost: function (req, res) {
+        console.log('testpost', req.headers);
+        console.log('testpost', req.body);
+        return res.json({
+            result: 'angular/testpost',
+            body: req.body
+        });
+    },
+
     /**
      * Overrides for the settings in `config/controllers.js`
      * (specific to AngularController)

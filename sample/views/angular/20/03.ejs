@@ -1,0 +1,51 @@
+<div class="container" ng-controller="mainCtrl2003">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                $http(transformResponse)
+            </div>
+            <div class="panel-content">
+                <ol>
+                    <li ng-repeat="book in books"><a ng-href="{{book.url}}" target="_blank">{{book.title}}</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl2003', function ($scope, $http) {
+        $scope.books = [];
+        $http.get('/lib/angularjs/books.xml', {
+            transformResponse: function (data, headers) {
+                if (headers("content-type") == "application/xml" && angular.isString(data)) {
+                    books = [];
+                    var bookElements = angular.element(data.trim()).find("book");
+                    for (var i = 0; i < bookElements.length; i++) {
+                        var book = bookElements.eq(i);
+                        books.push({
+                            title: book.attr("title"),
+                            url: book.attr("url")
+                        });
+                    }
+                    return books;
+                } else {
+                    return data;
+                }
+            }
+        }).success(function (data) {
+            $scope.books = data;
+        });
+    });
+</script>
