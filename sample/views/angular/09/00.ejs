@@ -25,7 +25,7 @@
 </div>
 
 <script>
-    var myApp = angular.module('exampleApp', []);
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
     myApp.controller('mainCtrl', function ($scope) {
         $scope.module_members = [
             {

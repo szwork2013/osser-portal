@@ -1,0 +1,53 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                Exception Handler
+            </div>
+            <div class="panel-content">
+                <button class="danger" ng-click="throwEx1()">Throw Exception1</button>
+                <button class="danger" ng-click="throwEx2()">Throw Exception2</button>
+                <button class="danger" ng-click="throwEx3()">Throw Exception3</button>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.factory('errorHandler', function ($log) {
+        return {
+            error: function () {
+                $log.error(arguments);
+            }
+        }
+    });
+    myApp.controller('mainCtrl', function ($scope, $exceptionHandler, errorHandler) {
+        $scope.throwEx1 = function () {
+            throw new Error('Custom Error1');
+        }
+        $scope.throwEx2 = function () {
+            try {
+                throw new Error('Custom Error2');
+            } catch (ex) {
+                $exceptionHandler(ex.message, 'Button Click', 'button2');
+            }
+        }
+        $scope.throwEx3 = function () {
+            try {
+                throw new Error('Custom Error3');
+            } catch (ex) {
+                errorHandler.error(ex.message, 'Button Click', 'button3');
+            }
+        }
+    });
+</script>

@@ -1,0 +1,42 @@
+<div class="container" ng-controller="mainCtrl1908">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                Working with Dangerous Data($sanitize, $sce)
+            </div>
+            <div class="panel-content">
+                <div>
+                    <input type="text" ng-model="htmlData" class="span10">
+                </div>
+                <h4>Original Html</h4>
+                <div>{{htmlData}}</div>
+                <h4>Sanitaized Html</h4>
+                <div ng-bind-html="htmlData"></div>
+                <div>{{secrethtmlData}}</div>
+                <div ng-bind-html="secrethtmlData"></div>
+                <h4>Trusted Html</h4>
+                <div ng-bind-html="trustedhtmlData"></div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl1908', function ($scope, $sanitize, $sce) {
+        $scope.htmlData = "<p>This is <b onmouseover=alert('Attack!')>dangerous</b> data</p>";
+        $scope.$watch("htmlData", function (newValue) {
+            $scope.secrethtmlData = $sanitize(newValue);
+            $scope.trustedhtmlData = $sce.trustAsHtml(newValue);
+        });
+    });
+</script>
