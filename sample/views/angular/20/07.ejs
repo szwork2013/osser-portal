@@ -1,0 +1,64 @@
+<div class="container" ng-controller="mainCtrl2007">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                Working with Promises
+            </div>
+            <div class="panel-content">
+                <div class="padding20" promise-worker>
+                    <button class="info">Button1</button>
+                    <button class="info">Button2</button>
+                    <button class="info">Button3</button>
+                    <div>Outcome: <span promise-observer></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.directive("promiseWorker", function ($q) {
+        var deferred = $q.defer();
+        return {
+            link: function (scope, element, attrs) {
+                console.log(element);
+                element.find("button").on("click", function (event) {
+                    var buttonText = event.target.innerText;
+                    console.log(buttonText, ' clicked.');
+                    if (buttonText == "Button3") {
+                        deferred.reject("Button3-New");
+                    } else {
+                        deferred.resolve(buttonText);
+                    }
+                });
+            },
+            controller: function ($scope, $element, $attrs) {
+                this.promise = deferred.promise;
+            }
+        }
+    });
+    myApp.directive("promiseObserver", function () {
+        return {
+            require: "^promiseWorker",
+            link: function (scope, element, attrs, ctrl) {
+                ctrl.promise.then(function (result) {
+                    element.text(result);
+                }, function (reason) {
+                    element.text("Fail (" + reason + ")");
+                });
+            }
+        }
+    });
+    myApp.controller('mainCtrl2007', function ($scope) {});
+</script>

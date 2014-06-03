@@ -1,0 +1,44 @@
+<div class="container" ng-controller="mainCtrl2201">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                <%- req.path %>
+            </div>
+            <div class="panel-content">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize', 'ngRoute']);
+    myApp.config(function ($routeProvider, $locationProvider) {
+        $routeProvider.when("/view1", {
+            templateUrl: "/angular/view/1"
+        });
+        $routeProvider.when("/view2", {
+            templateUrl: "/angular/view/2"
+        });
+        $routeProvider.when("/view3", {
+            templateUrl: "/angular/view/3"
+        });
+        $routeProvider.otherwise({
+            templateUrl: "/angular/view/1"
+        });
+    });
+    myApp.controller('mainCtrl2201', function ($scope, $location) {
+        $scope.gotoUrl = function (url) {
+            $location.path(url);
+        };
+    });
+</script>

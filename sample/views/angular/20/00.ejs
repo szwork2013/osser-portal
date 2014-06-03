@@ -124,6 +124,66 @@
         </tbody>
         <tfoot></tfoot>
     </table>
+    <h3>The Methods Defined by the $q Service</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in q_service_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Members Defined by deferred Objects</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in deferred_objects_members">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Methods Defined by Promise Objects</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in promise_objects_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
 
 
 
@@ -278,6 +338,56 @@
             {
                 name: 'responseError',
                 desc: ' The interceptor function is called when the previous response interceptor throws an error.'
+            }
+        ];
+        $scope.q_service_methods = [
+            {
+                name: 'all(promises)',
+                desc: ' Returns a promise that is resolved when all of the promises in the specified array are resolved or any of them is rejected'
+            },
+            {
+                name: 'defer()',
+                desc: ' Creates a deferred object'
+            },
+            {
+                name: 'reject(reason)',
+                desc: ' Returns a promise that is always rejected'
+            },
+            {
+                name: 'when(value)',
+                desc: ' Wraps a value in a promise that is always resolved (with the specified value as a result)'
+            }
+        ];
+        $scope.deferred_objects_members = [
+            {
+                name: 'resolve(result)',
+                desc: ' Signals that the deferred activity has completed with the specified value'
+            },
+            {
+                name: 'reject(reason)',
+                desc: ' Signals that the deferred activity has failed or will not be completed for the specified reason'
+            },
+            {
+                name: 'notify(result)',
+                desc: ' Provides an interim result from the deferred activity'
+            },
+            {
+                name: 'promise',
+                desc: ' Returns a promise object that receives the signals from the other methods'
+            }
+        ];
+        $scope.promise_objects_methods = [
+            {
+                name: 'then(success, error, notify)',
+                desc: ' Registers functions that are invoked in response to the deferred object’s resolve, reject, and notify methods. The functions are passed the arguments that were used to call the deferred object’s methods.'
+            },
+            {
+                name: 'catch(error)',
+                desc: ' Registers just an error handling function, which is passed the argument used to call the deferred object’s reject method.'
+            },
+            {
+                name: 'finally(fn)',
+                desc: ' Registers a function that is invoked irrespective of the promise being resolved or rejected. The function is passed the argument used to call the deferred object’s resolve or reject method.'
             }
         ];
 

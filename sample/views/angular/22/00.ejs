@@ -1,0 +1,141 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>The Methods and Properties Defined by the $route Service</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in route_service_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Events Defined by the $route Service</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in route_service_events">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Route Configuration Options</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in route_configuration_options">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.route_service_methods = [
+            {
+                name: 'current',
+                desc: ' Returns an object that provides information about the active route. The object returned from this property defines a controller property that returns the controller associated with the route (see the “Using Controllers with Routes” section) and a locals property that provides the set of controller dependencies (see the “Adding Dependencies to Routes” section). The collection returned by the locals property also contains $scope and $template properties that return the scope for the controller and the view content.'
+            },
+            {
+                name: 'reload()',
+                desc: ' Reloads the view even if the URL path hasn’t changed.'
+            },
+            {
+                name: 'routes',
+                desc: ' Returns the collections of the routes defined through the $routeProvider'
+            }
+        ];
+        $scope.route_service_events = [
+            {
+                name: '$routeChangeStart',
+                desc: ' Triggered before the route is changed'
+            },
+            {
+                name: '$routeChangeSuccess',
+                desc: ' Triggered after the route has changed'
+            },
+            {
+                name: '$routeUpdate',
+                desc: ' Triggered when the route is refreshed; this is tied to the reloadOnSearch configuration property, which I describe in the “Configuring Routes” section'
+            },
+            {
+                name: '$routeChangeError',
+                desc: ' Triggered if the route cannot be changed'
+            }
+        ];
+        $scope.route_configuration_options = [
+            {
+                name: 'controller',
+                desc: ' Specifies the name of a controller to be associated with the view displayed by the route. See the “Using Controllers with Routes” section.'
+            },
+            {
+                name: 'controllerAs',
+                desc: ' Specifies an alias to be used for the controller.'
+            },
+            {
+                name: 'template',
+                desc: ' Specifies the content of the view. This can be expressed as a literal HTML string or as a function that returns the HTML.'
+            },
+            {
+                name: 'templateUrl',
+                desc: ' Specifies the URL of the view file to display when the route matches. This can be expressed as a string or as a function that returns a string.'
+            },
+            {
+                name: 'resolve',
+                desc: ' Specifies a set of dependencies for the controller. See the “Adding Dependencies to Routes” section.'
+            },
+            {
+                name: 'redirectTo',
+                desc: ' Specifies a path that the browser should be redirected to when the route is matched. Can be expressed as a string or a function.'
+            },
+            {
+                name: 'reloadOnSearch',
+                desc: ' When true, the default value, the route will reload when only the values returned by the $location search and hash methods change.'
+            },
+            {
+                name: 'caseInsensitiveMatch',
+                desc: ' When true, the default value, routes are matched to URLs without case sensitivity (e.g., /Edit and /edit are considered to be the same).'
+            }
+        ];
+
+    });
+</script>
