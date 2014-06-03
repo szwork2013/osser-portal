@@ -1,0 +1,48 @@
+<div class="container" ng-controller="mainCtrl2006">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                Using Ajax Interceptors
+            </div>
+            <div class="panel-content">
+                <ul>
+                    <li ng-repeat="book in books">{{book.title}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.config(function ($httpProvider) {
+        $httpProvider.interceptors.push(function () {
+            return {
+                request: function (config) {
+                    console.log(config);
+                    config.url = "/lib/angularjs/books.json";
+                    return config;
+                },
+                response: function (response) {
+                    console.log("Data Count: " + response.data.length);
+                    return response;
+                }
+            }
+        });
+    });
+    myApp.controller('mainCtrl2006', function ($scope, $http) {
+        $scope.books = [];
+        $http.get('/lib/angularjs/books1.json').success(function (data) {
+            $scope.books = data;
+        });
+    });
+</script>

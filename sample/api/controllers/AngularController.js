@@ -33,6 +33,9 @@ module.exports = {
     },
 
     sample: function (req, res) {
+        //console.log('sample', req.headers);
+        //console.log('sample', req.body);
+        
         var id = req.param('id');
         //console.log('id', id);
         if (id) {

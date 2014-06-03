@@ -84,7 +84,46 @@
         </tbody>
         <tfoot></tfoot>
     </table>
-
+    <h3>The Properties Defined by the $httpProvider</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in httpprovider_properties">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Interceptor Properties</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in interceptor_properties">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
 
 
 
@@ -191,6 +230,54 @@
             {
                 name: 'xsrfHeaderNamexsrfCookieName',
                 desc: ' These properties are used to response to cross-site request forgery tokens that can be demanded by servers. See http://en.wikipedia.org/wiki/Cross-site_request_forgery for details.'
+            }
+        ];
+        $scope.httpprovider_properties = [
+            {
+                name: 'defaults.headers.common',
+                desc: ' Defines the default headers used for all requests.'
+            },
+            {
+                name: 'defaults.headers.post',
+                desc: ' Defines the headers used for POST requests.'
+            },
+            {
+                name: 'defaults.headers.put',
+                desc: ' Defines the headers used for PUT requests.'
+            },
+            {
+                name: 'defaults.transformResponse',
+                desc: ' An array of transform functions that are applied to all responses.'
+            },
+            {
+                name: 'defaults.transformRequest',
+                desc: ' An array of transform functions that are applied to all requests.'
+            },
+            {
+                name: 'interceptors',
+                desc: ' An array of interceptor factory functions. Interceptors are a more sophisticated form of transform function. I explain how they work in the next section.'
+            },
+            {
+                name: 'withCredentials',
+                desc: ' Sets the withCredentials option for all requests. This property is used to address cross-origin requests that require authentication.'
+            }
+        ];
+        $scope.interceptor_properties = [
+            {
+                name: 'request',
+                desc: ' The interceptor function is called before the request is made and is passed the configuration object.'
+            },
+            {
+                name: 'requestError',
+                desc: ' The interceptor function is called when the previous request interceptor throws an error.'
+            },
+            {
+                name: 'response',
+                desc: ' The interceptor function is called when the response is received and is passed the response object.'
+            },
+            {
+                name: 'responseError',
+                desc: ' The interceptor function is called when the previous response interceptor throws an error.'
             }
         ];
 
