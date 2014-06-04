@@ -1,0 +1,98 @@
+<div class="container" ng-controller="mainCtrl2400">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>The Methods Defined by the $provide Service</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in provide_service_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Methods Defined by the $injector Service</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in injector_service_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl2400', function ($scope) {
+        $scope.provide_service_methods = [
+            {
+                name: 'constant(name, value)',
+                desc: ' Defines a constant value'
+            },
+            {
+                name: 'decorator(name, service)',
+                desc: ' Defines a service decorator'
+            },
+            {
+                name: 'factory(name, service)',
+                desc: ' Defines a service'
+            },
+            {
+                name: 'provider(name, service)',
+                desc: ' Defines a service'
+            },
+            {
+                name: 'service(name, provider)',
+                desc: ' Defines a service'
+            },
+            {
+                name: 'value(name, value)',
+                desc: ' Defines a value service'
+            }
+        ];
+        $scope.injector_service_methods = [
+            {
+                name: 'annotate(fn)',
+                desc: ' Gets the arguments for the specified function, including those that do not correspond to services'
+            },
+            {
+                name: 'get(name)',
+                desc: ' Gets the service object for the specified service name'
+            },
+            {
+                name: 'has(name)',
+                desc: ' Returns true if a service exists for the specified name'
+            },
+            {
+                name: 'invoke(fn, self, locals)',
+                desc: ' Invoked the specified function, using the specified value for this and the specified nonservice argument values.'
+            }
+        ];
+    });
+</script>

@@ -1,0 +1,26 @@
+<div class="container" ng-controller="mainCtrl2301">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                <%- req.path %>
+            </div>
+            <div class="panel-content">
+                未実装
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize', 'ngAnimate']);
+    myApp.controller('mainCtrl2301', function ($scope) {});
+</script>

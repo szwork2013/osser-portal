@@ -10,7 +10,7 @@
                 <%- req.path %>
             </div>
             <div class="panel-content">
-                <div ng-view></div>
+                <div ng-view class="ngFade"></div>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
 </div>
 
 <script>
-    var myApp = angular.module('exampleApp', ['ngSanitize', 'ngRoute']);
+    var myApp = angular.module('exampleApp', ['ngSanitize', 'ngRoute', 'ngAnimate']);
     myApp.config(function ($routeProvider, $locationProvider) {
         $routeProvider.when("/view1", {
             templateUrl: "/angular/view/1"
@@ -42,3 +42,12 @@
         };
     });
 </script>
+<style type="text/css">
+    .ngFade.ng-enter {
+        transition: 0.1s linear all;
+        opacity: 0;
+    }
+    .ngFade.ng-enter-active {
+        opacity: 1;
+    }
+</style>

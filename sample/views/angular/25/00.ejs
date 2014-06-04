@@ -1,0 +1,384 @@
+<div class="container" ng-controller="mainCtrl2500">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>Karma利用</h3>
+    <p>karma init karma.config.js</p>
+    <p>karma start karma.config.js</p>
+    <h3>The Karma Setup Questions</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in karma_setup_questions">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Jasmine Functions</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in jasmine_functions">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Jasmine Functions for Evaluating Test Results</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in jasmine_test_results">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Mock Objects Contained in the ngMocks Module</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in ngMocks_objects">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Methods Defined by the angular.mock Object</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in angular_mock_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>Additional Methods and Services for Unit Testing</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in ut_methods_services">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Methods Defined by the $httpBackend</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in httpBackend_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Additional Methods Defined by the Mock $timeout and $interval Services</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in timeout_interval_services_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Methods Defined by the Mock $log Service</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in log_service_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl2500', function ($scope) {
+        $scope.karma_setup_questions = [
+            {
+                name: 'Which testing framework do you want to use?',
+                desc: 'Jasmine'
+            },
+            {
+                name: 'Use Require.js?',
+                desc: 'No'
+            },
+            {
+                name: 'Do you want to capture a browser automatically?',
+                desc: 'Chrome'
+            },
+            {
+                name: 'What is the location of your source and test files?',
+                desc: '<div>angular.js</div><div>angular-mocks.js</div><div>*.js</div><div>tests/*.js</div>'
+            },
+            {
+                name: 'Should any files be excluded?',
+                desc: '[empty string]'
+            },
+            {
+                name: 'Do you want Karma to watch all the files and run the tests on change?',
+                desc: 'Yes'
+            }
+        ];
+        $scope.jasmine_functions = [
+            {
+                name: 'describe',
+                desc: ' Groups a number of related tests (this is optional, but it helps organize test code)'
+            },
+            {
+                name: 'beforeEach',
+                desc: ' Executes a function before each test (this is often used for the arrange part of a test)'
+            },
+            {
+                name: 'it',
+                desc: ' Executes a function to form a test (the act part of the test)'
+            },
+            {
+                name: 'expect',
+                desc: ' Identifies the result from the test (part of the assert stage)'
+            },
+            {
+                name: 'toEqual',
+                desc: ' Compares the result from the test to the expected value (the other part of the assert)'
+            }
+        ];
+        $scope.jasmine_test_results = [
+            {
+                name: 'expect(x).toEqual(val)',
+                desc: ' Asserts that x has the same value as val (but not necessarily the same object)'
+            },
+            {
+                name: 'expect(x).toBe(obj)',
+                desc: ' Asserts that x and obj are the same object'
+            },
+            {
+                name: 'expect(x).toMatch(regexp)',
+                desc: ' Asserts that x matches the specified regular expression'
+            },
+            {
+                name: 'expect(x).toBeDefined()',
+                desc: ' Asserts that x has been defined'
+            },
+            {
+                name: 'expect(x).toBeUndefined()',
+                desc: ' Asserts that x has not been defined'
+            },
+            {
+                name: 'expect(x).toBeNull()',
+                desc: ' Asserts that x is null'
+            },
+            {
+                name: 'expect(x).toBeTruthy()',
+                desc: ' Asserts that x is true or evaluates to true'
+            },
+            {
+                name: 'expect(x).toBeFalsy()',
+                desc: ' Asserts that x is false or evaluates to false'
+            },
+            {
+                name: 'expect(x).toContain(y)',
+                desc: ' Asserts that x is a string that contains y'
+            },
+            {
+                name: 'expect(x).toBeGreaterThan(y)',
+                desc: ' Asserts that x is greater than y'
+            }
+        ];
+        $scope.ngMocks_objects = [
+            {
+                name: 'angular.mock',
+                desc: ' Used to create mock modules and resolve dependencies.'
+            },
+            {
+                name: '$exceptionHandler',
+                desc: ' A mock implementation of the $exceptionHandler service that rethrows the exceptions it receives.'
+            },
+            {
+                name: '$interval',
+                desc: ' A mock implementation of the $interval service that allows time to be moved forward to trigger scheduled functions on demand. See the “Mocking Periods of Time” section.'
+            },
+            {
+                name: '$log',
+                desc: ' A mock implementation of the $log service that exposes the messages it receives through a set of properties, one for each of the methods defined by the real service. See the “Testing Logging” section.'
+            },
+            {
+                name: '$timeout',
+                desc: ' A mock implementation of the $timeout service that allows the timer to be expired programmatically so that the associated function executed on demand. See the “Mocking Periods of Time” section.'
+            }
+        ];
+        $scope.angular_mock_methods = [
+            {
+                name: 'module(name)',
+                desc: ' Loads the specified module. See the “Arranging the Test” section.'
+            },
+            {
+                name: 'inject(fn)',
+                desc: ' Resolves dependencies and injects them into a function. See the “Resolving Dependencies” section.'
+            },
+            {
+                name: 'dump(object)',
+                desc: ' Serializes an AngularJS object (such as a service object).'
+            }
+        ];
+        $scope.ut_methods_services = [
+            {
+                name: '$rootScope.new()',
+                desc: ' Creates a new scope'
+            },
+            {
+                name: '$controller(name)',
+                desc: ' Creates an instance of the specified controller'
+            },
+            {
+                name: '$filter(name)',
+                desc: ' Creates an instance of the specified filter'
+            }
+        ];
+        $scope.httpBackend_methods = [
+            {
+                name: 'expect(method, url, data, headers)',
+                desc: ' Defines an expectation for a request that matches the method and URL (with optional data and header matches)'
+            },
+            {
+                name: 'flush(),flush(count)',
+                desc: ' Sends back pending results (or the specified number of responses if the optional argument is used)'
+            },
+            {
+                name: 'resetExpectations()',
+                desc: 'Resets the set of expectations'
+            },
+            {
+                name: 'verifyNoOutstandingExpectation()',
+                desc: ' Checks that all of the expected requests have been received'
+            },
+            {
+                name: 'respond(data),response(status, data, headers)',
+                desc: 'Defines a response for an expected request'
+            }
+        ];
+        $scope.timeout_interval_services_methods = [
+            {
+                name: '$timeout.flush(millis)',
+                desc: ' Advances the timer by the specified number of milliseconds'
+            },
+            {
+                name: '$timeout.verifyNoPendingTasks()',
+                desc: ' Checks to see whether there are callbacks that have yet to be invoked'
+            },
+            {
+                name: '$interval.flush(millis)',
+                desc: ' Advances the timer by the specified number of milliseconds'
+            }
+        ];
+        $scope.log_service_methods = [
+            {
+                name: 'assertEmpty()',
+                desc: ' Throws an exception if any logging messages have been written'
+            },
+            {
+                name: 'reset()',
+                desc: ' Clears the stored messages'
+            }
+        ];
+
+    });
+</script>
