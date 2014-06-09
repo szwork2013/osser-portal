@@ -1,0 +1,11 @@
+[{
+    "title": "AngularJS Guide",
+    "price": 2592,
+    "url": "http://r.osser.jp/book/angularjs",
+    "category": "javascript"
+}, {
+    "title": "Node.js Guide",
+    "price": 3434,
+    "url": "http://r.osser.jp/book/nodejs-textbook",
+    "category": "nodejs"
+}]

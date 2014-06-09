@@ -84,6 +84,46 @@
         </tbody>
         <tfoot></tfoot>
     </table>
+    <h3>The Services That Operate on Dangerous Data</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in dangerous_data_services">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Services That Operate on AngularJS Expressions</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in angularjs_operate_expressions">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
 
 </div>
 <script>
@@ -183,6 +223,30 @@
             {
                 name: '$locationChangeSuccess',
                 desc: 'Triggered after the URL has changed.'
+            }
+        ];
+        $scope.dangerous_data_services = [
+            {
+                name: '$sce',
+                desc: 'Removes dangerous elements and attributes from HTML'
+            },
+            {
+                name: '$sanitize',
+                desc: 'Replaces dangerous characters in HTML strings with their escaped counterparts'
+            }
+        ];
+        $scope.angularjs_operate_expressions = [
+            {
+                name: '$compile',
+                desc: 'Converts an HTML fragment that contains bindings and directives into a function invoked to generate content'
+            },
+            {
+                name: '$interpolate',
+                desc: 'Converts a string that contains inline bindings into a function that can be invoked to generate content'
+            },
+            {
+                name: '$parse',
+                desc: 'Converts AngularJS expressions into functions that can be invoked to generate content'
             }
         ];
 

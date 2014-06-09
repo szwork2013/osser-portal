@@ -1,0 +1,57 @@
+<div class="container" ng-controller="mainCtrl2005">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <div>
+        <div class="panel">
+            <div class="panel-header">
+                $httpProvider(defaults.transformResponse)
+            </div>
+            <div class="panel-content">
+                <div>
+                    <button ng-click="getBooks()">Get Books.xml</button>
+                </div>
+                <pre>{{xmlData}}</pre>
+                <div ng-if='xmlData' class="padding10 bg-grayLighter fg-green">{{message}}</div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.config(function ($httpProvider) {
+        $httpProvider.defaults.transformResponse.push(function (data, headers) {
+            if (headers("content-type") == "application/xml" && angular.isString(data)) {
+                books = [];
+                var productElems = angular.element(data.trim()).find("book");
+                for (var i = 0; i < productElems.length; i++) {
+                    var book = productElems.eq(i);
+                    books.push({
+                        title: book.attr("title"),
+                        url: book.attr("url")
+                    });
+                }
+                return books;
+            } else {
+                return data;
+            }
+        });
+    });
+    myApp.controller('mainCtrl2005', function ($scope, $http) {
+        $scope.message = '';
+        $scope.xmlData = '';
+        $scope.getBooks = function () {
+            $http.get('/lib/angularjs/books.xml').success(function (data) {
+                $scope.xmlData = data;
+                $scope.message = 'xmlデータの場合、json配列に変更されました。';
+            });
+        }
+    });
+</script>

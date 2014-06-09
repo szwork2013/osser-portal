@@ -1,0 +1,395 @@
+<div class="container" ng-controller="mainCtrl2000">
+    <h2>
+        <a href="/angular"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        AngularJSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <h3>The Methods Defined by the $http Service for Making Ajax Requests</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in httpservice_ajax_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Methods Defined Promise Objects Returned by $http Service Methods</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in http_method_promise">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Properties of the Object Passed by the then Method</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in httpservice_then_informations">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Configuration Properties for $http Methods</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in httpservice_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Properties Defined by the $httpProvider</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in httpprovider_properties">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Interceptor Properties</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in interceptor_properties">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Methods Defined by the $q Service</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in q_service_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Members Defined by deferred Objects</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in deferred_objects_members">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <h3>The Methods Defined by Promise Objects</h3>
+    <table class="table hovered ">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in promise_objects_methods">
+                <td>{{$index+1}}</td>
+                <td class="text-left" nowrap>{{item.name}}</td>
+                <td class="text-left">
+                    <p ng-bind-html="item.desc"></p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+
+
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', ['ngSanitize']);
+    myApp.controller('mainCtrl2000', function ($scope) {
+        $scope.httpservice_ajax_methods = [
+            {
+                name: 'get(url, config)',
+                desc: 'Performs a GET request for the specified URL.'
+            },
+            {
+                name: 'post(url, data, config)',
+                desc: 'Performs a POST request to the specified URL to submit the specified data.'
+            },
+            {
+                name: 'delete(url, config)',
+                desc: ' Performs a DELETE request to the specified URL.'
+            },
+            {
+                name: 'put(url, data, config)',
+                desc: 'Performs a PUT request with the specified data and URL.'
+            },
+            {
+                name: 'head(url, config)',
+                desc: 'Performs a HEAD request to the specified URL.'
+            },
+            {
+                name: 'jsonp(url, config)',
+                desc: '<p>Performs a GET request to obtain a fragment of JavaScript code that is then executed. JSONP, which stands for JSON with Padding, is a way of working around the limitations that browsers apply to where JavaScript code can be loaded from. </p><p>see http://en.wikipedia.org/wiki/JSONP for details.</p>'
+            }
+        ];
+        $scope.http_method_promise = [
+            {
+                name: 'success(fn)',
+                desc: 'Invokes the specified function when the HTTP request has successfully completed'
+            },
+            {
+                name: 'error(fn)',
+                desc: 'Invokes the specified function when the request does not complete successfully'
+            },
+            {
+                name: 'then(fn, fn)',
+                desc: 'Registers a success function and an error function'
+            }
+        ];
+        $scope.httpservice_then_informations = [
+            {
+                name: 'data',
+                desc: 'Returns the data from the request'
+            },
+            {
+                name: 'status',
+                desc: 'Returns the HTTP status code returned by the server'
+            },
+            {
+                name: 'headers',
+                desc: 'Returns a function that can be used to obtain headers by name'
+            },
+            {
+                name: 'config',
+                desc: 'The configuration object used to make the request (see the “Configuring Ajax Requests”section for details)'
+            }
+        ];
+        $scope.httpservice_methods = [
+            {
+                name: 'data',
+                desc: ' Sets the data sent to the server. If you set this to an object, AngularJS will serialize it to the JSON format.'
+            },
+            {
+                name: 'headers',
+                desc: ' Used to set request headers. Set headers to an object with properties whose names and values correspond to the headers and values you want to add to the request.'
+            },
+            {
+                name: 'method',
+                desc: ' Sets the HTTP method used for the request.'
+            },
+            {
+                name: 'params',
+                desc: ' Used to set the URL parameters. Set params to an object whose property names and values correspond to the parameters you want to include.'
+            },
+            {
+                name: 'timeout',
+                desc: ' Specifies the number of milliseconds before the request expires.'
+            },
+            {
+                name: 'transformRequest',
+                desc: ' Used to manipulate the request before it is sent to the server '
+            },
+            {
+                name: 'transformResponse',
+                desc: ' Used to manipulate the response when it arrives from the server '
+            },
+            {
+                name: 'url',
+                desc: ' Sets the URL for the request.'
+            },
+            {
+                name: 'withCredentials',
+                desc: ' When set to true, the withCredentials option on the underlying browser request object is enabled, which includes authentication cookies in the request.'
+            },
+            {
+                name: 'xsrfHeaderNamexsrfCookieName',
+                desc: ' These properties are used to response to cross-site request forgery tokens that can be demanded by servers. See http://en.wikipedia.org/wiki/Cross-site_request_forgery for details.'
+            }
+        ];
+        $scope.httpprovider_properties = [
+            {
+                name: 'defaults.headers.common',
+                desc: ' Defines the default headers used for all requests.'
+            },
+            {
+                name: 'defaults.headers.post',
+                desc: ' Defines the headers used for POST requests.'
+            },
+            {
+                name: 'defaults.headers.put',
+                desc: ' Defines the headers used for PUT requests.'
+            },
+            {
+                name: 'defaults.transformResponse',
+                desc: ' An array of transform functions that are applied to all responses.'
+            },
+            {
+                name: 'defaults.transformRequest',
+                desc: ' An array of transform functions that are applied to all requests.'
+            },
+            {
+                name: 'interceptors',
+                desc: ' An array of interceptor factory functions. Interceptors are a more sophisticated form of transform function. I explain how they work in the next section.'
+            },
+            {
+                name: 'withCredentials',
+                desc: ' Sets the withCredentials option for all requests. This property is used to address cross-origin requests that require authentication.'
+            }
+        ];
+        $scope.interceptor_properties = [
+            {
+                name: 'request',
+                desc: ' The interceptor function is called before the request is made and is passed the configuration object.'
+            },
+            {
+                name: 'requestError',
+                desc: ' The interceptor function is called when the previous request interceptor throws an error.'
+            },
+            {
+                name: 'response',
+                desc: ' The interceptor function is called when the response is received and is passed the response object.'
+            },
+            {
+                name: 'responseError',
+                desc: ' The interceptor function is called when the previous response interceptor throws an error.'
+            }
+        ];
+        $scope.q_service_methods = [
+            {
+                name: 'all(promises)',
+                desc: ' Returns a promise that is resolved when all of the promises in the specified array are resolved or any of them is rejected'
+            },
+            {
+                name: 'defer()',
+                desc: ' Creates a deferred object'
+            },
+            {
+                name: 'reject(reason)',
+                desc: ' Returns a promise that is always rejected'
+            },
+            {
+                name: 'when(value)',
+                desc: ' Wraps a value in a promise that is always resolved (with the specified value as a result)'
+            }
+        ];
+        $scope.deferred_objects_members = [
+            {
+                name: 'resolve(result)',
+                desc: ' Signals that the deferred activity has completed with the specified value'
+            },
+            {
+                name: 'reject(reason)',
+                desc: ' Signals that the deferred activity has failed or will not be completed for the specified reason'
+            },
+            {
+                name: 'notify(result)',
+                desc: ' Provides an interim result from the deferred activity'
+            },
+            {
+                name: 'promise',
+                desc: ' Returns a promise object that receives the signals from the other methods'
+            }
+        ];
+        $scope.promise_objects_methods = [
+            {
+                name: 'then(success, error, notify)',
+                desc: ' Registers functions that are invoked in response to the deferred object’s resolve, reject, and notify methods. The functions are passed the arguments that were used to call the deferred object’s methods.'
+            },
+            {
+                name: 'catch(error)',
+                desc: ' Registers just an error handling function, which is passed the argument used to call the deferred object’s reject method.'
+            },
+            {
+                name: 'finally(fn)',
+                desc: ' Registers a function that is invoked irrespective of the promise being resolved or rejected. The function is passed the argument used to call the deferred object’s resolve or reject method.'
+            }
+        ];
+
+    });
+</script>

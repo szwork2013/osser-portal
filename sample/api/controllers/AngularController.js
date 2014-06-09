@@ -33,6 +33,9 @@ module.exports = {
     },
 
     sample: function (req, res) {
+        //console.log('sample', req.headers);
+        //console.log('sample', req.body);
+
         var id = req.param('id');
         //console.log('id', id);
         if (id) {
@@ -49,6 +52,21 @@ module.exports = {
             return res.notFound();
     },
 
+    view: function (req, res) {
+        var id = req.param('id');
+        switch (id) {
+        case '1':
+        case '2':
+        case '3':
+        case 'bar':
+            return res.view('angular/22/view' + id, {
+                layout: ''
+            });
+        default:
+            return res.notFound();
+        }
+    },
+
     portlet1: function (req, res) {
         return res.view('angular/portlet/01', {
             layout: ''
@@ -58,6 +76,15 @@ module.exports = {
     portlet2: function (req, res) {
         return res.view('angular/portlet/02', {
             layout: ''
+        });
+    },
+
+    testpost: function (req, res) {
+        console.log('testpost', req.headers);
+        console.log('testpost', req.body);
+        return res.json({
+            result: 'angular/testpost',
+            body: req.body
         });
     },
 
