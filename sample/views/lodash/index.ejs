@@ -1,0 +1,30 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        LoDash.jsサンプル<small class="on-right">osser.jp</small>
+    </h2>
+
+    <hr/>
+
+    <p>
+        <h3 id="_emphasis"><i class="icon-accessibility on-left"></i>基本</h3>
+        <div>{{message}}</div>
+    </p>
+
+
+
+
+    <hr/>
+
+    <p>
+        Working with LoDash.js
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        //$scope.message = _.indexOf([1, 2, 3, 1, 2, 3], 2);
+        $scope.message = _.indexOf(['red', 'green', 'blue'], 'yellow');
+    });
+</script>
