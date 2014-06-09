@@ -1,0 +1,23 @@
+<div class="container border bd-black">
+    <h3>container(980px), grid fluid</h3>
+    <div class="grid fluid">
+        <div class="row">
+            <div class="span3 border bd-green">span3A</div>
+            <div class="span3 border bd-green">span3B</div>
+            <div class="span3 border bd-green">span3C</div>
+            <div class="span3 border bd-green">span3D</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {});
+</script>
+
+<style>
+    .container {
+        width: 980px !important;
+        /*min-width: 720px;*/
+    }
+</style>

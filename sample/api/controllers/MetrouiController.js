@@ -36,6 +36,13 @@ module.exports = {
         var id = req.param('id');
         if (id) {
             var filepath = 'metroui/' + id;
+
+            if (_s.startsWith(id, 'grid')) {
+                filepath = 'metroui/' + id.slice(0, 4) + "/" + id.slice(4);;
+            } else {
+                filepath = 'metroui/' + id;
+            }
+
             fs.readFile('views/' + filepath + '.ejs', function (err, data) {
                 if (err) return console.error(err);
                 return redirect(res, filepath, data.toString());

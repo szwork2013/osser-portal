@@ -1,0 +1,49 @@
+<h3>class:grid</h3>
+<div class="grid border bd-darkCobalt">
+    <div class="row border bd-red">
+        <div class="span4 border bd-green">span4</div>
+        <div class="span4 border bd-green">span4</div>
+        <div class="span4 border bd-green">span4</div>
+    </div>
+</div>
+<h3>class:grid fluid</h3>
+<div class="grid fluid border bd-darkCobalt">
+    <div class="row border bd-red">
+        <div class="span4 border bd-green">span4</div>
+        <div class="span4 border bd-green">span4</div>
+        <div class="span4 border bd-green">span4</div>
+    </div>
+</div>
+<h3>class=container</h3>
+<div class="container border bd-green">
+    <h3>class:grid</h3>
+    <div class="grid border bd-darkCobalt">
+        <div class="row border bd-red">
+            <div class="span4 border bd-green">span4</div>
+            <div class="span4 border bd-green">span4</div>
+            <div class="span4 border bd-green">span4</div>
+        </div>
+    </div>
+    <h3>class:grid fluid</h3>
+    <div class="grid fluid border bd-darkCobalt">
+        <div class="row border bd-red">
+            <div class="span4 border bd-green">span4</div>
+            <div class="span4 border bd-green">span4</div>
+            <div class="span4 border bd-green">span4</div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {});
+</script>
+
+<style>
+    .container {
+        width: 980px !important;
+    }
+</style>
