@@ -1,0 +1,152 @@
+<div class="container" ng-controller="mainCtrl">
+    <h2>
+        <a href="/metroui"><i class="icon-arrow-left-3 fg-darker"></i></a>
+        Metroui CSSサンプル<small class="on-right">osser.jp</small>
+    </h2>
+    <hr/>
+    <form name="frmMain" novalidate>
+        <fieldset>
+            <legend>Form1</legend>
+        </fieldset>
+        <div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text1">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text2">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text3">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text4">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text5">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text6">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text7">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text8">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text9">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text10">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text11">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text12">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text13">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text14">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text15">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text16">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text17">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text18">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text19">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text20">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text21">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text22">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text23">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text24">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text25">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text26">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text27">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text28">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text29">
+            </div>
+            <div class="input-control text span1" data-role="input-control">
+                <input type="text" placeholder="text30">
+            </div>
+        </div>
+        <div class="input-control text span2" data-role="input-control">
+            <input type="text" placeholder="text1" ng-model="searchKeyword">
+            <button class="btn-search" tabindex="-1" type="button" ng-click="btnSearch()"></button>
+        </div>
+        <div class="input-control text span2" data-role="input-control">
+            <input type="text" placeholder="text2">
+            <button class="btn-clear" tabindex="-1" type="button"></button>
+        </div>
+        <div class="input-control text span3" data-role="input-control">
+            <input type="text" placeholder="text3">
+            <button class="btn-clear" tabindex="-1" type="button"></button>
+        </div>
+        <div class="clearfix"></div>
+        <div class="input-control text span3" data-role="input-control">
+            <input type="text" placeholder="text4">
+            <button class="btn-clear" tabindex="-1" type="button"></button>
+        </div>
+        <div class="input-control text span3" data-role="input-control">
+            <input type="text" placeholder="text5">
+            <button class="btn-clear" tabindex="-1" type="button"></button>
+        </div>
+        <div class="input-control text span1" data-role="input-control">
+            <input type="text" placeholder="text6">
+            <button class="btn-clear" tabindex="-1" type="button"></button>
+        </div>
+        <button>ButtonA</button>
+        <button>ButtonB</button>
+        <button>ButtonC</button>
+        <div>
+            <button>Button1</button>
+            <button>Button2</button>
+            <button>Button3</button>
+            <button>Button4</button>
+        </div>
+    </form>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {
+        $scope.searchKeyword = '';
+        $scope.btnSearch = function () {
+            alert($scope.searchKeyword);
+        }
+    });
+</script>

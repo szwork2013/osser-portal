@@ -37,7 +37,7 @@ module.exports = {
         if (id) {
             var filepath = 'metroui/' + id;
 
-            if (_s.startsWith(id, 'grid')) {
+            if (_s.startsWith(id, 'grid') || _s.startsWith(id, 'form')) {
                 filepath = 'metroui/' + id.slice(0, 4) + "/" + id.slice(4);;
             } else {
                 filepath = 'metroui/' + id;

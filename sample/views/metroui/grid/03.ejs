@@ -1,0 +1,44 @@
+<div class="grid fluid">
+    <div class="row">
+        <div class="span2">
+            <nav class="sidebar light">
+                <ul>
+                    <li><a href="#">Item 1</a>
+                    </li>
+                    <li><a href="#">Item 2</a>
+                    </li>
+                    <li><a href="#">Item 3</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="span10 border bd-green">
+            <div class="grid fluid">
+                <div class="row">
+                    <div class="span3 border bd-red">span3</div>
+                    <div class="span3 border bd-red">span3</div>
+                    <div class="span3 border bd-red">span3</div>
+                    <div class="span3 border bd-red">span3</div>
+                </div>
+                <div class="row">
+                    <table class="table hovered bordered">
+                        <tr>
+                            <td class="span1">No</td>
+                            <td>asdf</td>
+                            <td class="span1">Time</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>
+        <pre ng-non-bindable><%- source %></pre>
+    </p>
+</div>
+
+<script>
+    var myApp = angular.module('exampleApp', []);
+    myApp.controller('mainCtrl', function ($scope) {});
+</script>
